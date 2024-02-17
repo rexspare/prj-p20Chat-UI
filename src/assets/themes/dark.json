@@ -1,0 +1,17 @@
+{
+    "mode": "dark",
+    "PRIMARY": "#006B5F",
+    "SECONDARY": "#02AEAE",
+    "ACCENT": "#FFFFFF",
+    "BACKGROUND": "#181822",
+    "TEXT": "#FFFFFF",
+    "BORDER": "#FFFFFF",
+    "CHAT_BG": "#006B5F",
+    "TAB_ICON": "#FFFFFF",
+    "CHAT_BUBLE": "rgba(217, 217, 217, 0.25)",
+    "MY_CHAT_BUBBLE": "rgba(0, 107, 95, 0.25)",
+    "BLACK_TO_WHITE": "#FFFFFF",
+    "PRIMARY_TO_WHITE": "#FFFFFF",
+    "PRIMARY_TO_SECONDARY": "#02AEAE",
+    "BLACK_TO_PRIMARY": "#006B5F"
+}

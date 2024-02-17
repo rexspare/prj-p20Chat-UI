@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { COMMON_STYLES } from '../assets/stylesGuide';
+import useAppConfig from '../hooks/AppConfig';
+import { ITHEME } from '../models/config';
 import If from './if';
 
 interface ILayoutProps {
@@ -18,11 +19,14 @@ const Layout: React.FC<ILayoutProps> = ({
     fixed,
     contentContainerStyle,
 }) => {
+    const { theme } = useAppConfig()
+    const styles = styles_(theme)
+
     return (
         <>
             <If condition={fixed}>
                 <View
-                    style={[COMMON_STYLES.main, containerStyle]}>
+                    style={[styles.main, containerStyle]}>
                     {children}
                 </View>
             </If>
@@ -30,7 +34,7 @@ const Layout: React.FC<ILayoutProps> = ({
                 <KeyboardAwareScrollView
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled"
-                    style={[COMMON_STYLES.main, containerStyle]}
+                    style={[styles.main, containerStyle]}
                     contentContainerStyle={contentContainerStyle}>
                     {children}
                 </KeyboardAwareScrollView>
@@ -38,5 +42,12 @@ const Layout: React.FC<ILayoutProps> = ({
         </>
     );
 };
+
+const styles_ = (theme: ITHEME) => StyleSheet.create({
+    main: {
+        flex: 1,
+        backgroundColor: theme.BACKGROUND
+    }
+})
 
 export default Layout;

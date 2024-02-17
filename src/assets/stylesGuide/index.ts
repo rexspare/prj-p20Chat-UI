@@ -11,16 +11,6 @@ enum FONTS {
     BOLD = "Inter-Bold",
     EXTRA_BOLD = "Inter-ExtraBold",
     BLACK = "Inter-Black",
-
-    // THIN = "Gilroy-Thin",
-    // EXTRA_LIGHT = "Gilroy-UltraLight",
-    // LIGHT = "Gilroy-Light",
-    // REGULAR = "Gilroy-Regular",
-    // MEDIUM = "Gilroy-Medium",
-    // SEMI_BOLD = "Gilroy-SemiBold",
-    // BOLD = "Gilroy-Bold",
-    // EXTRA_BOLD = "Gilroy-ExtraBold",
-    // BLACK = "Gilroy-Black",
 }
 
 enum SIZE {
@@ -29,36 +19,26 @@ enum SIZE {
 }
 
 enum COLORS {
-    PRIMARY = "#31A08A",
-    SECONDARY = "#11C19E",
-    PRIMARY_OPACITY = "rgba(49, 160, 138, 0.1)",
-    BACKGROUND = "#FFFFFF",
+    PRIMARY = "#006B5F",
+    SECONDARY = "#02AEAE",
     WHITE = "#FFFFFF",
-    TEXT = "#24272A",
     BLACK = "#000000",
-    DISABLED = "#D6D9DC",
-    LINK = "#3348FF",
-    TAB = "#D9D9D9",
-    PURPLE = "#9747FF",
-    PARROT = "#B8DB2D",
-    PINK = "#FF47AA",
-    SUBTLE = "#24272A",
-    BODY = "#494949",
-    BLACK_OPACITY = "rgba(0,0,0,0.25)",
-    DISABLED_OPACITY = "rgba(217, 217, 217, 0.2)",
-    RED = "#FF0000"
+}
+
+enum FONT_SIZE {
+    _24 = hp(2.4),
+    _14 = hp(1.5)
 }
 
 
 const COMMON_STYLES = StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: COLORS.BACKGROUND
+
     },
     mainPad: {
         flex: 1,
         paddingHorizontal: '3%',
-        backgroundColor: COLORS.BACKGROUND,
     },
     center_: {
         justifyContent: 'center',
@@ -91,5 +71,6 @@ export {
     COMMON_STYLES,
     hp,
     wp,
-    normalize
+    normalize,
+    FONT_SIZE
 }

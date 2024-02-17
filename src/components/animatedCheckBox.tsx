@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Animated, StyleSheet, Image, ViewStyle } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import { COLORS } from '../assets/stylesGuide';
+import React, { FC, useEffect, useState } from 'react';
+import { Animated, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import { CheckBox } from '../assets/icons';
+import { COLORS, hp } from '../assets/stylesGuide';
 
 interface checkBoxProps {
     checked: boolean;
@@ -12,9 +11,10 @@ interface checkBoxProps {
     size?: number
 }
 
-const AnimatedCheckBox = ({ checked, onPress, style, containerStyle, size = 16 }: checkBoxProps) => {
+const AnimatedCheckBox: FC<checkBoxProps> = ({ checked, onPress, style, containerStyle, size = hp(2.15) }) => {
     const [scaleValue] = useState(new Animated.Value(checked ? 1 : 0));
     const styles = styles_(size)
+
     const onCheck = () => {
         Animated.timing(scaleValue, {
             toValue: checked ? 0 : 1,
@@ -52,21 +52,19 @@ const AnimatedCheckBox = ({ checked, onPress, style, containerStyle, size = 16 }
 
 export default React.memo(AnimatedCheckBox);
 
-const styles_ = (size: any) => StyleSheet.create({
+const styles_ = (size: any,) => StyleSheet.create({
     container: {
-        width: size,
-        height: size,
-        borderRadius: size / 3.5,
+        width: size - 1,
+        height: size - 2,
+        borderRadius: size / 5,
         borderWidth: 1.5,
-        borderColor: COLORS.DISABLED,
+        borderColor: COLORS.SECONDARY,
         alignItems: 'center',
         justifyContent: 'center',
     },
     checkbox: {
         width: size,
         height: size,
-        borderRadius: size / 3.5,
-        backgroundColor: COLORS.SECONDARY,
         alignItems: 'center',
         justifyContent: 'center',
     },
