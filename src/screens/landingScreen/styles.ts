@@ -19,7 +19,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         paddingHorizontal: '5%',
-        marginBottom: (isIOS() && hasNotch()) ? hp(3) : hp(2)
+        marginBottom: (isIOS() && hasNotch()) ? hp(3.5) : hp(2)
     },
     row: {
         flexDirection: 'row',

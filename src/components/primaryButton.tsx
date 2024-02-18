@@ -1,6 +1,6 @@
 import { ActivityIndicator, StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle, } from 'react-native'
 import React, { ReactNode } from 'react'
-import { COLORS, FONTS, hp, wp, COMMON_STYLES, normalize } from '../assets/stylesGuide';
+import { COLORS, FONTS, hp, wp, COMMON_STYLES, normalize, FONT_SIZE } from '../assets/stylesGuide';
 import { If } from '.';
 import { ITHEME } from '../models/config';
 import useAppConfig from '../hooks/AppConfig';
@@ -74,10 +74,11 @@ const styles_ = (theme: ITHEME, disabled: any) => StyleSheet.create({
         ...COMMON_STYLES.center_,
         height: hp(5.5),
         borderRadius: hp(0.9),
+        maxWidth:700
     },
     title: {
         color: COLORS.WHITE,
-        fontSize: hp(1.8),
+        fontSize: FONT_SIZE._16,
         fontFamily: FONTS.MEDIUM
     }
 })

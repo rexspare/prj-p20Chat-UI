@@ -8,6 +8,8 @@ import Label from "./label";
 import BodyText from "./bodyText";
 import AnimatedCheckBox from "./animatedCheckBox";
 
+export * from './headers'
+
 export {
     If,
     Layout,

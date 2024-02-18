@@ -1,10 +1,11 @@
-import { StyleSheet, Text, TextInput, View, ViewStyle, TouchableOpacity, TextStyle } from 'react-native'
-import React, { useState } from 'react'
-import If from './if';
-import Feather from 'react-native-vector-icons/Feather'
-import { COLORS, FONTS, hp, wp, COMMON_STYLES, normalize } from '../assets/stylesGuide';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
 import { BodyText } from '.';
-import BottomSheet from 'reanimated-bottom-sheet';
+import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp } from '../assets/stylesGuide';
+import useAppConfig from '../hooks/AppConfig';
+import { ITHEME } from '../models/config';
+import If from './if';
 
 interface primaryInputPros {
     title?: string;
@@ -32,6 +33,9 @@ interface primaryInputPros {
 
 const PrimaryInput: React.FC<primaryInputPros> = (props) => {
     const { onPressRightIcon = () => { } } = props
+    const { theme } = useAppConfig()
+    const styles = styles_(theme)
+
     const [isSecureTextEntry, setisSecureTextEntry] = useState<boolean>(true)
     const [isFocused, setisFocused] = useState<boolean>(false)
 
@@ -49,7 +53,6 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
             <View style={[styles.container,
             props.inputContainer,
             {
-                borderColor: isFocused ? COLORS.PRIMARY : COLORS.DISABLED,
                 paddingLeft: props?.renderLeftIcon ? 10 : 0
             }]}>
 
@@ -112,32 +115,33 @@ PrimaryInput.defaultProps = {
 
 export default React.memo(PrimaryInput)
 
-const styles = StyleSheet.create({
+const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {
         width: '100%',
         alignSelf: 'center',
         marginVertical: 11,
-        backgroundColor: COLORS.BACKGROUND,
+        backgroundColor: theme.BACKGROUND,
     },
     title: {
         marginBottom: 4,
         textAlign: 'left',
         fontFamily: FONTS.MEDIUM,
+        fontSize: FONT_SIZE._14
     },
     container: {
-        borderWidth: 1.5,
+        borderWidth: 1,
         flexDirection: 'row',
-        borderRadius: 10,
-        borderColor: COLORS.DISABLED,
+        borderRadius: hp(1),
+        borderColor: theme.BORDER,
         alignItems: 'center'
     },
     input: {
         flex: 1,
-        height: hp(6),
+        height: hp(5.5),
         paddingHorizontal: 10,
-        fontSize: normalize(11),
+        fontSize: FONT_SIZE._14,
         fontFamily: FONTS.REGULAR,
-        color: COLORS.TEXT
+        color: theme.BLACK_TO_WHITE
     },
     eyeBtn: {
         ...COMMON_STYLES.center_,

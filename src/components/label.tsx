@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Text, TextStyle } from 'react-native';
-import { COLORS, FONTS, hp, normalize } from '../assets/stylesGuide';
+import { COLORS, FONTS, FONT_SIZE, hp, normalize } from '../assets/stylesGuide';
 import useAppConfig from '../hooks/AppConfig';
 
 interface labelProps {
@@ -11,7 +11,7 @@ interface labelProps {
 }
 
 const Label: React.FC<labelProps> = (props) => {
-    const { children, size = hp(2.4), fontFamily = FONTS.BOLD, style = {} } = props
+    const { children, size = FONT_SIZE._24, fontFamily = FONTS.BOLD, style = {} } = props
     const { theme } = useAppConfig()
 
     return (

@@ -19,7 +19,7 @@ export interface IConfigState {
 const initialState: IConfigState = {
     lang: English,
     setLang: () => { },
-    theme: LightTheme,
+    theme: DarkTheme,
     setTheme: () => { },
 };
 

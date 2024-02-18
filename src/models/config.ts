@@ -1,5 +1,5 @@
 export interface ITHEME {
-    mode: string;
+    mode: "light" | "dark" | string;
     PRIMARY: string;
     SECONDARY: string;
     ACCENT: string;

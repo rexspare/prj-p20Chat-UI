@@ -23,11 +23,14 @@ enum COLORS {
     SECONDARY = "#02AEAE",
     WHITE = "#FFFFFF",
     BLACK = "#000000",
+    DISBALED = "#D9D9D9"
 }
 
 enum FONT_SIZE {
-    _24 = hp(2.4),
-    _14 = hp(1.5)
+    _24 = hp(2.5),
+    _14 = hp(1.5),
+    _16 = hp(1.6),
+    _18 = hp(1.7),
 }
 
 

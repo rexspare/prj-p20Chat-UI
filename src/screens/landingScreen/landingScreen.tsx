@@ -1,12 +1,16 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Image, Text, View } from 'react-native'
-import { AnimatedCheckBox, BodyText, Label, Layout, PrimaryButton } from '../../components'
+import { Image, View } from 'react-native'
+import { SCREENS } from '../../assets/constants'
 import { IMAGES } from '../../assets/images'
-import { styles as styles_ } from './styles'
+import { AnimatedCheckBox, BodyText, Label, Layout, PrimaryButton } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
+import { styles as styles_ } from './styles'
 
 const LandingScreen = () => {
   const { lang, theme } = useAppConfig()
+  const navigation = useNavigation()
+
   const styles = styles_(theme)
 
   const [checked, setchecked] = useState(false)
@@ -42,7 +46,7 @@ const LandingScreen = () => {
 
         <PrimaryButton
           title={lang['_06']}
-          onPress={() => { }}
+          onPress={() => navigation.navigate(SCREENS.PHONE)}
         />
 
       </View>
