@@ -1,3 +1,5 @@
+import { FRIENDS_AVATARS } from "./dummy"
+
 const IMAGES = {
     LANDING_ICON: require('./landingIcon.png'),
     LOGO_OPACITY_BG: require('./logoOpacityBG.png'),
@@ -5,5 +7,6 @@ const IMAGES = {
 }
 
 export {
-    IMAGES
+    IMAGES,
+    FRIENDS_AVATARS
 }

@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Image, View } from 'react-native'
-import { SCREENS } from '../../assets/constants'
-import { IMAGES } from '../../assets/images'
-import { BodyText, CommonHeader, If, Label, Layout, PrimaryButton, PrimaryInput } from '../../components'
+import { BodyText, ChatItem, CommonHeader, HomeHeader, Label, Layout } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { styles as styles_ } from './styles'
+import { FlatList, StatusBar, View } from 'react-native'
+import { COLORS } from '../../assets/stylesGuide'
+import { CHATS_LIST } from '../../data'
 
 const MessagesScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -15,28 +15,31 @@ const MessagesScreen = () => {
 
   const styles = styles_(theme)
 
-  const [name, setname] = useState('')
+  const [filteredDataSource, setfilteredDataSource] = useState(CHATS_LIST)
 
   return (
-    <Layout fixed={true}>
+    <>
+      <StatusBar backgroundColor={theme.PRIMARY_TO_BLACK} barStyle={'light-content'} />
+      <Layout fixed={true} containerStyle={styles.main}>
 
-      {/* BRANDING */}
-      <Image
-        source={IMAGES.LOGO_OPACITY_BG}
-        style={styles.img}
-      />
+        <HomeHeader
+          title={lang['_28']}
+        />
 
+        <Layout
+          fixed={true}
+          containerStyle={styles.container}>
+          <FlatList
+            data={filteredDataSource}
+            renderItem={({ item, index }) => (<ChatItem item={item} />)}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.contentContainerStyle}
+          />
 
-      <CommonHeader />
+        </Layout>
 
-      <Label style={styles.txt}>{lang["_15"]}</Label>
-
-      <BodyText style={styles.txt1}>{lang['_16']}</BodyText>
-
-   
-
-
-    </Layout>
+      </Layout>
+    </>
   )
 }
 

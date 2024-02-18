@@ -14,5 +14,6 @@ export interface ITHEME {
     PRIMARY_TO_WHITE: string;
     PRIMARY_TO_SECONDARY: string;
     BLACK_TO_PRIMARY: string;
+    PRIMARY_TO_BLACK: string;
 }
 
