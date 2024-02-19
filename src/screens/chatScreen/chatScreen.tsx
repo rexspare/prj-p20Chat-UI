@@ -1,16 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { BodyText, ChatItem, CommonHeader, FabButton, HomeHeader, Label, Layout } from '../../components'
+import { FlatList, StatusBar } from 'react-native'
+import { ChatHeader, ChatItem, Layout } from '../../components'
+import { BlockUserModal, MuteUserModal } from '../../components/popups'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
-import { styles as styles_ } from './styles'
-import { FlatList, StatusBar, View } from 'react-native'
-import { COLORS } from '../../assets/stylesGuide'
-import { CHATS_LIST } from '../../data'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
-import { BlockUserModal, MuteUserModal } from '../../components/popups'
+import { styles as styles_ } from './styles'
 
-const MessagesScreen = () => {
+const ChatScreen = () => {
   const { lang, theme } = useAppConfig()
   const { keyboardStatus } = useKeyboard()
   const navigation = useNavigation()
@@ -25,7 +23,7 @@ const MessagesScreen = () => {
       <StatusBar backgroundColor={theme.PRIMARY_TO_BLACK} barStyle={'light-content'} />
       <Layout fixed={true} containerStyle={styles.main}>
 
-        <HomeHeader
+        <ChatHeader
           title={lang['_28']}
           setblockModalVisible={setblockModalVisible}
           setmuteModalVisible={setmuteModalVisible}
@@ -34,18 +32,15 @@ const MessagesScreen = () => {
         <Layout
           fixed={true}
           containerStyle={styles.container}>
-          <FlatList
+          {/* <FlatList
             data={filteredDataSource}
             renderItem={({ item, index }) => (<ChatItem item={item} />)}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentContainerStyle}
-          />
+          /> */}
 
         </Layout>
 
-        <FabButton
-          onPress={() => { }}
-        />
         <BlockUserModal
           isVisible={blockModalVisible}
           onClose={() => setblockModalVisible(false)}
@@ -59,4 +54,4 @@ const MessagesScreen = () => {
   )
 }
 
-export default MessagesScreen
+export default ChatScreen

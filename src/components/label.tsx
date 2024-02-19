@@ -8,6 +8,7 @@ interface labelProps {
     size?: number;
     fontFamily?: string;
     style?: TextStyle;
+    numberOfLines?: number
 }
 
 const Label: React.FC<labelProps> = (props) => {
@@ -16,6 +17,7 @@ const Label: React.FC<labelProps> = (props) => {
 
     return (
         <Text
+            {...props}
             allowFontScaling={false}
             style={{
                 fontFamily: fontFamily,
@@ -23,7 +25,8 @@ const Label: React.FC<labelProps> = (props) => {
                 color: theme.PRIMARY_TO_WHITE,
                 textAlign: 'center',
                 ...style
-            }}>{children}</Text>
+            }}
+        >{children}</Text>
     )
 }
 

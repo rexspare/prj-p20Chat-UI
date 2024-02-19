@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Text, TextStyle } from 'react-native';
-import { COLORS, FONTS, hp, normalize } from '../assets/stylesGuide';
+import { COLORS, FONTS, FONT_SIZE, hp, normalize } from '../assets/stylesGuide';
 import useAppConfig from '../hooks/AppConfig';
 
 interface bodyTextProps {
@@ -10,8 +10,8 @@ interface bodyTextProps {
     style?: TextStyle;
 }
 
-const BodyText: React.FC<bodyTextProps> = (props) => {
-    const { children, size = hp(1.6), fontFamily = FONTS.REGULAR, style = {} } = props
+const BodyText: React.FC<bodyTextProps | any> = (props) => {
+    const { children, size = FONT_SIZE._16, fontFamily = FONTS.REGULAR, style = {} } = props
     const { theme } = useAppConfig()
 
     return (

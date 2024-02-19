@@ -11,7 +11,8 @@ enum SCREENS {
     CALLS = "CALLS",
     WALLET = "WALLET",
     CONTACTS = "CONTACTS",
-    NEWS = "NEWS"
+    NEWS = "NEWS",
+    CHAT = "CHAT"
 }
 
 enum ASYNC_KEYS {

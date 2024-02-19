@@ -5,6 +5,7 @@ import ProfileNameScreen from "./profileNameScreen/profileNameScreen"
 import ProfileImageScreen from "./profileImageScreen/profileImageScreen"
 
 import MessagesScreen from "./messagesScreen/messagesScreen"
+import ChatScreen from "./chatScreen/chatScreen"
 
 export {
     LandingScreen,
@@ -12,5 +13,6 @@ export {
     OtpScreen,
     ProfileNameScreen,
     ProfileImageScreen,
-    MessagesScreen
+    MessagesScreen,
+    ChatScreen
 }

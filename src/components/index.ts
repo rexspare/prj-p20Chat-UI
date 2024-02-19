@@ -7,6 +7,7 @@ import PrimaryInput from "./primaryInput";
 import Label from "./label";
 import BodyText from "./bodyText";
 import AnimatedCheckBox from "./animatedCheckBox";
+import FabButton from "./fabButton";
 
 export * from './headers'
 export * from './listItems'
@@ -20,5 +21,6 @@ export {
     PrimaryInput,
     Label,
     BodyText,
-    AnimatedCheckBox
+    AnimatedCheckBox,
+    FabButton
 }
