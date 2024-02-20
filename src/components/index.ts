@@ -8,6 +8,8 @@ import Label from "./label";
 import BodyText from "./bodyText";
 import AnimatedCheckBox from "./animatedCheckBox";
 import FabButton from "./fabButton";
+import ChatInput from "./chatInput";
+import MediaPicker from "./mediaPicker";
 
 export * from './headers'
 export * from './listItems'
@@ -22,5 +24,7 @@ export {
     Label,
     BodyText,
     AnimatedCheckBox,
-    FabButton
+    FabButton,
+    ChatInput,
+    MediaPicker
 }

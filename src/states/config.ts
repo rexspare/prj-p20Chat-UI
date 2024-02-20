@@ -3,6 +3,7 @@ import { createSelectors } from './common';
 import { English } from '../assets/languages';
 import { DarkTheme, LightTheme } from '../assets/themes';
 import { ITHEME } from '../models/config';
+import { Platform } from 'react-native';
 
 
 /**
@@ -19,7 +20,7 @@ export interface IConfigState {
 const initialState: IConfigState = {
     lang: English,
     setLang: () => { },
-    theme: LightTheme,
+    theme: Platform.OS == 'ios' ? DarkTheme : LightTheme,
     setTheme: () => { },
 };
 

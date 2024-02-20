@@ -7,7 +7,7 @@ import useAppConfig from '../hooks/AppConfig';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, FONTS, FONT_SIZE, hp, normalize } from '../assets/stylesGuide';
 import { hasNotch, isIOS } from '../utils/myUtils';
-import { MessagesScreen } from '../screens';
+import { CallScreen, ContactScreen, MessagesScreen } from '../screens';
 import { TabCall, TabContact, TabMessage, TabNews, TabWallet } from '../assets/icons';
 
 type InitialNavigationStackParamList = {
@@ -30,9 +30,9 @@ const BottomStack = () => {
             tabBar={props => <CustomTabBar {...props} />}
         >
             <Tab.Screen name={SCREENS.MESSAGES} component={MessagesScreen} options={{ title: lang['_23'] }} />
-            <Tab.Screen name={SCREENS.CALLS} component={MessagesScreen} options={{ title: lang['_24'] }} />
+            <Tab.Screen name={SCREENS.CALLS} component={CallScreen} options={{ title: lang['_24'] }} />
             <Tab.Screen name={SCREENS.WALLET} component={MessagesScreen} options={{ title: lang['_25'] }} />
-            <Tab.Screen name={SCREENS.CONTACTS} component={MessagesScreen} options={{ title: lang['_26'] }} />
+            <Tab.Screen name={SCREENS.CONTACTS} component={ContactScreen} options={{ title: lang['_26'] }} />
             <Tab.Screen name={SCREENS.NEWS} component={MessagesScreen} options={{ title: lang['_27'] }} />
         </Tab.Navigator>
     )

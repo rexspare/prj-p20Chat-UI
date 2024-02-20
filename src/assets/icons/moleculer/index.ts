@@ -8,7 +8,9 @@ import DeletecIcon from './deleteIcon.svg'
 import MuteIcon from './muteIcon.svg'
 import CallIcon from './callIcon.svg'
 import VideoIcon from './videoIcon.svg'
-
+import VideoCallIcon from './videoCallIcon.svg'
+import MicIcon from './micIcon.svg'
+import LockIcon from './lockIcon.svg'
 
 export {
     CheckBox,
@@ -20,5 +22,8 @@ export {
     DeletecIcon,
     MuteIcon,
     CallIcon,
-    VideoIcon
+    VideoIcon,
+    VideoCallIcon,
+    MicIcon,
+    LockIcon
 }

@@ -23,14 +23,16 @@ enum COLORS {
     SECONDARY = "#02AEAE",
     WHITE = "#FFFFFF",
     BLACK = "#000000",
-    DISBALED = "#D9D9D9"
+    DISBALED = "#D9D9D9",
+    RED = "#FF0000"
 }
 
 enum FONT_SIZE {
     _24 = hp(2.5),
-    _14 = hp(1.5),
-    _16 = hp(1.7),
+    _20 = hp(2.14),
     _18 = hp(1.9),
+    _16 = hp(1.7),
+    _14 = hp(1.5),
     _12 = hp(1.28),
 }
 
@@ -38,7 +40,6 @@ enum FONT_SIZE {
 const COMMON_STYLES = StyleSheet.create({
     main: {
         flex: 1,
-
     },
     mainPad: {
         flex: 1,

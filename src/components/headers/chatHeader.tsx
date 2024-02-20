@@ -97,7 +97,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                     onPress={() => handleBackPress()}
                 >
                     <BackIcon
-                        fill={theme.WHITE_TO_BLACK}
+                        fill={COLORS.WHITE}
                         width={hp(2.4)}
                         height={hp(2)}
                     />
@@ -113,7 +113,10 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                         />
 
                         <View style={styles.txtContainer}>
-                            <Label style={styles.title}>{openedChat.name}</Label>
+                            <Label
+                                numberOfLines={1}
+                                style={styles.title}
+                            >{openedChat.name}</Label>
                             <BodyText style={styles.status}>Online</BodyText>
                         </View>
                     </TouchableOpacity>
@@ -143,7 +146,9 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                             style={styles.btnContainer1}
                         >
-                            <VideoIcon width={hp(2.5)} height={hp(2.5)} />
+                            <VideoIcon
+                                width={hp(2.5)}
+                                height={hp(2.5)} />
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -152,7 +157,10 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                             style={styles.btnContainer}
                             onPress={() => setmuteModalVisible(true)}
                         >
-                            <CallIcon width={hp(2.25)} height={hp(2.25)} />
+                            <CallIcon
+                                fill={COLORS.WHITE}
+                                width={hp(2.25)}
+                                height={hp(2.25)} />
                         </TouchableOpacity>
 
                         {/* VERTICAL DOTS MENU */}
@@ -212,11 +220,11 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         marginLeft: hp(2),
         borderRadius: hp(4.8),
     },
-
     txtContainer: {
         justifyContent: 'center',
         marginLeft: hp(2),
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        width: wp(35),
     },
     btnContainer: {
         marginHorizontal: hp(3),

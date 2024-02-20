@@ -4,17 +4,17 @@ import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { hp, COMMON_STYLES, FONT_SIZE, FONTS, COLORS } from '../../assets/stylesGuide';
 import { BodyText, If, Label } from '..';
-import { SeenIcon, SelectedIcon } from '../../assets/icons';
+import { CallIcon, IncommingIcon, OutgoingIcon, SeenIcon, SelectedIcon, VideoCallIcon } from '../../assets/icons';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
 import { isDeviceTablet } from '../../utils/myUtils';
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../assets/constants';
 
-interface chatItemProps {
+interface callItemProps {
   item: any;
 }
 
-const ChatItem: FC<chatItemProps> = (props) => {
+const CallItem: FC<callItemProps> = (props) => {
   const {
     item
   } = props
@@ -23,44 +23,20 @@ const ChatItem: FC<chatItemProps> = (props) => {
   const styles = styles_(theme)
 
   const setselectedChats = useInbox(inboxStateSelectors.setselectedChats)
-  const selectedChats = useInbox(inboxStateSelectors.selectedChats)
   const setopenedChat = useInbox(inboxStateSelectors.setopenedChat)
 
   const handleLongPress = () => {
-    if (selectedChats?.length > 0) {
-      return
-    }
-    const exists = selectedChats.find((x: any) => x.id == item.id)
-    if (!exists) {
-      setselectedChats([...selectedChats, item])
-    }
+
   }
 
   const handleSelect = () => {
     // IF SELECTING MULTIPLE
-    if (selectedChats?.length > 0) {
-      const exists = selectedChats.find((x: any) => x.id == item.id)
-      if (!exists) {
-        setselectedChats([...selectedChats, item])
-      } else {
-        setselectedChats(selectedChats.filter((x: any) => x.id != item.id))
-      }
-    } else {
-      // OPEN CHAT
-      setopenedChat(item)
-      navigation.navigate(SCREENS.CHAT)
-    }
+
   }
 
-  const isChatSelected = () => {
-    const exists = selectedChats.find((x: any) => x?.id == item?.id)
-    return exists ? true : false
-  }
 
   return (
-    <View style={[styles.main, {
-      ...(isChatSelected() && { backgroundColor: theme.SELECTED_CHAT_BG })
-    }]}>
+    <View style={styles.main}>
 
       <TouchableOpacity
         activeOpacity={0.8}
@@ -74,41 +50,54 @@ const ChatItem: FC<chatItemProps> = (props) => {
           style={styles.avatarContainer}
           imageStyle={styles.avatar}
         >
-          <If condition={isChatSelected()}>
-            <SelectedIcon width={hp(1.8)} height={hp(1.8)} />
-          </If>
         </ImageBackground>
 
         <View style={styles.context}>
           {/* NAME */}
           <View style={styles.txtContainer}>
 
-            <View style={styles.row}>
-              <Label style={styles.txt} numberOfLines={1}>{item.name} </Label>
+            <Label style={styles.txt} numberOfLines={1}>{item.name} </Label>
 
-              <If condition={item.unReadMessages > 0}>
-                <View style={styles.circle}>
-                  <BodyText style={styles.txt3} >{item.unReadMessages}</BodyText>
-                </View>
-              </If>
-
+            <View style={COMMON_STYLES.flexRowSpaceBetween}>
+              {
+                item?.incommingCall ?
+                  <IncommingIcon width={hp(1.5)} height={hp(1.12)} />
+                  :
+                  <OutgoingIcon width={hp(1.5)} height={hp(1.12)} />
+              }
+              <BodyText
+                numberOfLines={1}
+                style={styles.txt1}>
+                {item.time}</BodyText>
             </View>
-
-            <BodyText
-              numberOfLines={1}
-              style={item.unReadMessages > 0 ? styles.txt2 : styles.txt1}>
-              {item.lastMessage}</BodyText>
           </View>
 
-          {/* NAME AND SEEN ICON */}
-          <View style={styles.timeContainer}>
-            <BodyText style={styles.txt4}>{item.time}</BodyText>
-            <SeenIcon
-              fill={item.unReadMessages > 0 ? theme.BACKGROUND : theme.BLACK_TO_WHITE}
-              width={hp(1.8)}
-              height={hp(1.8)}
-            />
+          {/* ICONS */}
+
+          <View style={styles.row}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
+              style={styles.btnContainer1}
+            >
+              <VideoCallIcon
+                width={hp(2.68)}
+                height={hp(2.68)} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
+              style={styles.btnContainer}
+            >
+              <CallIcon
+                fill={COLORS.SECONDARY}
+                width={hp(2.46)}
+                height={hp(2.46)} />
+            </TouchableOpacity>
+
           </View>
+
 
         </View>
 
@@ -117,7 +106,7 @@ const ChatItem: FC<chatItemProps> = (props) => {
   )
 }
 
-export default ChatItem
+export default CallItem
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
   main: {
@@ -158,19 +147,18 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     flex: 1,
     flexShrink: 1,
     alignItems: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   txt: {
     color: theme.BLACK_TO_WHITE,
-    fontSize: FONT_SIZE._16,
-    maxWidth:'90%'
+    fontSize: FONT_SIZE._16
   },
   txt1: {
     color: theme.ACCENT,
-    fontSize: FONT_SIZE._14,
-    fontFamily: FONTS.MEDIUM,
-    marginTop: hp(0.25)
-
+    fontSize: FONT_SIZE._12,
+    fontFamily: FONTS.REGULAR,
+    marginTop: hp(0.25),
+    marginLeft: 3
   },
   txt2: {
     color: theme.PRIMARY,
@@ -178,28 +166,18 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     fontFamily: FONTS.BOLD,
     marginTop: hp(0.25)
   },
-  txt3: {
-    color: COLORS.WHITE,
-    fontSize: FONT_SIZE._12,
-    fontFamily: FONTS.BOLD,
-  },
   row: {
     ...COMMON_STYLES.flexRowSpaceBetween
   },
-  circle: {
-    backgroundColor: COLORS.SECONDARY,
-    width: hp(1.8),
-    height: hp(1.8),
-    borderRadius: hp(2),
-    marginLeft: hp(0.5)
+  btnContainer: {
+    marginLeft: hp(3.5),
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  txt4: {
-    color: theme.ACCENT,
-    fontSize: FONT_SIZE._12,
-    fontFamily: FONTS.MEDIUM,
-    marginBottom: hp(0.25)
+  btnContainer1: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  timeContainer: {
-    alignItems: 'flex-end',
-  }
+
+
 })

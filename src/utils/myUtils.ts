@@ -25,9 +25,17 @@ const isDeviceTablet = () => {
     return istab
 }
 
+const formatSeconds = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60)
+    const sec = seconds % 60
+    return `${minutes}:${sec}`
+
+}
+
 
 export {
     isIOS,
     hasNotch,
-    isDeviceTablet
+    isDeviceTablet,
+    formatSeconds
 }

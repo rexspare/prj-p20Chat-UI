@@ -3,17 +3,35 @@ import { COLORS, FONTS, FONT_SIZE, hp, wp } from "../../assets/stylesGuide";
 import { ITHEME } from "../../models/config";
 import { hasNotch, isDeviceTablet, isIOS } from "../../utils/myUtils";
 
-const styles = (theme: ITHEME) => StyleSheet.create({
+const styles = (theme: ITHEME, marginValue: any, radiusValue: any) => StyleSheet.create({
     main: {
         backgroundColor: theme.PRIMARY_TO_BLACK
     },
     container: {
         borderTopLeftRadius: hp(4),
         borderTopRightRadius: hp(4),
-        overflow:'hidden',
+        overflow: 'hidden',
+        flex: 1,
+        backgroundColor: theme.BACKGROUND,
+        marginBottom: marginValue,
+        borderBottomLeftRadius: radiusValue,
+        borderBottomRightRadius: radiusValue,
     },
     contentContainerStyle: {
         marginTop: hp(0.5)
+    },
+    aboluteContainer: {
+        position: 'absolute',
+        bottom: (isIOS() && hasNotch()) ? hp(3) : hp(2),
+        width: '100%',
+        alignItems: 'center'
+    },
+    aboluteContainer1: {
+        position: 'absolute',
+        bottom: (isIOS() && hasNotch()) ? hp(3)  : hp(2),
+        width: '100%',
+        alignItems: 'center',
+        zIndex: -10
     }
 })
 
