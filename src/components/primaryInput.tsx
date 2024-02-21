@@ -32,7 +32,7 @@ interface primaryInputPros {
 }
 
 const PrimaryInput: React.FC<primaryInputPros> = (props) => {
-    const { onPressRightIcon = () => { } } = props
+    const { onPressRightIcon = () => { }, onChange = () => { } } = props
     const { theme } = useAppConfig()
     const styles = styles_(theme)
 
@@ -50,11 +50,12 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                 </View>
             </If>
             {/* TEXT INPUT */}
-            <View style={[styles.container,
-            props.inputContainer,
-            {
-                paddingLeft: props?.renderLeftIcon ? 10 : 0
-            }]}>
+            <View style={[
+                styles.container,
+                props.inputContainer,
+                {
+                    paddingLeft: props?.renderLeftIcon ? 10 : 0
+                }]}>
 
                 <If condition={props.renderLeftIcon != undefined}>
                     {props?.renderLeftIcon}
@@ -69,11 +70,12 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                     ]}
                     value={props.value || ""}
                     secureTextEntry={props?.renderRightIcon ? false : props?.iconName ? false : props.isPassword == true ? isSecureTextEntry : false}
-                    onChangeText={(txt) => props.onChange(txt)}
+                    onChangeText={(txt) => onChange(txt)}
                     onEndEditing={(e) => console.log(e.nativeEvent.text)}
                     keyboardType={props.keyBoardType}
                     editable={props.editable}
                     placeholder={props?.placeholder || ""}
+                    placeholderTextColor={theme.ACCENT}
                     multiline={props.multiline == true ? true : false}
                     onFocus={() => setisFocused(true)}
                     onBlur={() => setisFocused(false)}
@@ -90,7 +92,7 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                                 props?.renderRightIcon :
                                 <Feather
                                     name={props?.iconName ? props?.iconName : isSecureTextEntry ? 'eye' : 'eye-off'}
-                                    color={COLORS.DISABLED}
+                                    color={theme.ACCENT}
                                     size={21} />
 
                         }
@@ -141,7 +143,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         paddingHorizontal: 10,
         fontSize: FONT_SIZE._14,
         fontFamily: FONTS.REGULAR,
-        color: theme.BLACK_TO_WHITE
+        color: theme.BLACK_TO_WHITE,
     },
     eyeBtn: {
         ...COMMON_STYLES.center_,

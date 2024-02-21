@@ -11,6 +11,9 @@ import VideoIcon from './videoIcon.svg'
 import VideoCallIcon from './videoCallIcon.svg'
 import MicIcon from './micIcon.svg'
 import LockIcon from './lockIcon.svg'
+import HeartIcon from './heartIcon.svg'
+import ShareIcon from './shareIcon.svg'
+import VerifiedIcon from './verifiedIcon.svg'
 
 export {
     CheckBox,
@@ -25,5 +28,8 @@ export {
     VideoIcon,
     VideoCallIcon,
     MicIcon,
-    LockIcon
+    LockIcon,
+    HeartIcon,
+    ShareIcon,
+    VerifiedIcon
 }

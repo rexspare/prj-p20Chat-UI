@@ -8,6 +8,8 @@ import MessagesScreen from "./messagesScreen/messagesScreen"
 import ChatScreen from "./chatScreen/chatScreen"
 import CallScreen from "./callScreen/callScreen"
 import ContactScreen from "./contactScreen/contactScreen"
+import NewsScreen from "./newsScreen/newsScreen"
+import NewsDetailScreen from "./newsDetailScreen/newsDetailScreen"
 
 export {
     LandingScreen,
@@ -18,5 +20,7 @@ export {
     MessagesScreen,
     ChatScreen,
     CallScreen,
-    ContactScreen
+    ContactScreen,
+    NewsScreen,
+    NewsDetailScreen
 }

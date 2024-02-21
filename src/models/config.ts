@@ -19,5 +19,7 @@ export interface ITHEME {
     CHAP_POPUP: string;
     SELECTED_CHAT_BG: string;
     WHITE_TO_SECONDARY: string;
+    OFFWHOTE_TO_BLACK: string;
+    GREY_TO_WHITE: string;
 }
 

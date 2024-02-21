@@ -1,6 +1,7 @@
 import { FRIENDS_AVATARS } from "../assets/images"
+import { FEED_AVATARS, NEWS_IMAGES } from "../assets/images/dummy"
 
-const CHATS_LIST: any = [
+const CHATS_LIST: any[] = [
     {
         id: 1,
         name: "Pranav Ray",
@@ -103,7 +104,7 @@ const CHATS_LIST: any = [
     },
 ]
 
-const CONVERSATION: any = [
+const CONVERSATION: any[] = [
     {
         id: 1,
         message: "Hey! How have you been?",
@@ -155,7 +156,86 @@ const CONVERSATION: any = [
     },
 ]
 
+const NEWS: any[] = [
+    {
+        id: 1,
+        title: "Top Cryptocurrency Prices Today: Bitcoin, Binance Coin up;",
+        cover: NEWS_IMAGES.NEWS1,
+        readTime: 10,
+        time: "Today",
+        desc: `Stay on top of the blockchain and cryptocurrency world with an app from Cointelegraph — a top Web3 media outlet. Download the app,
+        called Cointelegraph:
+        Crypto News, to keep up to speed with the latest trends and breaking news in the crypto world.
+        Stay on top of the blockchain and cryptocurrency
+        world with an app from Cointelegraph — a
+         top Web3 media outlet. Download the app,
+        called Cointelegraph:
+        
+        Crypto News, to keep up to speed with the latest
+        trends and breaking news in the crypto world.`
+    },
+    {
+        id: 2,
+        title: "Top Cryptocurrency Prices Today: Bitcoin, Binance Coin up;",
+        cover: NEWS_IMAGES.NEWS2,
+        readTime: 10,
+        time: "Today",
+        desc: `Stay on top of the blockchain and cryptocurrency world with an app from Cointelegraph — a top Web3 media outlet. Download the app,
+        called Cointelegraph:
+        Crypto News, to keep up to speed with the latest trends and breaking news in the crypto world.
+        Stay on top of the blockchain and cryptocurrency
+        world with an app from Cointelegraph — a
+         top Web3 media outlet. Download the app,
+        called Cointelegraph:
+        
+        Crypto News, to keep up to speed with the latest
+        trends and breaking news in the crypto world.`
+    },
+    {
+        id: 3,
+        title: "Top Cryptocurrency Prices Today: Bitcoin, Binance Coin up;",
+        cover: NEWS_IMAGES.NEWS3,
+        readTime: 10,
+        time: "Today",
+        desc: `Stay on top of the blockchain and cryptocurrency world with an app from Cointelegraph — a top Web3 media outlet. Download the app,
+        called Cointelegraph:
+        Crypto News, to keep up to speed with the latest trends and breaking news in the crypto world.
+        Stay on top of the blockchain and cryptocurrency
+        world with an app from Cointelegraph — a
+         top Web3 media outlet. Download the app,
+        called Cointelegraph:
+        
+        Crypto News, to keep up to speed with the latest
+        trends and breaking news in the crypto world.`
+    },
+]
+
+const FEEDS: any[] = [
+    {
+        id: 1,
+        avatar: FEED_AVATARS.AVATAR1,
+        isVerified: true,
+        user: "Cryptocurrency",
+        username: "@cryptocurrency21",
+        time: '3h',
+        desc: `$CRE @cre_update is NOW LIVE and available on #GroveX and can be purchased right away. \n\nThe first company in the world truly connecting the real estate and cryptocurrency industries. \n\nTheir website: cryptosurrency.com`,
+        image: NEWS_IMAGES.NEWS1,
+    },
+    {
+        id: 2,
+        avatar: FEED_AVATARS.AVATAR2,
+        isVerified: false,
+        user: "Maria",
+        username: "@cryptocurrency21",
+        time: '3h',
+        desc: `$CRE @cre_update is NOW LIVE and available on #GroveX and can be purchased right away. \n\nThe first company in the world truly connecting the real estate and cryptocurrency industries. \n\nTheir website: cryptosurrency.com`,
+        image: NEWS_IMAGES.NEWS1,
+    },
+]
+
 export {
     CHATS_LIST,
-    CONVERSATION
+    CONVERSATION,
+    NEWS,
+    FEEDS
 }

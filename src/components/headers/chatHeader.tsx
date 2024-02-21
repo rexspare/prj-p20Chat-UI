@@ -155,7 +155,6 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                             style={styles.btnContainer}
-                            onPress={() => setmuteModalVisible(true)}
                         >
                             <CallIcon
                                 fill={COLORS.WHITE}

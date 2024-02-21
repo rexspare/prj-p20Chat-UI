@@ -10,6 +10,7 @@ import AnimatedCheckBox from "./animatedCheckBox";
 import FabButton from "./fabButton";
 import ChatInput from "./chatInput";
 import MediaPicker from "./mediaPicker";
+import TouchableCustom from "./touchableCustom";
 
 export * from './headers'
 export * from './listItems'
@@ -26,5 +27,6 @@ export {
     AnimatedCheckBox,
     FabButton,
     ChatInput,
-    MediaPicker
+    MediaPicker,
+    TouchableCustom
 }

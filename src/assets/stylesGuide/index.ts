@@ -28,6 +28,7 @@ enum COLORS {
 }
 
 enum FONT_SIZE {
+    _32 = hp(3.4),
     _24 = hp(2.5),
     _20 = hp(2.14),
     _18 = hp(1.9),

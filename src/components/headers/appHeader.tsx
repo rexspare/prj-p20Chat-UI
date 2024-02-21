@@ -19,17 +19,19 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 interface appHeaderProps {
     hideBackBtn?: boolean;
     title?: string;
+    iconColor?: string
 }
 
 const AppHeader: FC<appHeaderProps> = (props) => {
     const {
         hideBackBtn = false,
         title,
+        iconColor = COLORS.WHITE
     } = props
 
     const navigation = useNavigation()
     const { theme, lang } = useAppConfig()
-    const styles = styles_(theme)
+    const styles = styles_(theme, iconColor)
 
     return (
         <View style={styles.main}>
@@ -41,7 +43,7 @@ const AppHeader: FC<appHeaderProps> = (props) => {
                     onPress={() => navigation.goBack()}
                 >
                     <BackIcon
-                        fill={COLORS.WHITE}
+                        fill={iconColor}
                         width={hp(2.4)}
                         height={hp(2)}
                     />
@@ -61,7 +63,7 @@ const AppHeader: FC<appHeaderProps> = (props) => {
 
 export default AppHeader
 
-const styles_ = (theme: ITHEME) => StyleSheet.create({
+const styles_ = (theme: ITHEME, iconColor: string) => StyleSheet.create({
     main: {
         width: wp(100),
         minHeight: hp(6),
@@ -78,6 +80,6 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     },
     title: {
         fontSize: FONT_SIZE._20,
-        color: COLORS.WHITE,
+        color: iconColor
     }
 })
