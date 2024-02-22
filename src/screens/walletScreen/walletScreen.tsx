@@ -55,7 +55,7 @@ const WalletScreen = () => {
 
           <PrimaryButton
             title={lang['_72']}
-            onPress={() => { }}
+            onPress={() => navigation.navigate(SCREENS.RECIEVE)}
             style={styles.btn}
             textStyle={styles.btntxt}
             icon={<QrIcon width={hp(2.57)} height={hp(2.57)} />}

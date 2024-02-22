@@ -6,6 +6,8 @@ const IMAGES = {
     AVATAR: require('./avatar.png'),
     IMAGE_SHADOW: require('./imgShadow.png'),
     SCREEN_SHADOW: require('./screenShadow.png'),
+    FADE_TICKET: require('./fadeTicket.png'),
+    QR: require('./qr.png'),
 }
 
 export * from './coins'

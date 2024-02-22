@@ -14,6 +14,9 @@ import WalletScreen from "./walletScreen/walletScreen"
 import SendScreen from "./sendScreen/sendScreen"
 import TransactionHistoryScreen from "./transactionHistoryScreen/transactionHistoryScreen"
 import HistorySettingScreen from "./historySettingScreen/historySettingScreen"
+import SendSummaryScreen from "./sendSummaryScreen/sendSummaryScreen"
+import SendSuccessScreen from "./sendSuccessScreen/sendSuccessScreen"
+import RecieveScreen from "./recieveScreen /recieveScreen"
 
 export {
     LandingScreen,
@@ -30,5 +33,8 @@ export {
     WalletScreen,
     SendScreen,
     TransactionHistoryScreen,
-    HistorySettingScreen
+    HistorySettingScreen,
+    SendSummaryScreen,
+    SendSuccessScreen,
+    RecieveScreen
 }

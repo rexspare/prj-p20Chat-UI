@@ -27,7 +27,9 @@ enum COLORS {
     RED = "#FF0000",
     SUCCESS = "#00AB2C",
     DANGER = "#AB0000",
-    TRANSPARENT = "transparent"
+    TRANSPARENT = "transparent",
+    SECONDARY_20 = "rgba(2, 174, 174, 0.1)",
+    SECONDARY_30 = "rgba(2, 174, 174, 0.2)",
 }
 
 enum FONT_SIZE {

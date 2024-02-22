@@ -5,6 +5,7 @@ import OutgoingIcon from './outgoingIcon.svg'
 import LeftChevIcon from './leftChev.svg'
 import DownCaret from './downCaret.svg'
 import CopyIcon from './copyIcon.svg'
+import RightChev from './rightChev.svg'
 
 export {
     SeenIcon,
@@ -13,5 +14,6 @@ export {
     OutgoingIcon,
     LeftChevIcon,
     DownCaret,
-    CopyIcon
+    CopyIcon,
+    RightChev
 }

@@ -17,6 +17,8 @@ import VerifiedIcon from './verifiedIcon.svg'
 import SendIcon from './sendIcon.svg'
 import QrIcon from './qrIcon.svg'
 import RecieveIcon from './recieveIcon.svg'
+import ScanQRIcon from './scanQRIcon.svg'
+import OrLine from './orLine.svg'
 
 export {
     CheckBox,
@@ -37,5 +39,7 @@ export {
     VerifiedIcon,
     SendIcon,
     QrIcon,
-    RecieveIcon
+    RecieveIcon,
+    ScanQRIcon,
+    OrLine
 }
