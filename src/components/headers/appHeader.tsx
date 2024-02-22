@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, ReactNode, useRef, useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import {
     Menu,
@@ -7,7 +7,7 @@ import {
     MenuOptions,
     MenuTrigger
 } from 'react-native-popup-menu';
-import { BodyText, If, Label, PrimaryInput } from '..';
+import { BodyText, If, Label, PrimaryInput, TouchableCustom } from '..';
 import { BackIcon, CallIcon, SearchIcon, VerticalDotsIcon, VideoIcon } from '../../assets/icons';
 import { COLORS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
@@ -19,28 +19,61 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 interface appHeaderProps {
     hideBackBtn?: boolean;
     title?: string;
-    iconColor?: string
+    iconColor?: string;
+    renderRightIcon?: ReactNode;
+    showRightIcon?: boolean;
+    onChangeInput?: Function;
+    onBackPress?: Function | null;
 }
 
 const AppHeader: FC<appHeaderProps> = (props) => {
     const {
         hideBackBtn = false,
         title,
-        iconColor = COLORS.WHITE
+        iconColor = COLORS.WHITE,
+        renderRightIcon,
+        showRightIcon = false,
+        onChangeInput = () => { },
+        onBackPress = null
     } = props
 
     const navigation = useNavigation()
     const { theme, lang } = useAppConfig()
     const styles = styles_(theme, iconColor)
+    const [searchVal, setsearchVal] = useState('')
+    const [showSearch, setshowSearch] = useState(false)
+
+    const handleSearch = (txt: string) => {
+        setsearchVal(txt)
+        onChangeInput(txt)
+    }
+
+    const handleBackPress = () => {
+        if (onBackPress != null) {
+            onBackPress()
+            return
+        }
+
+        if (showSearch) {
+            setshowSearch(false)
+        } else {
+            navigation.goBack()
+        }
+    }
+
 
     return (
         <View style={styles.main}>
 
             <If condition={hideBackBtn == false}>
                 <TouchableOpacity
+                    style={{
+                        paddingVertical: 8,
+                        paddingRight: 10
+                    }}
                     activeOpacity={0.8}
-                    hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                    onPress={() => navigation.goBack()}
+                    hitSlop={{ top: 30, bottom: 15, left: 15, right: 15 }}
+                    onPress={() => handleBackPress()}
                 >
                     <BackIcon
                         fill={iconColor}
@@ -50,12 +83,42 @@ const AppHeader: FC<appHeaderProps> = (props) => {
                 </TouchableOpacity>
             </If>
 
-            <If condition={title != undefined}>
+            <If condition={showRightIcon == true && showSearch}>
+                <PrimaryInput
+                    hideTitle={true}
+                    value={searchVal}
+                    placeholder={lang['_37']}
+                    onChange={(txt) => handleSearch(txt)}
+                    containerStyles={styles.inputcontainerStyles}
+                    inputStyles={styles.inputStyles}
+                    renderLeftIcon={<SearchIcon
+                        fill={theme.ACCENT}
+                        width={hp(2)}
+                        height={hp(2)} />}
+                />
+            </If>
+
+            <If condition={title != undefined && showSearch == false}>
                 <View style={styles.titleContainer}>
                     <Label style={styles.title}>{title}</Label>
                 </View>
             </If>
 
+
+            <If condition={showRightIcon && showSearch == false}>
+                {
+                    renderRightIcon ?
+                        renderRightIcon :
+                        <TouchableCustom
+                            onPress={() => setshowSearch(true)}
+                        >
+                            <SearchIcon
+                                fill={COLORS.WHITE}
+                                width={hp(2.14)}
+                                height={hp(2.14)} />
+                        </TouchableCustom>
+                }
+            </If>
 
         </View >
     )
@@ -81,5 +144,13 @@ const styles_ = (theme: ITHEME, iconColor: string) => StyleSheet.create({
     title: {
         fontSize: FONT_SIZE._20,
         color: iconColor
+    },
+    inputcontainerStyles: {
+        width: '90%',
+        flexShrink: 1,
+        borderRadius: hp(1)
+    },
+    inputStyles: {
+        height: hp(5.3)
     }
 })

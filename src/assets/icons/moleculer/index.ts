@@ -14,6 +14,9 @@ import LockIcon from './lockIcon.svg'
 import HeartIcon from './heartIcon.svg'
 import ShareIcon from './shareIcon.svg'
 import VerifiedIcon from './verifiedIcon.svg'
+import SendIcon from './sendIcon.svg'
+import QrIcon from './qrIcon.svg'
+import RecieveIcon from './recieveIcon.svg'
 
 export {
     CheckBox,
@@ -31,5 +34,8 @@ export {
     LockIcon,
     HeartIcon,
     ShareIcon,
-    VerifiedIcon
+    VerifiedIcon,
+    SendIcon,
+    QrIcon,
+    RecieveIcon
 }

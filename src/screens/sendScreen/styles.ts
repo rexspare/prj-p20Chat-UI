@@ -11,6 +11,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         borderTopLeftRadius: hp(3.5),
         borderTopRightRadius: hp(3.5),
         overflow:'hidden',
+        paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
     },
     contentContainerStyle: {
         marginTop: hp(0.5)

@@ -10,6 +10,10 @@ import CallScreen from "./callScreen/callScreen"
 import ContactScreen from "./contactScreen/contactScreen"
 import NewsScreen from "./newsScreen/newsScreen"
 import NewsDetailScreen from "./newsDetailScreen/newsDetailScreen"
+import WalletScreen from "./walletScreen/walletScreen"
+import SendScreen from "./sendScreen/sendScreen"
+import TransactionHistoryScreen from "./transactionHistoryScreen/transactionHistoryScreen"
+import HistorySettingScreen from "./historySettingScreen/historySettingScreen"
 
 export {
     LandingScreen,
@@ -22,5 +26,9 @@ export {
     CallScreen,
     ContactScreen,
     NewsScreen,
-    NewsDetailScreen
+    NewsDetailScreen,
+    WalletScreen,
+    SendScreen,
+    TransactionHistoryScreen,
+    HistorySettingScreen
 }

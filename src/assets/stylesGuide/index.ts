@@ -24,7 +24,10 @@ enum COLORS {
     WHITE = "#FFFFFF",
     BLACK = "#000000",
     DISBALED = "#D9D9D9",
-    RED = "#FF0000"
+    RED = "#FF0000",
+    SUCCESS = "#00AB2C",
+    DANGER = "#AB0000",
+    TRANSPARENT = "transparent"
 }
 
 enum FONT_SIZE {
@@ -35,6 +38,8 @@ enum FONT_SIZE {
     _16 = hp(1.7),
     _14 = hp(1.5),
     _12 = hp(1.28),
+    _10 = hp(1),
+    _8 = hp(0.96),
 }
 
 

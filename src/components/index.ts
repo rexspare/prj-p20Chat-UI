@@ -11,6 +11,7 @@ import FabButton from "./fabButton";
 import ChatInput from "./chatInput";
 import MediaPicker from "./mediaPicker";
 import TouchableCustom from "./touchableCustom";
+import WalletDropDown from "./walletDropDown";
 
 export * from './headers'
 export * from './listItems'
@@ -28,5 +29,6 @@ export {
     FabButton,
     ChatInput,
     MediaPicker,
-    TouchableCustom
+    TouchableCustom,
+    WalletDropDown
 }

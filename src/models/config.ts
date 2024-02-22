@@ -21,5 +21,6 @@ export interface ITHEME {
     WHITE_TO_SECONDARY: string;
     OFFWHOTE_TO_BLACK: string;
     GREY_TO_WHITE: string;
+    WHITE_TO_DARK_GREY: string;
 }
 

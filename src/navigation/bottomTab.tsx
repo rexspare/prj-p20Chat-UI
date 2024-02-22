@@ -7,7 +7,7 @@ import useAppConfig from '../hooks/AppConfig';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, FONTS, FONT_SIZE, hp, normalize } from '../assets/stylesGuide';
 import { hasNotch, isIOS } from '../utils/myUtils';
-import { CallScreen, ContactScreen, MessagesScreen, NewsScreen } from '../screens';
+import { CallScreen, ContactScreen, MessagesScreen, NewsScreen, WalletScreen } from '../screens';
 import { TabCall, TabContact, TabMessage, TabNews, TabWallet } from '../assets/icons';
 
 type InitialNavigationStackParamList = {
@@ -31,7 +31,7 @@ const BottomStack = () => {
         >
             <Tab.Screen name={SCREENS.MESSAGES} component={MessagesScreen} options={{ title: lang['_23'] }} />
             <Tab.Screen name={SCREENS.CALLS} component={CallScreen} options={{ title: lang['_24'] }} />
-            <Tab.Screen name={SCREENS.WALLET} component={MessagesScreen} options={{ title: lang['_25'] }} />
+            <Tab.Screen name={SCREENS.WALLET} component={WalletScreen} options={{ title: lang['_25'] }} />
             <Tab.Screen name={SCREENS.CONTACTS} component={ContactScreen} options={{ title: lang['_26'] }} />
             <Tab.Screen name={SCREENS.NEWS} component={NewsScreen} options={{ title: lang['_27'] }} />
         </Tab.Navigator>

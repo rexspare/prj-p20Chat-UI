@@ -42,7 +42,7 @@ const PrimaryButton: React.FC<primaryButtonProps> = (props) => {
             disabled={disabled || isLoading}
         >
             <If condition={icon != undefined && icon != true}>
-                <View style={{ marginRight: 10 }}>
+                <View style={{ marginRight: hp(0.5) }}>
                     {icon}
                 </View>
             </If>
@@ -74,7 +74,7 @@ const styles_ = (theme: ITHEME, disabled: any) => StyleSheet.create({
         ...COMMON_STYLES.center_,
         height: hp(5.5),
         borderRadius: hp(0.9),
-        maxWidth:700
+        maxWidth: 700
     },
     title: {
         color: COLORS.WHITE,

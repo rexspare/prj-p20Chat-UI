@@ -8,6 +8,8 @@ const IMAGES = {
     SCREEN_SHADOW: require('./screenShadow.png'),
 }
 
+export * from './coins'
+
 export {
     IMAGES,
     FRIENDS_AVATARS

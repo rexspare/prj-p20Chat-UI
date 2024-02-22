@@ -27,8 +27,8 @@ const styles = (theme: ITHEME,) => StyleSheet.create({
         marginLeft: 1
     },
     container: {
-        borderTopLeftRadius: hp(4),
-        borderTopRightRadius: hp(4),
+        borderTopLeftRadius: hp(3.5),
+        borderTopRightRadius: hp(3.5),
         overflow: 'hidden',
         flex: 1,
     },
