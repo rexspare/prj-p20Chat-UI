@@ -1,40 +1,46 @@
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from 'react';
+import { Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { BodyText, TextButton } from '..';
 import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
-import { inboxStateSelectors, useInbox } from '../../states/inbox';
-import { BodyText, Label, TextButton } from '..';
 
-interface muteUserProps {
+interface vibrateModeProps {
     isVisible: boolean;
     onClose: Function;
 }
 
-const MuteUserModal: FC<muteUserProps> = (props) => {
+const VibrateModeModal: FC<vibrateModeProps> = (props) => {
     const {
         isVisible,
         onClose = () => { }
     } = props
 
-    const { lang, theme } = useAppConfig()
-    const selectedChats = useInbox(inboxStateSelectors.selectedChats)
-    const [selectedTime, setselectedTime] = useState(1)
+    const {
+        lang,
+        theme,
+    } = useAppConfig()
 
     const styles = styles_(theme)
+    const [selected, setselected] = useState(2)
 
-    const TIMELINES = [
+    const VIBRATE_LIST = [
         {
             id: 1,
-            title: lang['_43']
+            title: lang['_164'],
+
         },
         {
             id: 2,
-            title: lang['_44']
+            title: lang['_165'],
         },
         {
             id: 3,
-            title: lang['_45']
+            title: lang['_166'],
+        },
+        {
+            id: 4,
+            title: lang['_167'],
         }
     ]
 
@@ -58,21 +64,22 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                     style={styles.container}
                 >
 
-                    <BodyText style={styles.title}>{lang['_42']}</BodyText>
+                    <BodyText style={styles.title}>{lang['_163']}</BodyText>
 
                     <View>
                         {
-                            TIMELINES.map((item, index) => (
+                            (VIBRATE_LIST).map((item, index) => (
                                 <View
                                     key={index}
                                     style={styles.row1}>
+
                                     <TouchableOpacity
                                         activeOpacity={0.8}
-                                        onPress={() => setselectedTime(item.id)}
+                                        onPress={() => setselected(item.id)}
                                         style={[styles.outerCirle, {
-                                            ...(selectedTime == item.id && { borderColor: COLORS.SECONDARY })
+                                            ...(selected == item.id && { borderColor: COLORS.SECONDARY })
                                         }]}>
-                                        {selectedTime == item.id && <View style={styles.innerCirle}></View>}
+                                        {selected == item.id && <View style={styles.innerCirle}></View>}
                                     </TouchableOpacity>
 
                                     <BodyText style={styles.txt}>{item.title}</BodyText>
@@ -87,13 +94,13 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
+
                         <TextButton
                             title={lang['_41']}
                             style={styles.btn}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
-
                     </View>
 
                 </TouchableOpacity>
@@ -104,12 +111,12 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
     )
 }
 
-export default MuteUserModal
+export default VibrateModeModal
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
         ...COMMON_STYLES.center_
     },
     container: {

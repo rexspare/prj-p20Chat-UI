@@ -21,6 +21,7 @@ import RecieveScreen from "./recieveScreen /recieveScreen"
 import SettingMainScreen from "./settingMainScreen/settingMainScreen"
 import EditProfileScreen from "./editProfileScreen/editProfileScreen"
 
+export * from './settingScreens'
 
 export {
     LandingScreen,

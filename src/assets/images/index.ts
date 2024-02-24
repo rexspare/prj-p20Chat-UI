@@ -11,6 +11,7 @@ const IMAGES = {
 }
 
 export * from './coins'
+export * from './bgTypes'
 
 export {
     IMAGES,

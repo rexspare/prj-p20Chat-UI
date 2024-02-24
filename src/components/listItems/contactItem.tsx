@@ -12,12 +12,15 @@ import { SCREENS } from '../../assets/constants';
 
 interface contactItemProps {
   item: any;
+  onPress?: Function;
 }
 
 const ContactItem: FC<contactItemProps> = (props) => {
   const {
-    item
+    item,
+    onPress = undefined
   } = props
+
   const navigation = useNavigation()
   const { theme } = useAppConfig()
   const styles = styles_(theme)
@@ -31,7 +34,9 @@ const ContactItem: FC<contactItemProps> = (props) => {
 
   const handleSelect = () => {
     // IF SELECTING MULTIPLE
-
+    if (onPress) {
+      onPress(item)
+    }
   }
 
 

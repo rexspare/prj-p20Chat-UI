@@ -8,6 +8,13 @@ import HelpIcon from './helpIcon.svg'
 import SettingRightIcon from './rightIcon.svg'
 import UserIcon from './userIcon.svg'
 import PhoneIcon from './phoneIcon.svg'
+import EditIcon from './editIcon.svg'
+import ThemeIcon from './themeIcon.svg'
+import ChatSettingIcon from './chatSettingIcon.svg'
+import FontSizIcon from './fontsizeIcon.svg'
+import WallpaperIcon from './wallpaper.svg'
+import RightSettingChev from './chevRightSetting.svg'
+import TickSettingIcon from './tickSettingIcon.svg'
 
 export {
     SettingIcon,
@@ -19,5 +26,12 @@ export {
     HelpIcon,
     SettingRightIcon,
     UserIcon,
-    PhoneIcon
+    PhoneIcon,
+    EditIcon,
+    ThemeIcon,
+    ChatSettingIcon,
+    FontSizIcon,
+    WallpaperIcon,
+    RightSettingChev,
+    TickSettingIcon
 }

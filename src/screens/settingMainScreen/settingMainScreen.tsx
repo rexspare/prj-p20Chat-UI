@@ -28,28 +28,28 @@ const SettingMainScreen = () => {
             title: lang['_123'],
             subtle: lang['_124'],
             icon: <DisplayIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(2.46)} />,
-            onPress: () => { }
+            onPress: () => navigation.navigate(SCREENS.DISPLAY_SETTING)
         },
         {
-            id: 1,
+            id: 2,
             title: lang['_125'],
             subtle: lang['_126'],
             icon: <BellIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(2.78)} />,
-            onPress: () => { }
+            onPress: () => navigation.navigate(SCREENS.NOTIFICATION_SETTING)
         },
         {
             id: 3,
             title: lang['_127'],
             subtle: lang['name'],
             icon: <LangIcon fill={theme.BLACK_TO_WHITE} width={hp(3.11)} height={hp(2.62)} />,
-            onPress: () => { }
+            onPress: () => navigation.navigate(SCREENS.LANG_SETTING)
         },
         {
             id: 4,
             title: lang['_128'],
             subtle: `5 ${lang['_129']}`,
             icon: <BlockIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(3)} />,
-            onPress: () => { }
+            onPress: () => navigation.navigate(SCREENS.BLOCKED_CONTACTS)
         },
         {
             id: 5,
@@ -79,6 +79,10 @@ const SettingMainScreen = () => {
                 <View style={styles.card}>
 
                     <View style={styles.header}>
+                        <View style={styles.titleContainer}>
+                            <Label style={styles.title}>{lang['_122']}</Label>
+                        </View>
+
                         <TouchableCustom
                             onPress={() => navigation.goBack()}
                             hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
@@ -90,9 +94,6 @@ const SettingMainScreen = () => {
                             />
                         </TouchableCustom>
 
-                        <View style={styles.titleContainer}>
-                            <Label style={styles.title}>{lang['_122']}</Label>
-                        </View>
                     </View>
 
                     <View style={styles.row} >

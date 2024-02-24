@@ -1,6 +1,59 @@
 import { COINS, FRIENDS_AVATARS } from "../assets/images"
 import { FEED_AVATARS, NEWS_IMAGES } from "../assets/images/dummy"
 
+const LANGUAGES_LIST = [
+    {
+        id: 1,
+        title: "English",
+        subtle: "English"
+    },
+    // {
+    //     id: 2,
+    //     title: "Arabic",
+    //     subtle: "العربية"
+    // },
+    {
+        id: 3,
+        title: "Belarusian",
+        subtle: "Беларуская"
+    },
+    {
+        id: 4,
+        title: "Catalan",
+        subtle: "Català"
+    },
+    {
+        id: 5,
+        title: "Croatian",
+        subtle: "Hrvatski"
+    },
+    {
+        id: 6,
+        title: "Czech",
+        subtle: "Cestina"
+    },
+    {
+        id: 7,
+        title: "Dutch",
+        subtle: "Dutch"
+    },
+    {
+        id: 8,
+        title: "Finnish",
+        subtle: "Suomalainen"
+    },
+    {
+        id: 9,
+        title: "Spanish",
+        subtle: "Español"
+    },
+    {
+        id: 10,
+        title: "Italian",
+        subtle: "Italiana"
+    },
+]
+
 const CHATS_LIST: any[] = [
     {
         id: 1,
@@ -451,6 +504,7 @@ const HISTORY_LIST: any[] = [
 
 
 export {
+    LANGUAGES_LIST,
     CHATS_LIST,
     CONVERSATION,
     NEWS,

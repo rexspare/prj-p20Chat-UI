@@ -12,6 +12,7 @@ import ChatInput from "./chatInput";
 import MediaPicker from "./mediaPicker";
 import TouchableCustom from "./touchableCustom";
 import WalletDropDown from "./walletDropDown";
+import CustomSwitch from "./CustomeSwitch";
 
 export * from './headers'
 export * from './listItems'
@@ -30,5 +31,6 @@ export {
     ChatInput,
     MediaPicker,
     TouchableCustom,
-    WalletDropDown
+    WalletDropDown,
+    CustomSwitch
 }

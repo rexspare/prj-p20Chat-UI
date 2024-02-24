@@ -1,42 +1,66 @@
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react';
+import { ActivityIndicator, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { BodyText, TextButton } from '..';
+import { THEMES } from '../../assets/constants';
 import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
-import { inboxStateSelectors, useInbox } from '../../states/inbox';
-import { BodyText, Label, TextButton } from '..';
+import { isDefaultThemeSupported } from '../../utils/myUtils';
 
-interface muteUserProps {
+interface appThemeProps {
     isVisible: boolean;
     onClose: Function;
 }
 
-const MuteUserModal: FC<muteUserProps> = (props) => {
+const AppThemeModal: FC<appThemeProps> = (props) => {
     const {
         isVisible,
         onClose = () => { }
     } = props
 
-    const { lang, theme } = useAppConfig()
-    const selectedChats = useInbox(inboxStateSelectors.selectedChats)
-    const [selectedTime, setselectedTime] = useState(1)
+    const { lang, theme, handleChangeTheme, isLoading, activetheme,} = useAppConfig()
 
     const styles = styles_(theme)
 
-    const TIMELINES = [
-        {
-            id: 1,
-            title: lang['_43']
-        },
+    const THEMES_LIST = [
         {
             id: 2,
-            title: lang['_44']
+            title: lang['_141'],
+            lable: lang['_141'],
+            value: THEMES.LIGHT
         },
         {
             id: 3,
-            title: lang['_45']
+            title: lang['_142'],
+            lable: lang['_142'],
+            value: THEMES.DARK
         }
     ]
+
+    const THEMES_LIST_WITH_DEFALUT = [
+        {
+            id: 1,
+            title: lang['_140'],
+            lable: lang['_143'],
+            value: THEMES.DEFAULT
+        },
+        {
+            id: 2,
+            title: lang['_141'],
+            lable: lang['_141'],
+            value: THEMES.LIGHT
+        },
+        {
+            id: 3,
+            title: lang['_142'],
+            lable: lang['_142'],
+            value: THEMES.DARK
+        }
+    ]
+
+    const handleChange = async (item: any) => {
+        handleChangeTheme(item.value)
+    }
 
     return (
         <Modal
@@ -58,21 +82,22 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                     style={styles.container}
                 >
 
-                    <BodyText style={styles.title}>{lang['_42']}</BodyText>
+                    <BodyText style={styles.title}>{lang['_144']}</BodyText>
 
                     <View>
                         {
-                            TIMELINES.map((item, index) => (
+                            (isDefaultThemeSupported() ? THEMES_LIST_WITH_DEFALUT : THEMES_LIST).map((item, index) => (
                                 <View
                                     key={index}
                                     style={styles.row1}>
+
                                     <TouchableOpacity
                                         activeOpacity={0.8}
-                                        onPress={() => setselectedTime(item.id)}
+                                        onPress={() => handleChange(item)}
                                         style={[styles.outerCirle, {
-                                            ...(selectedTime == item.id && { borderColor: COLORS.SECONDARY })
+                                            ...(activetheme == item.value && { borderColor: COLORS.SECONDARY })
                                         }]}>
-                                        {selectedTime == item.id && <View style={styles.innerCirle}></View>}
+                                        {activetheme == item.value && <View style={styles.innerCirle}></View>}
                                     </TouchableOpacity>
 
                                     <BodyText style={styles.txt}>{item.title}</BodyText>
@@ -87,12 +112,20 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
-                        <TextButton
-                            title={lang['_41']}
-                            style={styles.btn}
-                            textStyle={styles.btnTxt}
-                            onPress={() => onClose()}
-                        />
+                        {
+                            isLoading ?
+                                <ActivityIndicator
+                                    color={COLORS.SECONDARY}
+                                    style={styles.btn}
+                                />
+                                :
+                                <TextButton
+                                    title={lang['_41']}
+                                    style={styles.btn}
+                                    textStyle={styles.btnTxt}
+                                    onPress={() => onClose()}
+                                />
+                        }
 
                     </View>
 
@@ -104,12 +137,12 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
     )
 }
 
-export default MuteUserModal
+export default AppThemeModal
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
         ...COMMON_STYLES.center_
     },
     container: {

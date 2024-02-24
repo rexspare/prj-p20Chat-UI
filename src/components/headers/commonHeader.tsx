@@ -13,6 +13,7 @@ interface commonHeaderProps {
     title?: string;
     iconColor?: string;
     stylesProp?: ViewStyle;
+    titleWidth?: number;
 }
 
 const CommonHeader: FC<commonHeaderProps> = (props) => {
@@ -22,35 +23,40 @@ const CommonHeader: FC<commonHeaderProps> = (props) => {
         hideBackBtn = false,
         title,
         iconColor = theme.BLACK_TO_WHITE,
-        stylesProp
+        stylesProp,
+        titleWidth = 0
     } = props
 
-    const styles = styles_(iconColor)
+    const styles = styles_(iconColor, titleWidth)
     const navigation = useNavigation()
 
     return (
         <View style={[styles.main, stylesProp]}>
-
-            <If condition={hideBackBtn == false}>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                    onPress={() => navigation.goBack()}
-                >
-                    <BackIcon
-                        fill={iconColor}
-                        width={hp(2.4)}
-                        height={hp(2)}
-                    />
-                </TouchableOpacity>
-            </If>
-
 
             <If condition={title != undefined}>
                 <View style={styles.titleContainer}>
                     <Label style={styles.title}>{title}</Label>
                 </View>
             </If>
+
+            <If condition={hideBackBtn == false}>
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    onPress={() => navigation.goBack()}
+                    style={styles.iconContainer}
+                >
+                    <BackIcon
+                        fill={iconColor}
+                        width={hp(2.4)}
+                        height={hp(2)}
+                        onPress={() => navigation.goBack()}
+                    />
+                </TouchableOpacity>
+            </If>
+
+
+
 
 
         </View >
@@ -59,7 +65,7 @@ const CommonHeader: FC<commonHeaderProps> = (props) => {
 
 export default CommonHeader
 
-const styles_ = (iconColor: string) => StyleSheet.create({
+const styles_ = (iconColor: string, titleWidth: number) => StyleSheet.create({
     main: {
         width: wp(100),
         minHeight: hp(6),
@@ -68,6 +74,11 @@ const styles_ = (iconColor: string) => StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
+    },
+    iconContainer: {
+        minHeight: hp(5),
+        justifyContent: 'center',
+        paddingRight: 10
     },
     txtContainer: {
         flex: 1,
@@ -78,7 +89,7 @@ const styles_ = (iconColor: string) => StyleSheet.create({
     },
     titleContainer: {
         position: 'absolute',
-        width: '100%',
+        width: titleWidth == 0 ? '100%' : titleWidth,
     },
     title: {
         fontSize: FONT_SIZE._20,

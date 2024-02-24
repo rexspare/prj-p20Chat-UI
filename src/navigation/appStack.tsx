@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SCREENS } from '../assets/constants';
-import { ChatScreen, EditProfileScreen, NewsDetailScreen, SettingMainScreen } from '../screens';
+import { BlockedContactScreen, ChatScreen, ChatSettingScreen, DisplaySettingScreen, EditProfileScreen, LanguageSettingScreen, NewsDetailScreen, NotificationSettingScreen, SettingMainScreen, WallpaperSettingScreen } from '../screens';
 import BottomStack from './bottomTab';
 
 export type InitialNavigationStackParamList = {
@@ -10,6 +10,13 @@ export type InitialNavigationStackParamList = {
     [SCREENS.NEWS_DETAIL]: undefined;
     [SCREENS.SETTING]: undefined;
     [SCREENS.EDIT_PROFILE]: undefined;
+    [SCREENS.DISPLAY_SETTING]: undefined;
+    [SCREENS.DISPLAY_SETTING]: undefined;
+    [SCREENS.CHAT_SETTING]: undefined;
+    [SCREENS.LANG_SETTING]: undefined;
+    [SCREENS.NOTIFICATION_SETTING]: undefined;
+    [SCREENS.WALLPAPER_SETTING]: undefined;
+    [SCREENS.BLOCKED_CONTACTS]: undefined;
 };
 
 const Stack = createNativeStackNavigator<InitialNavigationStackParamList>();
@@ -26,6 +33,12 @@ const AppStack = () => {
             <Stack.Screen name={SCREENS.NEWS_DETAIL} component={NewsDetailScreen} />
             <Stack.Screen name={SCREENS.SETTING} component={SettingMainScreen} />
             <Stack.Screen name={SCREENS.EDIT_PROFILE} component={EditProfileScreen} />
+            <Stack.Screen name={SCREENS.DISPLAY_SETTING} component={DisplaySettingScreen} />
+            <Stack.Screen name={SCREENS.CHAT_SETTING} component={ChatSettingScreen} />
+            <Stack.Screen name={SCREENS.WALLPAPER_SETTING} component={WallpaperSettingScreen} />
+            <Stack.Screen name={SCREENS.NOTIFICATION_SETTING} component={NotificationSettingScreen} />
+            <Stack.Screen name={SCREENS.BLOCKED_CONTACTS} component={BlockedContactScreen} />
+            <Stack.Screen name={SCREENS.LANG_SETTING} component={LanguageSettingScreen} />
         </Stack.Navigator>
     )
 }

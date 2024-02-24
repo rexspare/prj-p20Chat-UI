@@ -68,11 +68,22 @@ const handleShare = async (txt: string) => {
     }
 }
 
+const isDefaultThemeSupported = () => {
+    const majorVersionIOS: any = Platform.OS === 'ios' ? parseInt(Platform.Version, 10) : undefined;
+    const androidOsVer: any = Platform.OS !== 'ios' ? Platform.constants['Release'] : undefined;
+    if (Platform.OS === 'ios') {
+        return majorVersionIOS > 13 ? true : false
+    } else {
+        return androidOsVer > 9 ? true : false
+    }
+}
+
 export {
     isIOS,
     hasNotch,
     isDeviceTablet,
     formatSeconds,
     checkTextPressable,
-    handleShare
+    handleShare,
+    isDefaultThemeSupported
 }

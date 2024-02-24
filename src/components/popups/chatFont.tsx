@@ -1,42 +1,53 @@
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react';
+import { ActivityIndicator, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { BodyText, TextButton } from '..';
+import { CHAT_FONT_SIZE } from '../../assets/constants';
 import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
-import { inboxStateSelectors, useInbox } from '../../states/inbox';
-import { BodyText, Label, TextButton } from '..';
 
-interface muteUserProps {
+interface chatFontProps {
     isVisible: boolean;
     onClose: Function;
 }
 
-const MuteUserModal: FC<muteUserProps> = (props) => {
+const ChatFontModal: FC<chatFontProps> = (props) => {
     const {
         isVisible,
         onClose = () => { }
     } = props
 
-    const { lang, theme } = useAppConfig()
-    const selectedChats = useInbox(inboxStateSelectors.selectedChats)
-    const [selectedTime, setselectedTime] = useState(1)
+    const {
+        lang,
+        theme,
+        handleChangeChatFont,
+        isLoading,
+        chatFontSize,
+    } = useAppConfig()
 
     const styles = styles_(theme)
 
-    const TIMELINES = [
+    const FONTS_LIST = [
         {
             id: 1,
-            title: lang['_43']
+            title: lang['_147'],
+            value: CHAT_FONT_SIZE.SMALL
         },
         {
             id: 2,
-            title: lang['_44']
+            title: lang['_148'],
+            value: CHAT_FONT_SIZE.MEDIUM
         },
         {
             id: 3,
-            title: lang['_45']
+            title: lang['_149'],
+            value: CHAT_FONT_SIZE.LARGE
         }
     ]
+
+    const handleChange = async (item: any) => {
+        handleChangeChatFont(item.value)
+    }
 
     return (
         <Modal
@@ -58,21 +69,22 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                     style={styles.container}
                 >
 
-                    <BodyText style={styles.title}>{lang['_42']}</BodyText>
+                    <BodyText style={styles.title}>{lang['_151']}</BodyText>
 
                     <View>
                         {
-                            TIMELINES.map((item, index) => (
+                            (FONTS_LIST).map((item, index) => (
                                 <View
                                     key={index}
                                     style={styles.row1}>
+
                                     <TouchableOpacity
                                         activeOpacity={0.8}
-                                        onPress={() => setselectedTime(item.id)}
+                                        onPress={() => handleChange(item)}
                                         style={[styles.outerCirle, {
-                                            ...(selectedTime == item.id && { borderColor: COLORS.SECONDARY })
+                                            ...(chatFontSize == item.value && { borderColor: COLORS.SECONDARY })
                                         }]}>
-                                        {selectedTime == item.id && <View style={styles.innerCirle}></View>}
+                                        {chatFontSize == item.value && <View style={styles.innerCirle}></View>}
                                     </TouchableOpacity>
 
                                     <BodyText style={styles.txt}>{item.title}</BodyText>
@@ -87,12 +99,20 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
-                        <TextButton
-                            title={lang['_41']}
-                            style={styles.btn}
-                            textStyle={styles.btnTxt}
-                            onPress={() => onClose()}
-                        />
+                        {
+                            isLoading ?
+                                <ActivityIndicator
+                                    color={COLORS.SECONDARY}
+                                    style={styles.btn}
+                                />
+                                :
+                                <TextButton
+                                    title={lang['_41']}
+                                    style={styles.btn}
+                                    textStyle={styles.btnTxt}
+                                    onPress={() => onClose()}
+                                />
+                        }
 
                     </View>
 
@@ -104,12 +124,12 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
     )
 }
 
-export default MuteUserModal
+export default ChatFontModal
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
         ...COMMON_STYLES.center_
     },
     container: {

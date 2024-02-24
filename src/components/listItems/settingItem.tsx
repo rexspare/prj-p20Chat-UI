@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { FC } from 'react'
 import { ISettingItem } from '../../models/app'
 import { COLORS, FONTS, FONT_SIZE, hp, wp, COMMON_STYLES } from "../../assets/stylesGuide";
@@ -24,7 +24,11 @@ const SettingItem: FC<settingItemProps> = (props) => {
     const styles = styles_(theme)
 
     return (
-        <View style={styles.main}>
+        <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.main}
+            onPress={() => onPress && onPress()}
+        >
             <View style={styles.row}>
 
                 <View style={{ width: hp(4.5) }}>
@@ -44,7 +48,7 @@ const SettingItem: FC<settingItemProps> = (props) => {
                 height={hp(1.5)}
             />
 
-        </View>
+        </TouchableOpacity>
     )
 }
 

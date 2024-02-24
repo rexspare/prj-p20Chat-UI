@@ -32,6 +32,7 @@ const Layout: React.FC<ILayoutProps> = ({
             </If>
             <If condition={!fixed}>
                 <KeyboardAwareScrollView
+                    bounces={false}
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled"
                     style={[styles.main, containerStyle]}

@@ -65,6 +65,12 @@ const AppHeader: FC<appHeaderProps> = (props) => {
     return (
         <View style={styles.main}>
 
+            <If condition={title != undefined && showSearch == false}>
+                <View style={styles.titleContainer}>
+                    <Label style={styles.title}>{title}</Label>
+                </View>
+            </If>
+
             <If condition={hideBackBtn == false}>
                 <TouchableOpacity
                     style={{
@@ -99,11 +105,7 @@ const AppHeader: FC<appHeaderProps> = (props) => {
                 />
             </If>
 
-            <If condition={title != undefined && showSearch == false}>
-                <View style={styles.titleContainer}>
-                    <Label style={styles.title}>{title}</Label>
-                </View>
-            </If>
+
 
 
             <If condition={showRightIcon && showSearch == false}>
