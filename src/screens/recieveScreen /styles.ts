@@ -27,12 +27,12 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         color: theme.BLACK_TO_WHITE,
         fontSize: FONT_SIZE._16,
         fontFamily: FONTS.MEDIUM,
-        marginTop: hp(2.5)
+        marginTop: hp(3)
     },
     qr: {
         width: hp(18),
         height: hp(18),
-        marginVertical: hp(3),
+        marginVertical: hp(3.5),
         alignSelf: 'center'
     },
     btnContainer: {
@@ -51,7 +51,44 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         color: COLORS.SECONDARY
     },
     row: {
-        ...COMMON_STYLES.flexRowSpaceBetween
+        ...COMMON_STYLES.flexRowSpaceBetween,
+        width: wp(75),
+        alignSelf: 'center',
+        maxWidth: 500
+    },
+    line: {
+        flex: 1,
+        height: 1,
+        backgroundColor: theme.BORDER
+    },
+    txt2: {
+        fontFamily: FONTS.MEDIUM,
+        fontSize: FONT_SIZE._14,
+        marginHorizontal: 3,
+        color: theme.GREY_TO_WHITE
+    },
+    txt3: {
+        fontFamily: FONTS.MEDIUM,
+        fontSize: FONT_SIZE._16,
+        color: theme.BLACK_TO_WHITE,
+        marginTop: hp(3.5)
+    },
+    addressContainer: {
+        backgroundColor: COLORS.GREY_25,
+        height: hp(5.1),
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        maxWidth: 700,
+        alignSelf: 'center',
+        borderRadius: hp(1),
+        borderWidth: 1,
+        borderColor: theme.BORDER,
+        marginTop:(hp(2.5))
+    },
+    txt4: {
+        fontSize: FONT_SIZE._14,
+        color: theme.BLACK_TO_WHITE
     }
 })
 

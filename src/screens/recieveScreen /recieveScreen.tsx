@@ -25,9 +25,6 @@ const RecieveScreen = () => {
 
   const [filteredDataSource, setfilteredDataSource] = useState(COINSLIST)
   const [isAssetselected, setisAssetselected] = useState(false)
-  const [address, setaddress] = useState("")
-  const [network, setnetwork] = useState("")
-  const [amount, setamount] = useState("")
 
   const handleFilter = (txt: string) => {
     if (txt != '') {
@@ -91,8 +88,21 @@ const RecieveScreen = () => {
                   style={styles.qr}
                 />
 
+                {/* LINE OR LINE */}
                 <View style={styles.row}>
+                  <View style={styles.line}></View>
+                  <BodyText style={styles.txt2}>or</BodyText>
+                  <View style={styles.line}></View>
+                </View>
 
+
+                <BodyText style={styles.txt3}>{`${lang['_118']} ${selectedAsset.shortName} ${lang['_119']}`}</BodyText>
+
+
+                {/* ADDRESS */}
+
+                <View style={styles.addressContainer}>
+                  <BodyText style={styles.txt4}>N3veRg0nnAgiV3y0uUpn3v3rg0nn4L3ty0ud0wn</BodyText>
                 </View>
 
                 <Spacer height={hp(20)} />

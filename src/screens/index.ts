@@ -18,6 +18,10 @@ import SendSummaryScreen from "./sendSummaryScreen/sendSummaryScreen"
 import SendSuccessScreen from "./sendSuccessScreen/sendSuccessScreen"
 import RecieveScreen from "./recieveScreen /recieveScreen"
 
+import SettingMainScreen from "./settingMainScreen/settingMainScreen"
+import EditProfileScreen from "./editProfileScreen/editProfileScreen"
+
+
 export {
     LandingScreen,
     PhoneScreen,
@@ -36,5 +40,7 @@ export {
     HistorySettingScreen,
     SendSummaryScreen,
     SendSuccessScreen,
-    RecieveScreen
+    RecieveScreen,
+    SettingMainScreen,
+    EditProfileScreen
 }

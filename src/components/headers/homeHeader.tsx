@@ -14,6 +14,7 @@ import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
 import { hasNotch, isDeviceTablet, isIOS } from '../../utils/myUtils';
+import { SCREENS } from '../../assets/constants';
 interface homeHeaderProps {
     hideBackBtn?: boolean;
     title?: string;
@@ -56,7 +57,8 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
         },
         {
             id: 3,
-            name: lang["_31"]
+            name: lang["_31"],
+            onPress: () => navigation.navigate(SCREENS.SETTING)
         },
     ]
 

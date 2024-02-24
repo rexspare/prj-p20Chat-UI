@@ -1,24 +1,35 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React, { FC } from 'react'
-import { hp, wp } from '../../assets/stylesGuide'
+import { FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide'
 import { hasNotch, isDeviceTablet, isIOS } from '../../utils/myUtils'
 import { If, Label } from '..';
 import { useNavigation } from '@react-navigation/native';
 import { BackIcon } from '../../assets/icons';
 import useAppConfig from '../../hooks/AppConfig';
+import { Icon } from 'react-native-vector-icons/Icon';
 
 interface commonHeaderProps {
     hideBackBtn?: boolean;
     title?: string;
+    iconColor?: string;
+    stylesProp?: ViewStyle;
 }
 
 const CommonHeader: FC<commonHeaderProps> = (props) => {
-    const { hideBackBtn = false, title } = props
-    const navigation = useNavigation()
     const { theme } = useAppConfig()
 
+    const {
+        hideBackBtn = false,
+        title,
+        iconColor = theme.BLACK_TO_WHITE,
+        stylesProp
+    } = props
+
+    const styles = styles_(iconColor)
+    const navigation = useNavigation()
+
     return (
-        <View style={styles.main}>
+        <View style={[styles.main, stylesProp]}>
 
             <If condition={hideBackBtn == false}>
                 <TouchableOpacity
@@ -27,7 +38,7 @@ const CommonHeader: FC<commonHeaderProps> = (props) => {
                     onPress={() => navigation.goBack()}
                 >
                     <BackIcon
-                        fill={theme.BLACK_TO_WHITE}
+                        fill={iconColor}
                         width={hp(2.4)}
                         height={hp(2)}
                     />
@@ -35,7 +46,11 @@ const CommonHeader: FC<commonHeaderProps> = (props) => {
             </If>
 
 
-
+            <If condition={title != undefined}>
+                <View style={styles.titleContainer}>
+                    <Label style={styles.title}>{title}</Label>
+                </View>
+            </If>
 
 
         </View >
@@ -44,7 +59,7 @@ const CommonHeader: FC<commonHeaderProps> = (props) => {
 
 export default CommonHeader
 
-const styles = StyleSheet.create({
+const styles_ = (iconColor: string) => StyleSheet.create({
     main: {
         width: wp(100),
         minHeight: hp(6),
@@ -60,5 +75,13 @@ const styles = StyleSheet.create({
     },
     btnContainer: {
         position: 'absolute'
-    }
+    },
+    titleContainer: {
+        position: 'absolute',
+        width: '100%',
+    },
+    title: {
+        fontSize: FONT_SIZE._20,
+        color: iconColor
+    },
 })

@@ -69,16 +69,17 @@ const AppHeader: FC<appHeaderProps> = (props) => {
                 <TouchableOpacity
                     style={{
                         paddingVertical: 8,
-                        paddingRight: 10
+                        paddingRight: 10,
                     }}
                     activeOpacity={0.8}
-                    hitSlop={{ top: 30, bottom: 15, left: 15, right: 15 }}
+                    hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
                     onPress={() => handleBackPress()}
                 >
                     <BackIcon
                         fill={iconColor}
                         width={hp(2.4)}
                         height={hp(2)}
+                        onPress={() => handleBackPress()}
                     />
                 </TouchableOpacity>
             </If>

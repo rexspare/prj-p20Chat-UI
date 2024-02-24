@@ -54,7 +54,7 @@ const WalletScreen = () => {
           />
 
           <PrimaryButton
-            title={lang['_72']}
+            title={lang['_73']}
             onPress={() => navigation.navigate(SCREENS.RECIEVE)}
             style={styles.btn}
             textStyle={styles.btntxt}

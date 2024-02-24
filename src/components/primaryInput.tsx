@@ -120,6 +120,7 @@ export default React.memo(PrimaryInput)
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {
         width: '100%',
+        maxWidth: 700,
         alignSelf: 'center',
         marginVertical: 11,
         backgroundColor: theme.BACKGROUND,

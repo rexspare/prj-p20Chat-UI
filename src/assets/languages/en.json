@@ -1,4 +1,6 @@
 {
+    "lang": "en",
+    "name": "English",
     "_01": "Welcome to P-20 CHAT",
     "_02": "Read our",
     "_03": "Privacy Policy",
@@ -119,5 +121,17 @@
     "_118": "Your",
     "_119": "Address",
     "_120": "Generate New Address",
-    "_121": "Copy & Share Address"
+    "_121": "Copy & Share Address",
+    "_122": "Settings",
+    "_123": "Display",
+    "_124": "Dark mode, Chat",
+    "_125": "Notifications",
+    "_126": "Preferences, notification type",
+    "_127": "Language",
+    "_128": "Blocked Contacts",
+    "_129": "Accounts Blocked",
+    "_130": "Help",
+    "_131": "Help center & support",
+    "_132": "About",
+    "_133": "Profile"
 }

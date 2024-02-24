@@ -30,6 +30,7 @@ enum COLORS {
     TRANSPARENT = "transparent",
     SECONDARY_20 = "rgba(2, 174, 174, 0.1)",
     SECONDARY_30 = "rgba(2, 174, 174, 0.2)",
+    GREY_25 = "rgba(217, 217, 217, 0.25)"
 }
 
 enum FONT_SIZE {

@@ -11,14 +11,14 @@ interface touchableCustomProps {
 const TouchableCustom: FC<touchableCustomProps> = ({
     style,
     children,
-    hitSlop = { top: 5, bottom: 5, left: 5, right: 5 },
+    hitSlop = undefined,
     onPress = () => { }
 }) => {
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             style={style}
-            hitSlop={hitSlop}
+            hitSlop={hitSlop ? hitSlop : { top: 5, bottom: 5, left: 5, right: 5 }}
             onPress={() => onPress()}
         >
             {children}
