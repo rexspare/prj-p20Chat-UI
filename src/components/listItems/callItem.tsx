@@ -1,14 +1,13 @@
-import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { FC } from 'react'
+import { useNavigation } from '@react-navigation/native';
+import React, { FC } from 'react';
+import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { BodyText, Label } from '..';
+import { CallIcon, IncommingIcon, OutgoingIcon, VideoCallIcon } from '../../assets/icons';
+import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
-import { hp, COMMON_STYLES, FONT_SIZE, FONTS, COLORS } from '../../assets/stylesGuide';
-import { BodyText, If, Label } from '..';
-import { CallIcon, IncommingIcon, OutgoingIcon, SeenIcon, SelectedIcon, VideoCallIcon } from '../../assets/icons';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
 import { isDeviceTablet } from '../../utils/myUtils';
-import { useNavigation } from '@react-navigation/native';
-import { SCREENS } from '../../assets/constants';
 
 interface callItemProps {
   item: any;

@@ -21,8 +21,10 @@ enum SIZE {
 enum COLORS {
     PRIMARY = "#006B5F",
     SECONDARY = "#02AEAE",
+    ACCENT = "#8A91A8",
     WHITE = "#FFFFFF",
     BLACK = "#000000",
+    BLACK_OP = "rgba(0,0,0,0.6)",
     DISBALED = "#D9D9D9",
     RED = "#FF0000",
     SUCCESS = "#00AB2C",
@@ -30,7 +32,9 @@ enum COLORS {
     TRANSPARENT = "transparent",
     SECONDARY_20 = "rgba(2, 174, 174, 0.1)",
     SECONDARY_30 = "rgba(2, 174, 174, 0.2)",
-    GREY_25 = "rgba(217, 217, 217, 0.25)"
+    GREY_25 = "rgba(217, 217, 217, 0.25)",
+    UNREAD_MSG = "#8280FF",
+    READ_MSG = "#4C48FF",
 }
 
 enum FONT_SIZE {

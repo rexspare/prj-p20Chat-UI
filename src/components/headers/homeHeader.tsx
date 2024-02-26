@@ -41,6 +41,7 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
     const chatList = useInbox(inboxStateSelectors.chatList)
     const filteredChatList = useInbox(inboxStateSelectors.filteredChatList)
     const setfilteredChatList = useInbox(inboxStateSelectors.setfilteredChatList)
+    const setselectedConatct = useInbox(inboxStateSelectors.setselectedConatct)
 
     const showSelectedContent = selectedChats?.length > 0
 
@@ -49,7 +50,9 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
     const MainMenuList: any[] = [
         {
             id: 1,
-            name: lang["_29"]
+            name: lang["_29"],
+            onPress: () => navigation.navigate(SCREENS.GROUP)
+
         },
         {
             id: 2,
@@ -65,7 +68,8 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
     const SelectContactMenuList: any[] = [
         {
             id: 1,
-            name: lang["_32"]
+            name: lang["_32"],
+            onPress: () => handleViewContact()
         },
         {
             id: 2,
@@ -112,7 +116,13 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
             setfilteredChatList(chatList)
         }
         setsearchVal(val)
+    }
 
+    const handleViewContact = () => {
+        if (showSelectedContent) {
+            setselectedConatct(selectedChats[0])
+            navigation.navigate(SCREENS.USER_PROFILE)
+        }
     }
 
     return (

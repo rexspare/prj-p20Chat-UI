@@ -9,7 +9,7 @@ import {
 } from 'react-native-popup-menu';
 import { BodyText, If, Label, PrimaryInput, TouchableCustom } from '..';
 import { BackIcon, CallIcon, SearchIcon, VerticalDotsIcon, VideoIcon } from '../../assets/icons';
-import { COLORS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
+import { COLORS, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
@@ -19,6 +19,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 interface appHeaderProps {
     hideBackBtn?: boolean;
     title?: string;
+    subtle?: string;
     iconColor?: string;
     renderRightIcon?: ReactNode;
     showRightIcon?: boolean;
@@ -30,6 +31,7 @@ const AppHeader: FC<appHeaderProps> = (props) => {
     const {
         hideBackBtn = false,
         title,
+        subtle,
         iconColor = COLORS.WHITE,
         renderRightIcon,
         showRightIcon = false,
@@ -68,6 +70,9 @@ const AppHeader: FC<appHeaderProps> = (props) => {
             <If condition={title != undefined && showSearch == false}>
                 <View style={styles.titleContainer}>
                     <Label style={styles.title}>{title}</Label>
+                    <If condition={subtle != undefined}>
+                        <Label style={styles.subtle}>{subtle}</Label>
+                    </If>
                 </View>
             </If>
 
@@ -146,6 +151,11 @@ const styles_ = (theme: ITHEME, iconColor: string) => StyleSheet.create({
     },
     title: {
         fontSize: FONT_SIZE._20,
+        color: iconColor
+    },
+    subtle: {
+        fontSize: FONT_SIZE._14,
+        fontFamily: FONTS.REGULAR,
         color: iconColor
     },
     inputcontainerStyles: {

@@ -19,6 +19,12 @@ import QrIcon from './qrIcon.svg'
 import RecieveIcon from './recieveIcon.svg'
 import ScanQRIcon from './scanQRIcon.svg'
 import OrLine from './orLine.svg'
+import NotificationIcon from './notificationIcon.svg'
+import StarIcon from './starIcon.svg'
+import DeleteMsgIcon from './deleteMsgIcon.svg'
+import StarMsgIcon from './starMsgIcon.svg'
+import ReplyMsgIcon from './replyMsgIcon.svg'
+import ForwardMsgIcon from './forwardMsgIcon.svg'
 
 export {
     CheckBox,
@@ -41,5 +47,11 @@ export {
     QrIcon,
     RecieveIcon,
     ScanQRIcon,
-    OrLine
+    OrLine,
+    NotificationIcon,
+    StarIcon,
+    DeleteMsgIcon,
+    StarMsgIcon,
+    ReplyMsgIcon,
+    ForwardMsgIcon
 }

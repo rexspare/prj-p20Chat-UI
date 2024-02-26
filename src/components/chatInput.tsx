@@ -61,6 +61,7 @@ const ChatInput: FC<chatInputProps> = (props) => {
 
     return (
         <View style={styles.main}>
+        <View style={styles.main1}>
             {
                 isRecording ?
                     // WHEN RECORDING AUDIO
@@ -141,6 +142,7 @@ const ChatInput: FC<chatInputProps> = (props) => {
                 </View>
             </If>
         </View>
+        </View>
     )
 }
 
@@ -148,6 +150,15 @@ export default ChatInput
 
 const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
     main: {
+        width: wp(90),
+        minHeight: hp(6.43),
+        height: 'auto',
+        borderRadius: hp(6.43) / 2,
+        borderTopRightRadius: isRecording ? 0 : hp(6.43) / 2,
+        backgroundColor: theme.BACKGROUND,
+        ...COMMON_STYLES.flexRowSpaceBetween,
+    },
+    main1: {
         width: wp(90),
         minHeight: hp(6.43),
         height: 'auto',

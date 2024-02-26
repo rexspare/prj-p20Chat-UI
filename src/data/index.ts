@@ -1,3 +1,4 @@
+import { MESSAGE_TYPES } from "../assets/constants"
 import { COINS, FRIENDS_AVATARS } from "../assets/images"
 import { FEED_AVATARS, NEWS_IMAGES } from "../assets/images/dummy"
 
@@ -502,6 +503,75 @@ const HISTORY_LIST: any[] = [
     },
 ]
 
+const inbox = [
+    {
+        id: 1,
+        meUser: false,
+        time: '12:15 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: "Hey! How have you been?",
+        seen: true
+    },
+    {
+        id: 2,
+        meUser: false,
+        time: '12:15 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: "Wanna catch up for a beer?",
+        seen: true
+    },
+    {
+        id: 3,
+        meUser: true,
+        time: '12:20 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: "Awesome! Let’s meet up",
+        seen: true
+    },
+    {
+        id: 4,
+        meUser: true,
+        time: '12:20 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: `Can I also get my cousin along? Will that be okay?`,
+        seen: true
+    },
+    {
+        id: 5,
+        meUser: false,
+        time: '12:22 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: `Yeah sure! get him too.`,
+        seen: true
+    },
+    {
+        id: 6,
+        meUser: true,
+        time: '12:25 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: `Alright! See you soon!`,
+        seen: true
+    },
+    {
+        id: 7,
+        meUser: false,
+        time: '12:25 PM',
+        type: MESSAGE_TYPES.AUDIO,
+        message: `Alright! See you soon!`,
+        seen: true,
+        media: ""
+    },
+    {
+        id: 8,
+        meUser: true,
+        time: '12:27 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: `okay sure!`,
+        seen: true,
+        media: ""
+    },
+]
+
 
 export {
     LANGUAGES_LIST,
@@ -511,5 +581,6 @@ export {
     FEEDS,
     WALLET_LIST,
     COINSLIST,
-    HISTORY_LIST
+    HISTORY_LIST,
+    inbox
 }

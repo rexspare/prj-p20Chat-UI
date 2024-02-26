@@ -1,7 +1,20 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SCREENS } from '../assets/constants';
-import { BlockedContactScreen, ChatScreen, ChatSettingScreen, DisplaySettingScreen, EditProfileScreen, LanguageSettingScreen, NewsDetailScreen, NotificationSettingScreen, SettingMainScreen, WallpaperSettingScreen } from '../screens';
+import {
+    BlockedContactScreen,
+    ChatScreen,
+    ChatSettingScreen,
+    DisplaySettingScreen,
+    EditProfileScreen,
+    GroupScreen,
+    LanguageSettingScreen,
+    NewsDetailScreen,
+    NotificationSettingScreen,
+    SettingMainScreen,
+    UserProfileScreen,
+    WallpaperSettingScreen
+} from '../screens';
 import BottomStack from './bottomTab';
 
 export type InitialNavigationStackParamList = {
@@ -17,6 +30,8 @@ export type InitialNavigationStackParamList = {
     [SCREENS.NOTIFICATION_SETTING]: undefined;
     [SCREENS.WALLPAPER_SETTING]: undefined;
     [SCREENS.BLOCKED_CONTACTS]: undefined;
+    [SCREENS.USER_PROFILE]: undefined;
+    [SCREENS.GROUP]: undefined;
 };
 
 const Stack = createNativeStackNavigator<InitialNavigationStackParamList>();
@@ -39,6 +54,8 @@ const AppStack = () => {
             <Stack.Screen name={SCREENS.NOTIFICATION_SETTING} component={NotificationSettingScreen} />
             <Stack.Screen name={SCREENS.BLOCKED_CONTACTS} component={BlockedContactScreen} />
             <Stack.Screen name={SCREENS.LANG_SETTING} component={LanguageSettingScreen} />
+            <Stack.Screen name={SCREENS.USER_PROFILE} component={UserProfileScreen} />
+            <Stack.Screen name={SCREENS.GROUP} component={GroupScreen} />
         </Stack.Navigator>
     )
 }

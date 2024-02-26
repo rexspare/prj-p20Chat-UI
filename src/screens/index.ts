@@ -20,6 +20,8 @@ import RecieveScreen from "./recieveScreen /recieveScreen"
 
 import SettingMainScreen from "./settingMainScreen/settingMainScreen"
 import EditProfileScreen from "./editProfileScreen/editProfileScreen"
+import UserProfileScreen from "./userProfileScreen/userProfileScreen"
+import GroupScreen from "./groupScreen/groupScreen"
 
 export * from './settingScreens'
 
@@ -43,5 +45,7 @@ export {
     SendSuccessScreen,
     RecieveScreen,
     SettingMainScreen,
-    EditProfileScreen
+    EditProfileScreen,
+    UserProfileScreen,
+    GroupScreen
 }

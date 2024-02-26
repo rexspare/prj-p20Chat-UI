@@ -7,6 +7,8 @@ import NewsFeedItem from "./newsFeedItem"
 import CoinItem from "./coinItem"
 import HistoryItem from "./historyItem"
 import SettingItem from "./settingItem"
+import GroupContactItem from "./groupContactItem"
+import ChatBubble from "./chatBubble"
 
 export {
     ChatItem,
@@ -17,5 +19,7 @@ export {
     NewsFeedItem,
     CoinItem,
     HistoryItem,
-    SettingItem
+    SettingItem,
+    GroupContactItem,
+    ChatBubble
 }

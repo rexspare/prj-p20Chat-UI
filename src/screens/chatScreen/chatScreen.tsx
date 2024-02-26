@@ -1,13 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef, useState } from 'react'
 import { FlatList, StatusBar, View, Animated } from 'react-native'
-import { ChatHeader, ChatInput, ChatItem, Layout, MediaPicker } from '../../components'
+import { ChatBubble, ChatHeader, ChatInput, ChatItem, Layout, MediaPicker } from '../../components'
 import { BlockUserModal, MuteUserModal } from '../../components/popups'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
 import { hp } from '../../assets/stylesGuide'
+import { inbox } from '../../data'
 
 const ChatScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -80,17 +81,24 @@ const ChatScreen = () => {
 
 
         <Animated.View style={styles.container}>
-          {/* <FlatList
-            data={filteredDataSource}
-            renderItem={({ item, index }) => (<ChatItem item={item} />)}
+
+          <FlatList
+            data={inbox}
+            renderItem={({ item, index }: any) => (
+              <ChatBubble
+                item={item}
+                index={index}
+              />)}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentContainerStyle}
-          /> */}
+          />
+
           <View style={styles.aboluteContainer}>
             <ChatInput
               toggleMediaPicker={toggleMediaPicker}
             />
           </View>
+
         </Animated.View>
 
         {/* MEDIA PICKER */}

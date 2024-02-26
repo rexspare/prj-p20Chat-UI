@@ -21,6 +21,8 @@ export interface IInboxState {
     setselectedChats: (val: any) => void;
     newMessage: any;
     setnewMessage: (val: any) => void;
+    selectedConatct: any;
+    setselectedConatct: (val: any) => void;
 }
 
 const initialState: IInboxState = {
@@ -34,6 +36,8 @@ const initialState: IInboxState = {
     setselectedChats: () => { },
     newMessage: { text: "" },
     setnewMessage: () => { },
+    selectedConatct: null,
+    setselectedConatct: () => { },
 };
 
 /**
@@ -46,6 +50,7 @@ export const useInbox = create<IInboxState>((set, get) => ({
     setopenedChat: val => set({ openedChat: val }),
     setselectedChats: val => set({ selectedChats: val }),
     setnewMessage: val => set({ newMessage: val }),
+    setselectedConatct: val => set({ selectedConatct: val }),
 }));
 
 /**

@@ -9,7 +9,7 @@
     "CHAT_BG": "#006B5F",
     "TAB_ICON": "#8A91A8",
     "CHAT_BUBLE": "rgba(217, 217, 217, 0.25)",
-    "MY_CHAT_BUBBLE": "rgba(0, 107, 95, 0.25)",
+    "MY_CHAT_BUBBLE": "#B4E7E7",
     "BLACK_TO_WHITE": "#000000",
     "PRIMARY_TO_WHITE": "#006B5F",
     "PRIMARY_TO_SECONDARY": "#006B5F",

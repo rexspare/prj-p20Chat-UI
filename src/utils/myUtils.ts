@@ -78,6 +78,15 @@ const isDefaultThemeSupported = () => {
     }
 }
 
+const nextIndexExists = (array: any[], index: number) => {
+    if (typeof array[index + 1] === 'undefined') {
+        return false
+    }
+    else {
+        return true
+    }
+}
+
 export {
     isIOS,
     hasNotch,
@@ -85,5 +94,6 @@ export {
     formatSeconds,
     checkTextPressable,
     handleShare,
-    isDefaultThemeSupported
+    isDefaultThemeSupported,
+    nextIndexExists
 }

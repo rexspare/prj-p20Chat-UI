@@ -18,17 +18,18 @@ const styles = (theme: ITHEME, marginValue: any, radiusValue: any) => StyleSheet
         borderBottomRightRadius: radiusValue,
     },
     contentContainerStyle: {
-        marginTop: hp(0.5)
+        marginTop: hp(1),
+        paddingHorizontal: isDeviceTablet() ? '2%' : '5%'
     },
     aboluteContainer: {
         position: 'absolute',
-        bottom: (isIOS() && hasNotch()) ? hp(3) : hp(2),
+        bottom: (isIOS() && hasNotch()) ? hp(3.5) : hp(2),
         width: '100%',
         alignItems: 'center'
     },
     aboluteContainer1: {
         position: 'absolute',
-        bottom: (isIOS() && hasNotch()) ? hp(3)  : hp(2),
+        bottom: (isIOS() && hasNotch()) ? hp(3) : hp(2),
         width: '100%',
         alignItems: 'center',
         zIndex: -10
