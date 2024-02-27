@@ -8,6 +8,8 @@ const IMAGES = {
     SCREEN_SHADOW: require('./screenShadow.png'),
     FADE_TICKET: require('./fadeTicket.png'),
     QR: require('./qr.png'),
+    BLUR: require('./blur/blur.png'),
+    BLUR_BIG: require('./blur/blurBig.png'),
 }
 
 export * from './coins'

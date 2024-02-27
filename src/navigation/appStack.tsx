@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SCREENS } from '../assets/constants';
 import {
+    AudioCallScreen,
     BlockedContactScreen,
     ChatScreen,
     ChatSettingScreen,
@@ -13,6 +14,7 @@ import {
     NotificationSettingScreen,
     SettingMainScreen,
     UserProfileScreen,
+    VideoCallScreen,
     WallpaperSettingScreen
 } from '../screens';
 import BottomStack from './bottomTab';
@@ -32,6 +34,8 @@ export type InitialNavigationStackParamList = {
     [SCREENS.BLOCKED_CONTACTS]: undefined;
     [SCREENS.USER_PROFILE]: undefined;
     [SCREENS.GROUP]: undefined;
+    [SCREENS.VIDEO_CALL]: undefined;
+    [SCREENS.AUDIO_CALL]: undefined;
 };
 
 const Stack = createNativeStackNavigator<InitialNavigationStackParamList>();
@@ -56,6 +60,8 @@ const AppStack = () => {
             <Stack.Screen name={SCREENS.LANG_SETTING} component={LanguageSettingScreen} />
             <Stack.Screen name={SCREENS.USER_PROFILE} component={UserProfileScreen} />
             <Stack.Screen name={SCREENS.GROUP} component={GroupScreen} />
+            <Stack.Screen name={SCREENS.VIDEO_CALL} component={VideoCallScreen} />
+            <Stack.Screen name={SCREENS.AUDIO_CALL} component={AudioCallScreen} />
         </Stack.Navigator>
     )
 }

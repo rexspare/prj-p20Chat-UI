@@ -9,6 +9,7 @@ import { COLORS } from '../../assets/stylesGuide'
 import { CHATS_LIST } from '../../data'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { BlockUserModal, MuteUserModal } from '../../components/popups'
+import { SCREENS } from '../../assets/constants'
 
 const MessagesScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -44,7 +45,7 @@ const MessagesScreen = () => {
         </Layout>
 
         <FabButton
-          onPress={() => { }}
+          onPress={() => navigation.navigate(SCREENS.CONTACTS)}
         />
         <BlockUserModal
           isVisible={blockModalVisible}

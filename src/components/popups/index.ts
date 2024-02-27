@@ -6,6 +6,8 @@ import ChatFontModal from "./chatFont";
 import SelectSoundModal from "./selectSound";
 import VibrateModeModal from "./vibrateMode";
 import UnblockUserModal from "./unblockUser";
+import CameraModal from "./cameraModal";
+import GalleryModal from "./galleryModal";
 
 export {
     BlockUserModal,
@@ -15,5 +17,7 @@ export {
     ChatFontModal,
     SelectSoundModal,
     VibrateModeModal,
-    UnblockUserModal
+    UnblockUserModal,
+    CameraModal,
+    GalleryModal
 }

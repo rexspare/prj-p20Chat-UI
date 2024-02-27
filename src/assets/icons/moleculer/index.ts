@@ -25,6 +25,12 @@ import DeleteMsgIcon from './deleteMsgIcon.svg'
 import StarMsgIcon from './starMsgIcon.svg'
 import ReplyMsgIcon from './replyMsgIcon.svg'
 import ForwardMsgIcon from './forwardMsgIcon.svg'
+import SendMsgIcon from './sendMsgIcon.svg'
+import FlashIcon from './flashIcon.svg'
+import GalleryCamIcon from './gelleryCamIcon.svg'
+import CaptureIcon from './captureIcon.svg'
+import SwitchCamIcon from './switchCamIcon.svg'
+import AddImageIcon from './addImageIcon.svg'
 
 export {
     CheckBox,
@@ -53,5 +59,11 @@ export {
     DeleteMsgIcon,
     StarMsgIcon,
     ReplyMsgIcon,
-    ForwardMsgIcon
+    ForwardMsgIcon,
+    SendMsgIcon,
+    FlashIcon,
+    GalleryCamIcon,
+    CaptureIcon,
+    SwitchCamIcon,
+    AddImageIcon
 }

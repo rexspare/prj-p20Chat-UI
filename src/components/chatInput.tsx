@@ -3,19 +3,23 @@ import React, { FC, useState, useEffect } from 'react'
 import useAppConfig from '../hooks/AppConfig'
 import { ITHEME } from '../models/config'
 import { hp, wp, COMMON_STYLES, COLORS, FONTS, FONT_SIZE } from '../assets/stylesGuide'
-import { LeftChevIcon, LockIcon, MicIcon } from '../assets/icons'
+import { LeftChevIcon, LockIcon, MicIcon, SendMsgIcon } from '../assets/icons'
 import Feather from 'react-native-vector-icons/Feather'
 import { inboxStateSelectors, useInbox } from '../states/inbox'
-import { BodyText, If } from '.'
-import { formatSeconds } from '../utils/myUtils'
+import { BodyText, If, TouchableCustom } from '.'
+import { formatSeconds, generateRandomId } from '../utils/myUtils'
 
 import SwipeButton from 'rn-swipe-button';
+import { MESSAGE_TYPES } from '../assets/constants'
+import moment from 'moment'
 interface chatInputProps {
+    listRef: any;
     toggleMediaPicker: Function;
 }
 
 const ChatInput: FC<chatInputProps> = (props) => {
     const {
+        listRef,
         toggleMediaPicker = () => { }
     } = props
 
@@ -23,9 +27,13 @@ const ChatInput: FC<chatInputProps> = (props) => {
     const newMessage = useInbox(inboxStateSelectors.newMessage)
     const setnewMessage = useInbox(inboxStateSelectors.setnewMessage)
 
+    const openedChat = useInbox(inboxStateSelectors.openedChat)
+    const setopenedChat = useInbox(inboxStateSelectors.setopenedChat)
+
     // AUDIOSTATES
     const [isRecording, setisRecording] = useState(false)
     const [timer, setTimer] = useState(0);
+
 
     useEffect(() => {
         let intervalId: any;
@@ -58,91 +66,206 @@ const ChatInput: FC<chatInputProps> = (props) => {
         setisRecording(false)
     }
 
+    const checkIfMsgEmpty = () => {
+        if (newMessage.text || newMessage.media) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    const hanldeSendMsg = () => {
+        const newMessageData = {
+            id: generateRandomId(20),
+            meUser: true,
+            time: moment().format('h:mm A'),
+            type: newMessage?.type || MESSAGE_TYPES.TEXT,
+            seen: false,
+            message: newMessage?.text || null,
+            media: newMessage?.media || null,
+            replyingTo: newMessage?.replyingTo || null
+        }
+
+        if (!checkIfMsgEmpty()) {
+            setopenedChat({
+                ...openedChat,
+                messages: [...openedChat.messages, newMessageData]
+            })
+            setTimeout(() => {
+                listRef.current?.scrollToEnd()
+            }, 300);
+            setnewMessage({})
+        }
+    }
+
+    const handleLongPress = () => {
+        if (checkIfMsgEmpty()) {
+            handleRecord()
+        } else {
+            hanldeSendMsg()
+        }
+
+    }
+
+    const handlePress = () => {
+        if (!checkIfMsgEmpty()) {
+            hanldeSendMsg()
+        }
+    }
+
+
+    const cancelReply = () => {
+        setnewMessage({
+            ...newMessage,
+            replyingTo: null
+        })
+    }
+
+    const repliedToMsg = (newMessage?.replyingTo && openedChat?.messages?.length > 0) &&
+        openedChat?.messages?.find((x: any) => x?.id == newMessage?.replyingTo)
+
+    const repliedToMsglabel = () => {
+        if (repliedToMsg?.message) {
+            return repliedToMsg?.message
+        }
+
+        switch (repliedToMsg?.type) {
+            case MESSAGE_TYPES.AUDIO:
+                return lang['_197']
+            case MESSAGE_TYPES.VIDEO:
+                return lang['_198']
+            case MESSAGE_TYPES.IMAGE:
+                return lang['_199']
+            case MESSAGE_TYPES.DOCUMENT:
+                return lang['_200']
+            case MESSAGE_TYPES.TEXT:
+                return repliedToMsg?.message
+            default:
+                return repliedToMsg?.message
+        }
+    }
+
 
     return (
         <View style={styles.main}>
-        <View style={styles.main1}>
-            {
-                isRecording ?
-                    // WHEN RECORDING AUDIO
-                    <View style={styles.recordContainer}>
+            <View style={styles.main1}>
 
-                        <View style={[styles.recordContainer, { justifyContent: 'flex-start' }]}>
-                            <MicIcon
-                                fill={COLORS.RED}
-                                width={hp(2.4)}
-                                height={hp(2)}
-                            />
-                            <BodyText style={styles.txt}>{formatSeconds(timer)}</BodyText>
-                        </View>
+                {/* REPLIED TO MESSAGE */}
+                <If condition={newMessage?.replyingTo != undefined || newMessage?.replyingTo != null}>
+                    <View style={styles.row}>
+                        <BodyText style={styles.txt1}>{`${lang['_196']} ${openedChat?.name}`}</BodyText>
 
-                        <View style={styles.recordContainer}>
-                            <LeftChevIcon
-                                fill={theme.ACCENT}
-                                width={hp(1.2)}
-                                height={hp(1.2)}
-                            />
-                            <BodyText style={styles.txt}>{lang['_60']}</BodyText>
-                        </View>
-
-                    </View>
-                    :
-                    // WHEN *NOT* RECORDING AUDIO
-                    <>
-                        <TouchableOpacity
-                            activeOpacity={0.8}
-                            style={styles.roundBtn}
-                            onPress={() => toggleMediaPicker()}
+                        <TouchableCustom
+                            onPress={() => cancelReply()}
                         >
                             <Feather
-                                name='plus'
-                                color={theme.WHITE_TO_BLACK}
-                                size={hp(2.4)}
+                                name='x'
+                                color={theme.BLACK_TO_WHITE}
+                                size={hp(2.5)}
                             />
-                        </TouchableOpacity>
+                        </TouchableCustom>
+                    </View>
+
+                    {/* MESSAGE */}
+                    <BodyText style={styles.txt2}>{repliedToMsglabel()}</BodyText>
+
+                    <View style={styles.line1}></View>
+                </If>
+
+                {/* MAIN INPUT */}
+                <View style={styles.container}>
+                    {
+                        isRecording ?
+                            // WHEN RECORDING AUDIO
+                            <View style={styles.recordContainer}>
+
+                                <View style={[styles.recordContainer, { justifyContent: 'flex-start' }]}>
+                                    <MicIcon
+                                        fill={COLORS.RED}
+                                        width={hp(2.4)}
+                                        height={hp(2)}
+                                    />
+                                    <BodyText style={styles.txt}>{formatSeconds(timer)}</BodyText>
+                                </View>
+
+                                <View style={styles.recordContainer}>
+                                    <LeftChevIcon
+                                        fill={theme.ACCENT}
+                                        width={hp(1.2)}
+                                        height={hp(1.2)}
+                                    />
+                                    <BodyText style={styles.txt}>{lang['_60']}</BodyText>
+                                </View>
+
+                            </View>
+                            :
+                            // WHEN *NOT* RECORDING AUDIO
+                            <>
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    style={styles.roundBtn}
+                                    onPress={() => toggleMediaPicker()}
+                                >
+                                    <Feather
+                                        name='plus'
+                                        color={theme.WHITE_TO_BLACK}
+                                        size={hp(2.4)}
+                                    />
+                                </TouchableOpacity>
 
 
-                        <TextInput
-                            placeholder={lang['_53']}
-                            placeholderTextColor={theme.ACCENT}
-                            value={newMessage?.text}
-                            onChangeText={(txt) => handleChange(txt)}
-                            style={styles.input}
-                        />
+                                <TextInput
+                                    placeholder={lang['_53']}
+                                    placeholderTextColor={theme.ACCENT}
+                                    value={newMessage?.text}
+                                    onChangeText={(txt) => handleChange(txt)}
+                                    style={styles.input}
+                                />
 
-                        <View style={styles.line}></View>
-                    </>
-            }
+                                <View style={styles.line}></View>
+                            </>
+                    }
 
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={[styles.roundBtn, {
-                    width: isRecording ? hp(6) : hp(4),
-                    height: isRecording ? hp(6) : hp(4),
-                }]}
-                onLongPress={() => handleRecord()}
-                onPressOut={() => handleReleaseRecord()}
-            >
-                <MicIcon
-                    fill={theme.WHITE_TO_BLACK}
-                    width={hp(2.4)}
-                    height={hp(2)}
-                />
-            </TouchableOpacity>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={[styles.roundBtn, {
+                            width: isRecording ? hp(6) : hp(4),
+                            height: isRecording ? hp(6) : hp(4),
+                        }]}
+                        onPress={() => handlePress()}
+                        onLongPress={() => handleLongPress()}
+                        onPressOut={() => handleReleaseRecord()}
+                    >
+                        {
+                            checkIfMsgEmpty() ?
+                                <MicIcon
+                                    fill={theme.WHITE_TO_BLACK}
+                                    width={hp(2.4)}
+                                    height={hp(2)}
+                                />
+                                :
+                                <SendMsgIcon
+                                    fill={theme.WHITE_TO_BLACK}
+                                    width={hp(2.4)}
+                                    height={hp(2)}
+                                />
+                        }
+                    </TouchableOpacity>
 
 
-            {/* RECORDING LOCK */}
-            <If condition={isRecording}>
-                <View style={styles.slideUpContainer}>
-                    <LockIcon
-                        fill={theme.ACCENT}
-                        width={hp(2.6)}
-                        height={hp(2.6)}
-                    />
+                    {/* RECORDING LOCK */}
+                    <If condition={isRecording}>
+                        <View style={styles.slideUpContainer}>
+                            <LockIcon
+                                fill={theme.ACCENT}
+                                width={hp(2.6)}
+                                height={hp(2.6)}
+                            />
+                        </View>
+                    </If>
                 </View>
-            </If>
-        </View>
-        </View>
+            </View>
+        </View >
     )
 }
 
@@ -165,9 +288,11 @@ const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
         borderRadius: hp(6.43) / 2,
         borderTopRightRadius: isRecording ? 0 : hp(6.43) / 2,
         backgroundColor: theme.CHAT_BUBLE,
-        ...COMMON_STYLES.flexRowSpaceBetween,
         paddingLeft: hp(1.215),
         paddingRight: isRecording ? 0 : hp(1.215),
+    },
+    container: {
+        ...COMMON_STYLES.flexRowSpaceBetween,
     },
     roundBtn: {
         backgroundColor: COLORS.SECONDARY,
@@ -213,6 +338,27 @@ const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
         right: 0,
         bottom: hp(6.43) - 0.25,
         alignItems: 'center',
-        paddingTop: hp(1.75)
+        paddingTop: hp(1.75),
+    },
+    row: {
+        ...COMMON_STYLES.flexRowSpaceBetween,
+        marginTop: hp(2.5)
+    },
+    txt1: {
+        fontFamily: FONTS.MEDIUM,
+        fontSize: FONT_SIZE._12,
+        color: COLORS.PRIMARY
+    },
+    txt2: {
+        fontFamily: FONTS.MEDIUM,
+        fontSize: FONT_SIZE._12,
+        color: theme.BLACK_TO_WHITE,
+        textAlign: 'left',
+        marginBottom: hp(2.5)
+    },
+    line1: {
+        width: '100%',
+        height: 1 / 2,
+        backgroundColor: theme.ACCENT
     }
 })

@@ -6,7 +6,7 @@ import ProfileImageScreen from "./profileImageScreen/profileImageScreen"
 
 import MessagesScreen from "./messagesScreen/messagesScreen"
 import ChatScreen from "./chatScreen/chatScreen"
-import CallScreen from "./callScreen/callScreen"
+import CallHistoryScreen from "./callhistoryScreen/callHistoryScreen"
 import ContactScreen from "./contactScreen/contactScreen"
 import NewsScreen from "./newsScreen/newsScreen"
 import NewsDetailScreen from "./newsDetailScreen/newsDetailScreen"
@@ -23,6 +23,9 @@ import EditProfileScreen from "./editProfileScreen/editProfileScreen"
 import UserProfileScreen from "./userProfileScreen/userProfileScreen"
 import GroupScreen from "./groupScreen/groupScreen"
 
+import VideoCallScreen from "./callScreens/videoCallScreen"
+import AudioCallScreen from "./callScreens/audioCallScreen"
+
 export * from './settingScreens'
 
 export {
@@ -33,7 +36,7 @@ export {
     ProfileImageScreen,
     MessagesScreen,
     ChatScreen,
-    CallScreen,
+    CallHistoryScreen,
     ContactScreen,
     NewsScreen,
     NewsDetailScreen,
@@ -47,5 +50,7 @@ export {
     SettingMainScreen,
     EditProfileScreen,
     UserProfileScreen,
-    GroupScreen
+    GroupScreen,
+    VideoCallScreen,
+    AudioCallScreen
 }

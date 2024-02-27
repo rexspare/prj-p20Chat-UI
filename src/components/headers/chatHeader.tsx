@@ -14,6 +14,7 @@ import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
 import { hasNotch, isDeviceTablet, isIOS } from '../../utils/myUtils';
+import { SCREENS } from '../../assets/constants';
 
 interface chatHeaderProps {
     hideBackBtn?: boolean;
@@ -145,6 +146,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                             style={styles.btnContainer1}
+                            onPress={() => navigation.navigate(SCREENS.VIDEO_CALL)}
                         >
                             <VideoIcon
                                 width={hp(2.5)}
@@ -155,6 +157,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                             style={styles.btnContainer}
+                            onPress={() => navigation.navigate(SCREENS.AUDIO_CALL)}
                         >
                             <CallIcon
                                 fill={COLORS.WHITE}

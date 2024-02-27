@@ -1,29 +1,31 @@
-import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
-import React, { FC, useRef } from 'react'
-import useAppConfig from '../../hooks/AppConfig';
-import { ITHEME } from '../../models/config';
-import { COLORS, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
-import { BodyText, If } from '..';
-import { MESSAGE_TYPES } from '../../assets/constants';
+import React, { FC, useRef } from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { isTablet } from 'react-native-device-info';
-import { nextIndexExists } from '../../utils/myUtils';
-import { inbox } from '../../data';
-import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, SeenIcon, StarIcon, StarMsgIcon } from '../../assets/icons';
 import {
     Menu,
     MenuOption,
     MenuOptions,
     MenuTrigger
 } from 'react-native-popup-menu';
+import { BodyText, If } from '..';
+import { MESSAGE_TYPES } from '../../assets/constants';
+import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, SeenIcon, StarMsgIcon } from '../../assets/icons';
+import { COLORS, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
+import { inbox } from '../../data';
+import useAppConfig from '../../hooks/AppConfig';
+import { ITHEME } from '../../models/config';
+import { inboxStateSelectors, useInbox } from '../../states/inbox';
+import { nextIndexExists } from '../../utils/myUtils';
 
 interface IMESSAGE {
     id: number
     meUser: boolean
     time: any;
     type: string;
-    message: string;
+    message: string | null;
     seen: boolean,
-    media: string;
+    media: string | null;
+    replyingTo: string | number | null;
 }
 
 interface chatBubbleProps {
@@ -36,7 +38,38 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
     const { theme, lang } = useAppConfig()
     const menuRef = useRef<Menu>(null)
 
+    const newMessage = useInbox(inboxStateSelectors.newMessage)
+    const setnewMessage = useInbox(inboxStateSelectors.setnewMessage)
+
     const styles = styles_(theme, item)
+
+    const OtherChatOptions: any[] = [
+        {
+            id: 2,
+            icon: <StarMsgIcon
+                fill={theme.BLACK_TO_WHITE}
+                width={hp(3)}
+                height={hp(3)}
+            />,
+        },
+        {
+            id: 3,
+            icon: <ReplyMsgIcon
+                fill={theme.BLACK_TO_WHITE}
+                width={hp(3.2)}
+                height={hp(2.68)}
+            />,
+            onPress: () => handleReply()
+        },
+        {
+            id: 4,
+            icon: <ForwardMsgIcon
+                fill={theme.BLACK_TO_WHITE}
+                width={hp(3.2)}
+                height={hp(2.68)}
+            />,
+        },
+    ]
 
     const ChatOptions: any[] = [
         {
@@ -63,6 +96,7 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                 width={hp(3.2)}
                 height={hp(2.68)}
             />,
+            onPress: () => handleReply()
         },
         {
             id: 4,
@@ -87,12 +121,55 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
         }
     }
 
+    const handleReply = () => {
+        setnewMessage({
+            ...newMessage,
+            replyingTo: item.id
+        })
+    }
+
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             onLongPress={() => menuRef?.current?.open()}
             style={styles.main}>
-            <View style={styles.container}>
+
+            <View >
+
+                {/* REPLIED TO BUBBLE */}
+                <If condition={item?.replyingTo != undefined || item?.replyingTo != null}>
+                    <View style={styles.bubbleReply}>
+
+                        {/* TEXT */}
+                        <If condition={item.type == MESSAGE_TYPES.TEXT}>
+                            <BodyText style={styles.txt2}>{item.message}</BodyText>
+                        </If>
+
+                        {/* AUDIO */}
+                        <If condition={item.type == MESSAGE_TYPES.AUDIO}>
+                            <BodyText style={styles.txt2}>{item.message}</BodyText>
+                        </If>
+
+                        {/* IMAGE */}
+                        <If condition={item.type == MESSAGE_TYPES.IMAGE}>
+                            <Image
+                                source={item.media}
+                                style={styles.img}
+                            />
+                            <BodyText style={styles.txt2}>{item.message}</BodyText>
+                        </If>
+
+                        {/* VIDEO */}
+                        <If condition={item.type == MESSAGE_TYPES.VIDEO}>
+                            <BodyText style={styles.txt2}>{item.message}</BodyText>
+                        </If>
+
+                    </View>
+                </If>
+                {/* REPLIED TO BUBBLE */}
+
+
+
                 <View style={styles.bubble}>
 
                     {/* TEXT */}
@@ -107,7 +184,11 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
 
                     {/* IMAGE */}
                     <If condition={item.type == MESSAGE_TYPES.IMAGE}>
-                        <BodyText style={styles.txt}>{item.message}</BodyText>
+                        <Image
+                            source={item.media}
+                            style={styles.img}
+                        />
+                        {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}
                     </If>
 
                     {/* VIDEO */}
@@ -116,13 +197,14 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                     </If>
 
                 </View>
+
                 {/* TIME */}
                 <If condition={checkDateToShow() == false}>
                     <View style={styles.timeContainer}>
                         <BodyText style={styles.time}>{item.time}</BodyText>
                         <If condition={item.meUser}>
                             <SeenIcon
-                                fill={item.seen ? COLORS.READ_MSG : COLORS.UNREAD_MSG}
+                                fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
                                 width={hp(1.9)}
                                 height={hp(1.8)}
                             />
@@ -142,17 +224,14 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                 >
                     <View style={styles.menuContainer}>
                         {
-                            (ChatOptions).map((item, index) => (
+                            (item?.meUser ? ChatOptions : OtherChatOptions).map((item, index) => (
                                 <MenuOption
                                     key={index}
                                     onSelect={() => item?.onPress && item?.onPress()}
                                 >
-                                    <TouchableOpacity
-                                        activeOpacity={0.8}
-                                        onPress={() => item?.onPress && item.onPress()}
-                                    >
+                                    <View >
                                         {item.icon}
-                                    </TouchableOpacity>
+                                    </View>
                                 </MenuOption>
                             ))
                         }
@@ -185,12 +264,34 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         paddingVertical: hp(1.2),
         maxWidth: isTablet() ? 400 : wp(60)
     },
+    bubbleReply: {
+        minHeight: hp(5.3),
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 'auto',
+        backgroundColor: item.meUser == false ? theme.MY_CHAT_BUBBLE : theme.CHAT_BUBLE,
+        borderRadius: hp(3),
+        paddingHorizontal: hp(2.2),
+        paddingVertical: hp(1.2),
+        maxWidth: isTablet() ? 400 : wp(60),
+        ...(item.meUser == true ? { right: hp(2.5), } : { left: hp(2.5), }),
+        bottom: -hp(1.2),
+    },
     txt: {
         fontFamily: FONTS.REGULAR,
         fontSize: FONT_SIZE._14,
         lineHeight: FONT_SIZE._20,
         color: theme.BLACK_TO_WHITE,
-        textAlign: item.meUser == true ? 'right' : 'left'
+        textAlign: item.meUser == true ? 'right' : 'left',
+        width: '100%'
+    },
+    txt2: {
+        fontFamily: FONTS.REGULAR,
+        fontSize: FONT_SIZE._12,
+        lineHeight: FONT_SIZE._18,
+        color: theme.PRIMARY,
+        textAlign: item.meUser == true ? 'right' : 'left',
+        width: '100%'
     },
     time: {
         fontFamily: FONTS.REGULAR,
@@ -216,5 +317,11 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         alignItems: 'center',
         borderRadius: hp(1),
         backgroundColor: theme.BACKGROUND
+    },
+    img: {
+        width: wp(50),
+        height: hp(30),
+        borderRadius: hp(1),
+        ...(item?.message && { marginBottom: hp(1.5) })
     }
 })

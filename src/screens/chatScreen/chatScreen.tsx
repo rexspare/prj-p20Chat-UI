@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { FlatList, StatusBar, View, Animated } from 'react-native'
-import { ChatBubble, ChatHeader, ChatInput, ChatItem, Layout, MediaPicker } from '../../components'
+import { ChatBubble, ChatHeader, ChatInput, ChatItem, If, Layout, MediaPicker, Spacer } from '../../components'
 import { BlockUserModal, MuteUserModal } from '../../components/popups'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
@@ -14,12 +14,14 @@ const ChatScreen = () => {
   const { lang, theme } = useAppConfig()
   const { keyboardStatus } = useKeyboard()
   const navigation = useNavigation()
+  const listRef = useRef<FlatList>(null)
   const marginValue = useRef(new Animated.Value(0)).current;
   const radiusValue = useRef(new Animated.Value(0)).current;
   const bottomList = useRef(new Animated.Value(-hp(26))).current;
 
   const styles = styles_(theme, marginValue, radiusValue)
-  const filteredDataSource = useInbox(inboxStateSelectors.filteredChatList)
+  const openedChat = useInbox(inboxStateSelectors.openedChat)
+  const setopenedChat = useInbox(inboxStateSelectors.setopenedChat)
   const [blockModalVisible, setblockModalVisible] = useState(false)
   const [muteModalVisible, setmuteModalVisible] = useState(false)
   const [isMediaPIckerVisble, setisMediaPIckerVisble] = useState(false)
@@ -68,6 +70,23 @@ const ChatScreen = () => {
     }
   };
 
+  useEffect(() => {
+    const subscribe = navigation.addListener('focus', () => {
+      const deepCopy = [...inbox]
+      setopenedChat({
+        ...openedChat,
+        messages: deepCopy
+      })
+
+      setTimeout(() => {
+        listRef.current?.scrollToEnd()
+      }, 500);
+    })
+
+    return subscribe
+  }, [navigation])
+
+
   return (
     <>
       <StatusBar backgroundColor={theme.PRIMARY_TO_BLACK} barStyle={'light-content'} />
@@ -83,18 +102,25 @@ const ChatScreen = () => {
         <Animated.View style={styles.container}>
 
           <FlatList
-            data={inbox}
+            ref={listRef}
+            data={openedChat?.messages}
             renderItem={({ item, index }: any) => (
-              <ChatBubble
-                item={item}
-                index={index}
-              />)}
+              <>
+                <ChatBubble
+                  item={item}
+                  index={index}
+                />
+                <If condition={index == openedChat?.messages.length - 1}>
+                  <Spacer height={hp(15)} />
+                </If>
+              </>)}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentContainerStyle}
           />
 
           <View style={styles.aboluteContainer}>
             <ChatInput
+              listRef={listRef}
               toggleMediaPicker={toggleMediaPicker}
             />
           </View>

@@ -2,13 +2,13 @@ import React from 'react';
 import { SCREENS } from '../assets/constants';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BodyText, If, Label } from '../components';
-import useAppConfig from '../hooks/AppConfig';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { COLORS, FONTS, FONT_SIZE, hp, normalize } from '../assets/stylesGuide';
-import { hasNotch, isIOS } from '../utils/myUtils';
-import { CallScreen, ContactScreen, MessagesScreen, NewsScreen, WalletScreen } from '../screens';
+import { TouchableOpacity, View } from 'react-native';
 import { TabCall, TabContact, TabMessage, TabNews, TabWallet } from '../assets/icons';
+import { COLORS, FONTS, FONT_SIZE, hp } from '../assets/stylesGuide';
+import { BodyText, If } from '../components';
+import useAppConfig from '../hooks/AppConfig';
+import { CallHistoryScreen, ContactScreen, MessagesScreen, NewsScreen } from '../screens';
+import { hasNotch, isIOS } from '../utils/myUtils';
 import { WalletStack } from './helperStack';
 
 type InitialNavigationStackParamList = {
@@ -31,7 +31,7 @@ const BottomStack = () => {
             tabBar={props => <CustomTabBar {...props} />}
         >
             <Tab.Screen name={SCREENS.MESSAGES} component={MessagesScreen} options={{ title: lang['_23'] }} />
-            <Tab.Screen name={SCREENS.CALLS} component={CallScreen} options={{ title: lang['_24'] }} />
+            <Tab.Screen name={SCREENS.CALLS} component={CallHistoryScreen} options={{ title: lang['_24'] }} />
             <Tab.Screen name={SCREENS.WALLET} component={WalletStack} options={{ title: lang['_25'] }} />
             <Tab.Screen name={SCREENS.CONTACTS} component={ContactScreen} options={{ title: lang['_26'] }} />
             <Tab.Screen name={SCREENS.NEWS} component={NewsScreen} options={{ title: lang['_27'] }} />

@@ -8,7 +8,7 @@ import useKeyboard from '../../hooks/Keyboard'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
 
-const CallScreen = () => {
+const CallHistoryScreen = () => {
   const { lang, theme } = useAppConfig()
   const { keyboardStatus } = useKeyboard()
   const navigation = useNavigation()
@@ -44,4 +44,4 @@ const CallScreen = () => {
   )
 }
 
-export default CallScreen
+export default CallHistoryScreen

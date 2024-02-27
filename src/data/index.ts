@@ -1,5 +1,5 @@
 import { MESSAGE_TYPES } from "../assets/constants"
-import { COINS, FRIENDS_AVATARS } from "../assets/images"
+import { COINS, FRIENDS_AVATARS, WALLPAPER_TYPE } from "../assets/images"
 import { FEED_AVATARS, NEWS_IMAGES } from "../assets/images/dummy"
 
 const LANGUAGES_LIST = [
@@ -559,7 +559,9 @@ const inbox = [
         type: MESSAGE_TYPES.AUDIO,
         message: `Alright! See you soon!`,
         seen: true,
-        media: ""
+        media: "",
+
+        replyingTo: 6
     },
     {
         id: 8,
@@ -569,6 +571,24 @@ const inbox = [
         message: `okay sure!`,
         seen: true,
         media: ""
+    },
+    {
+        id: 9,
+        meUser: true,
+        time: '12:27 PM',
+        type: MESSAGE_TYPES.IMAGE,
+        message: "This is caption",
+        seen: true,
+        media: WALLPAPER_TYPE.BRIGHT
+    },
+    {
+        id: 10,
+        meUser: false,
+        time: '12:27 PM',
+        type: MESSAGE_TYPES.VIDEO,
+        message: `okay sure!`,
+        seen: true,
+        media: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
 ]
 

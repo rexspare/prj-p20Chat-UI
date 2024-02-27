@@ -6,6 +6,7 @@ import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
+import { SCREENS } from '../../assets/constants'
 
 const ContactScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -14,6 +15,7 @@ const ContactScreen = () => {
 
   const styles = styles_(theme)
   const filteredDataSource = useInbox(inboxStateSelectors.filteredChatList)
+  const setopenedChat = useInbox(inboxStateSelectors.setopenedChat)
 
   return (
     <>
@@ -31,7 +33,15 @@ const ContactScreen = () => {
           containerStyle={styles.container}>
           <FlatList
             data={filteredDataSource}
-            renderItem={({ item, index }) => (<ContactItem item={item} />)}
+            renderItem={({ item, index }) => (
+              <ContactItem
+                item={item}
+                onPress={() => {
+                  setopenedChat(item)
+                  navigation.navigate(SCREENS.CHAT)
+                }}
+              />
+            )}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentContainerStyle}
           />

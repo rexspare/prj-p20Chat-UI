@@ -31,6 +31,8 @@ enum SCREENS {
     BLOCKED_CONTACTS = "BLOCKED_CONTACTS",
     USER_PROFILE = "USER_PROFILE",
     GROUP = "GROUP",
+    VIDEO_CALL = "VIDEO_CALL",
+    AUDIO_CALL = "AUDIO_CALL",
 }
 
 enum ASYNC_KEYS {
@@ -58,7 +60,8 @@ enum MESSAGE_TYPES {
     TEXT = "text",
     VIDEO = "video",
     AUDIO = "audio",
-    IMAGE = "image"
+    IMAGE = "image",
+    DOCUMENT = "document"
 }
 
 export {

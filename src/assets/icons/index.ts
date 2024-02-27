@@ -3,6 +3,7 @@ export * from './tab'
 export * from './atomic'
 export * from './media'
 export * from './settings'
+export * from './calls'
 
 export {
 }
