@@ -8,6 +8,7 @@ import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
 import { isDeviceTablet } from '../../utils/myUtils';
+import { SCREENS } from '../../assets/constants';
 
 interface callItemProps {
   item: any;
@@ -76,6 +77,10 @@ const CallItem: FC<callItemProps> = (props) => {
           <View style={styles.row}>
             <TouchableOpacity
               activeOpacity={0.8}
+              onPress={() => {
+                setopenedChat(item)
+                navigation.navigate(SCREENS.VIDEO_CALL)
+              }}
               hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
               style={styles.btnContainer1}
             >
@@ -86,6 +91,10 @@ const CallItem: FC<callItemProps> = (props) => {
 
             <TouchableOpacity
               activeOpacity={0.8}
+              onPress={() => {
+                setopenedChat(item)
+                navigation.navigate(SCREENS.AUDIO_CALL)
+              }}
               hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
               style={styles.btnContainer}
             >

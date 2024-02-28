@@ -8,6 +8,7 @@ import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
 import { SCREENS } from '../../assets/constants'
 import { STARED_MESSAGES } from '../../data'
+import { VideoPlayerModal } from '../../components/popups'
 
 const StaredScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -17,6 +18,12 @@ const StaredScreen = () => {
   const styles = styles_(theme)
 
   const [filteredDataSource, setfilteredDataSource] = useState(STARED_MESSAGES)
+  const [isVideoPlayerVisible, setisVideoPlayerVisible] = useState(false)
+
+  const handlePlayVideo = (item: any) => {
+    setisVideoPlayerVisible(true)
+  }
+
 
   return (
     <>
@@ -39,6 +46,7 @@ const StaredScreen = () => {
             renderItem={({ item, index }) => (
               <StaredItem
                 item={item}
+                playVideo={() => handlePlayVideo(item)}
               />
             )}
             showsVerticalScrollIndicator={false}
@@ -46,7 +54,10 @@ const StaredScreen = () => {
           />
 
         </Layout>
-
+        <VideoPlayerModal
+          isVisible={isVideoPlayerVisible}
+          onClose={() => setisVideoPlayerVisible(false)}
+        />
       </Layout>
     </>
   )

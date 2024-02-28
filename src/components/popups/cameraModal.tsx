@@ -122,6 +122,8 @@ const CameraModal: FC<cameraProps> = (props) => {
                         <ImageBackground
                             source={IMAGES.BLUR}
                             style={styles.image}
+                            imageStyle={styles.imgRadius}
+
                         >
 
                             <GalleryCamIcon width={hp(3)} height={hp(3)} />
@@ -175,6 +177,10 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         borderTopRightRadius: hp(3),
         ...COMMON_STYLES.flexRowSpaceBetween,
         paddingHorizontal: '15%'
+    },
+    imgRadius: {
+        borderTopLeftRadius: hp(3),
+        borderTopRightRadius: hp(3),
     },
     row: {
         ...COMMON_STYLES.flexRowSpaceBetween,

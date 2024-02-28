@@ -1,4 +1,5 @@
-import React, { FC, useRef, useState } from 'react';
+import Slider from '@react-native-community/slider';
+import React, { FC, useRef } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { isTablet } from 'react-native-device-info';
 import {
@@ -7,28 +8,24 @@ import {
     MenuOptions,
     MenuTrigger
 } from 'react-native-popup-menu';
+import TrackPlayer, {
+    Capability,
+    State,
+    usePlaybackState,
+    useProgress
+} from 'react-native-track-player';
+import Feather from 'react-native-vector-icons/Feather';
+import Video from 'react-native-video';
 import { BodyText, If } from '..';
 import { MESSAGE_TYPES } from '../../assets/constants';
 import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, RightCaretIcon, SeenIcon, StarMsgIcon } from '../../assets/icons';
-import { COLORS, FONTS, FONT_SIZE, hp, wp, COMMON_STYLES } from '../../assets/stylesGuide';
+import { FRIENDS_AVATARS } from '../../assets/images';
+import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import { inbox } from '../../data';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
 import { isDeviceTablet, nextIndexExists } from '../../utils/myUtils';
-import Video from 'react-native-video';
-import Slider from '@react-native-community/slider';
-import TrackPlayer, {
-    State,
-    usePlaybackState,
-    useProgress,
-    useTrackPlayerEvents,
-    Event,
-    useActiveTrack,
-    Capability
-} from 'react-native-track-player';
-import Feather from 'react-native-vector-icons/Feather';
-import { FRIENDS_AVATARS } from '../../assets/images';
 
 interface IMESSAGE {
     id: number
@@ -161,8 +158,6 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
         try {
 
             if (progress?.duration == 0 || progress?.position == 0) {
-
-
                 await TrackPlayer.reset()
                 await TrackPlayer.updateOptions({
                     capabilities: [
@@ -195,12 +190,8 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                     artist: 'Track Artist',
                     artwork: FRIENDS_AVATARS.P1
                 });
-                const queue = await TrackPlayer.getQueue()
-                console.log("HERE", queue);
                 await TrackPlayer.play();
             } else {
-                console.log("HELLO");
-
                 if (playbackState.state == State.Playing) {
                     await TrackPlayer.pause();
                 } else {
@@ -233,7 +224,29 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
 
                         {/* AUDIO */}
                         <If condition={repliedToMsg.type == MESSAGE_TYPES.AUDIO}>
-                            <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>
+                            <View style={styles.controls}>
+                                <Feather
+                                    name={playbackState.state == State.Playing ? "pause" : "play"}
+                                    color={theme.BLACK_TO_WHITE}
+                                    size={hp(3)}
+                                    onPress={() => togglePlayback()}
+                                />
+                                <Slider
+                                    style={styles.slider}
+                                    value={progress.position}
+                                    minimumValue={0}
+                                    maximumValue={progress?.duration}
+                                    minimumTrackTintColor={theme.BLACK_TO_WHITE}
+                                    maximumTrackTintColor={theme.BLACK_TO_WHITE}
+                                    thumbTintColor={theme.BLACK_TO_WHITE}
+                                    onSlidingComplete={async value => {
+                                        const seconds = Math.floor(value);
+                                    }}
+
+                                />
+                            </View>
+                            {repliedToMsg?.message && <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>}
+
                         </If>
 
                         {/* IMAGE */}
@@ -242,20 +255,32 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                                 source={repliedToMsg.media}
                                 style={styles.img}
                             />
-                            <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>
+                            {repliedToMsg?.message && <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>}
                         </If>
 
                         {/* VIDEO */}
                         <If condition={repliedToMsg.type == MESSAGE_TYPES.VIDEO}>
-                            <View style={styles.video}>
+                            <View style={styles.videoContainer}>
                                 <Video
+                                    ref={videoRef}
                                     source={{ uri: repliedToMsg.media }}
                                     resizeMode="cover"
                                     paused={true}
                                     style={styles.video}
                                 />
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    onPress={() => repliedToMsg.type == MESSAGE_TYPES.VIDEO && playVideo(item)}
+                                    style={styles.videoOverlay}>
+                                    <RightCaretIcon
+                                        fill={COLORS.WHITE}
+                                        width={hp(3)}
+                                        height={hp(3)}
+                                    />
+                                </TouchableOpacity>
                             </View>
-                            <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>
+
+                            {repliedToMsg?.message && <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>}
                         </If>
 
                     </View>
@@ -329,7 +354,7 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                             </TouchableOpacity>
                         </View>
 
-                        <BodyText style={styles.txt}>{item.message}</BodyText>
+                        {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}
                     </If>
 
                 </View>

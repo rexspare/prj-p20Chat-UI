@@ -119,7 +119,7 @@ const ChatScreen = () => {
                   playVideo={() => handlePlayVideo(item)}
                 />
                 <If condition={index == openedChat?.messages.length - 1}>
-                  <Spacer height={hp(20)} />
+                  <Spacer height={hp(15)} />
                 </If>
               </>)}
             showsVerticalScrollIndicator={false}

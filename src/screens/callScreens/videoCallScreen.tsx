@@ -69,6 +69,7 @@ const VideoCallScreen = () => {
                         <ImageBackground
                             source={IMAGES.BLUR_BIG}
                             style={styles.imageBg}
+                            imageStyle={styles.imgRadius}
                         >
 
                             <View style={styles.row}>

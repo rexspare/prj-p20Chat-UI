@@ -11,6 +11,7 @@ const IMAGES = {
     BLUR: require('./blur/blur.png'),
     BLUR_BIG: require('./blur/blurBig.png'),
     TRACK: require('./track.png'),
+    TRANSPARENT_BG: require('./transparentbg.png'),
 }
 
 export * from './coins'

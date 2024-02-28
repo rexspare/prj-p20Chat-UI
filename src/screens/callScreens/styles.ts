@@ -38,11 +38,15 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         height: hp(21.45),
         opacity: 0.9,
         resizeMode: 'cover',
-        borderTopLeftRadius: hp(5),
-        borderTopRightRadius: hp(5),
+        borderTopLeftRadius: hp(4),
+        borderTopRightRadius: hp(4),
         paddingHorizontal: '5%',
         justifyContent: 'space-evenly',
         paddingBottom: hp(2),
+    },
+    imgRadius: {
+        borderTopLeftRadius: hp(4),
+        borderTopRightRadius: hp(4),
     },
     row: {
         flexDirection: 'row',

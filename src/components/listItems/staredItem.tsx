@@ -11,10 +11,11 @@ import StaredBubble from './staredBubble';
 
 interface staredItemProps {
     item: any;
+    playVideo: Function;
 }
 
 const StaredItem: FC<staredItemProps> = (props) => {
-    const { item } = props
+    const { item, playVideo = () => { } } = props
     const { theme } = useAppConfig()
 
     const styles = styles_(theme)
@@ -48,6 +49,7 @@ const StaredItem: FC<staredItemProps> = (props) => {
                             ...item,
                             meUser: sentByme
                         }}
+                        playVideo={() => playVideo(item)}
 
                     />
 

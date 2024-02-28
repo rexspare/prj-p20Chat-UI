@@ -6,11 +6,24 @@ import {
 } from 'react-native-popup-menu';
 import { BodyText, If } from '..';
 import { MESSAGE_TYPES } from '../../assets/constants';
-import { FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
+import { COLORS, FONTS, FONT_SIZE, hp, wp, COMMON_STYLES } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
-import { StarIcon } from '../../assets/icons';
-
+import { RightCaretIcon, StarIcon } from '../../assets/icons';
+import { isDeviceTablet } from '../../utils/myUtils';
+import Video from 'react-native-video';
+import Slider from '@react-native-community/slider';
+import TrackPlayer, {
+    State,
+    usePlaybackState,
+    useProgress,
+    useTrackPlayerEvents,
+    Event,
+    useActiveTrack,
+    Capability
+} from 'react-native-track-player';
+import Feather from 'react-native-vector-icons/Feather';
+import { FRIENDS_AVATARS } from '../../assets/images';
 interface IMESSAGE {
     id: number
     meUser: boolean
@@ -22,14 +35,74 @@ interface IMESSAGE {
 
 interface staredBubbleProps {
     item: IMESSAGE;
+    playVideo: Function;
 }
 
 const StaredBubble: FC<staredBubbleProps> = (props) => {
-    const { item } = props
+    const {
+        item,
+        playVideo = () => { }
+    } = props
+
     const { theme, lang } = useAppConfig()
+    const progress = useProgress();
+    const playbackState = usePlaybackState();
     const menuRef = useRef<Menu>(null)
+    const videoRef = useRef<Video>(null)
 
     const styles = styles_(theme, item)
+
+    const togglePlayback = async () => {
+        try {
+
+            if (progress?.duration == 0 || progress?.position == 0) {
+                await TrackPlayer.reset()
+                await TrackPlayer.updateOptions({
+                    capabilities: [
+                        Capability.Play,
+                        Capability.Stop,
+                        Capability.Pause,
+                        Capability.SeekTo,
+                        Capability.Skip,
+                    ],
+                    compactCapabilities: [
+                        Capability.Play,
+                        Capability.Stop,
+                        Capability.Pause,
+                        Capability.SeekTo,
+                        Capability.Skip,
+                    ],
+                    notificationCapabilities: [
+                        Capability.Play,
+                        Capability.Stop,
+                        Capability.Pause,
+                        Capability.SeekTo,
+                        Capability.Skip,
+                    ],
+                });
+
+                await TrackPlayer.add({
+                    id: 'trackId',
+                    url: require('../../assets/sound.mp3'),
+                    title: 'Track Title',
+                    artist: 'Track Artist',
+                    artwork: FRIENDS_AVATARS.P1
+                });
+                await TrackPlayer.play();
+            } else {
+                if (playbackState.state == State.Playing) {
+                    await TrackPlayer.pause();
+                } else {
+                    await TrackPlayer.play();
+                }
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    };
+
 
     return (
         <TouchableOpacity
@@ -37,6 +110,7 @@ const StaredBubble: FC<staredBubbleProps> = (props) => {
             style={styles.main}>
 
             <View >
+
 
                 <View style={styles.bubble}>
 
@@ -47,7 +121,29 @@ const StaredBubble: FC<staredBubbleProps> = (props) => {
 
                     {/* AUDIO */}
                     <If condition={item.type == MESSAGE_TYPES.AUDIO}>
-                        <BodyText style={styles.txt}>{item.message}</BodyText>
+                        <View style={styles.controls}>
+                            <Feather
+                                name={playbackState.state == State.Playing ? "pause" : "play"}
+                                color={theme.BLACK_TO_WHITE}
+                                size={hp(3)}
+                                onPress={() => togglePlayback()}
+                            />
+                            <Slider
+                                style={styles.slider}
+                                value={progress.position}
+                                minimumValue={0}
+                                maximumValue={progress?.duration}
+                                minimumTrackTintColor={theme.BLACK_TO_WHITE}
+                                maximumTrackTintColor={theme.BLACK_TO_WHITE}
+                                thumbTintColor={theme.BLACK_TO_WHITE}
+                                onSlidingComplete={async value => {
+                                    const seconds = Math.floor(value);
+                                }}
+
+                            />
+                        </View>
+                        {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}
+
                     </If>
 
                     {/* IMAGE */}
@@ -61,7 +157,27 @@ const StaredBubble: FC<staredBubbleProps> = (props) => {
 
                     {/* VIDEO */}
                     <If condition={item.type == MESSAGE_TYPES.VIDEO}>
-                        <BodyText style={styles.txt}>{item.message}</BodyText>
+                        <View style={styles.videoContainer}>
+                            <Video
+                                ref={videoRef}
+                                source={{ uri: item.media }}
+                                resizeMode="cover"
+                                paused={true}
+                                style={styles.video}
+                            />
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                onPress={() => item.type == MESSAGE_TYPES.VIDEO && playVideo(item)}
+                                style={styles.videoOverlay}>
+                                <RightCaretIcon
+                                    fill={COLORS.WHITE}
+                                    width={hp(3)}
+                                    height={hp(3)}
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                        {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}
                     </If>
 
                 </View>
@@ -143,5 +259,36 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         height: hp(30),
         borderRadius: hp(1),
         ...(item?.message && { marginBottom: hp(1.5) })
+    },
+    videoContainer: {
+        width: isTablet() ? 300 : wp(50),
+        height: isTablet() ? 300 : wp(45),
+        borderRadius: hp(1),
+        ...(item?.message && { marginVertical: hp(1) })
+    },
+    video: {
+        width: '100%',
+        height: '100%',
+        borderRadius: hp(1)
+    },
+    videoOverlay: {
+        width: '100%',
+        height: '100%',
+        borderRadius: hp(1),
+        backgroundColor: COLORS.BLACK_OP,
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    slider: {
+        width: isDeviceTablet() ? 250 : wp(40),
+        alignSelf: 'center',
+    },
+    controls: {
+        ...COMMON_STYLES.flexRowSpaceBetween,
     }
 })

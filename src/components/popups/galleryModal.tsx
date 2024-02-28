@@ -116,7 +116,9 @@ const GalleryModal: FC<galleryProps> = (props) => {
 
                         <ImageBackground
                             source={IMAGES.BLUR}
-                            style={styles.image} >
+                            style={styles.image}
+                            imageStyle={styles.imgRadius}
+                        >
 
                             <TextInput
                                 placeholder={lang['_204']}
@@ -169,6 +171,10 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         borderTopRightRadius: hp(3),
         ...COMMON_STYLES.flexRowSpaceBetween,
         paddingHorizontal: '5%'
+    },
+    imgRadius: {
+        borderTopLeftRadius: hp(3),
+        borderTopRightRadius: hp(3),
     },
     row: {
         ...COMMON_STYLES.flexRowSpaceBetween,
