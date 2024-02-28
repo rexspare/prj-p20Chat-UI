@@ -8,6 +8,7 @@ import VibrateModeModal from "./vibrateMode";
 import UnblockUserModal from "./unblockUser";
 import CameraModal from "./cameraModal";
 import GalleryModal from "./galleryModal";
+import VideoPlayerModal from "./videoPlayer";
 
 export {
     BlockUserModal,
@@ -19,5 +20,6 @@ export {
     VibrateModeModal,
     UnblockUserModal,
     CameraModal,
-    GalleryModal
+    GalleryModal,
+    VideoPlayerModal,
 }

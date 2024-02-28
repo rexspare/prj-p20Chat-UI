@@ -25,6 +25,7 @@ import GroupScreen from "./groupScreen/groupScreen"
 
 import VideoCallScreen from "./callScreens/videoCallScreen"
 import AudioCallScreen from "./callScreens/audioCallScreen"
+import StaredScreen from "./staredScreen/staredScreen"
 
 export * from './settingScreens'
 
@@ -52,5 +53,6 @@ export {
     UserProfileScreen,
     GroupScreen,
     VideoCallScreen,
-    AudioCallScreen
+    AudioCallScreen,
+    StaredScreen
 }

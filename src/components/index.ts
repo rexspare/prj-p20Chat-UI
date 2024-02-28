@@ -32,5 +32,5 @@ export {
     MediaPicker,
     TouchableCustom,
     WalletDropDown,
-    CustomSwitch
+    CustomSwitch,
 }

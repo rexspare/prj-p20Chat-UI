@@ -553,13 +553,22 @@ const inbox = [
         seen: true
     },
     {
+        id: 10,
+        meUser: false,
+        time: '12:27 PM',
+        type: MESSAGE_TYPES.VIDEO,
+        message: `okay sure!`,
+        seen: true,
+        media: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+    },
+    {
         id: 7,
         meUser: false,
         time: '12:25 PM',
         type: MESSAGE_TYPES.AUDIO,
-        message: `Alright! See you soon!`,
+        message: ``,
         seen: true,
-        media: "",
+        media: "https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg",
 
         replyingTo: 6
     },
@@ -581,14 +590,37 @@ const inbox = [
         seen: true,
         media: WALLPAPER_TYPE.BRIGHT
     },
+
+]
+
+const STARED_MESSAGES: any[] = [
     {
-        id: 10,
-        meUser: false,
-        time: '12:27 PM',
-        type: MESSAGE_TYPES.VIDEO,
-        message: `okay sure!`,
-        seen: true,
-        media: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+        id: 1,
+        sender: 'me',
+        reciever: {
+            id: 1,
+            name: "Pranav Ray",
+            avatar: FRIENDS_AVATARS.P1,
+            number: "0900-786-01"
+        },
+        time: '12:15 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: "Can I also get my cousin along? Will that be okay?",
+        staredTime: '12:12 PM'
+    },
+    {
+        id: 2,
+        sender: {
+            id: 1,
+            name: "Pranav Ray",
+            avatar: FRIENDS_AVATARS.P1,
+            number: "0900-786-01"
+        },
+        reciever: 'me',
+        time: 'Yesterday',
+        type: MESSAGE_TYPES.TEXT,
+        message: "Yes sure you can. Bring him along",
+        staredTime: '12:12 PM'
     },
 ]
 
@@ -602,5 +634,6 @@ export {
     WALLET_LIST,
     COINSLIST,
     HISTORY_LIST,
-    inbox
+    inbox,
+    STARED_MESSAGES
 }

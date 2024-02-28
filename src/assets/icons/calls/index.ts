@@ -4,6 +4,7 @@ import CallMicIcon from './callMicIcon.svg'
 import CallMsgIcon from './callMsgIcon.svg'
 import CallSpeakerIcon from './callSpeakerIcon.svg'
 import CallVidIcon from './callVidIcon.svg'
+import CallSendIcon from './callSendIcon.svg'
 
 export {
     CallAcceptIcon,
@@ -11,5 +12,6 @@ export {
     CallMicIcon,
     CallMsgIcon,
     CallSpeakerIcon,
-    CallVidIcon
+    CallVidIcon,
+    CallSendIcon
 }

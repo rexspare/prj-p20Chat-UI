@@ -22,5 +22,6 @@ export interface ITHEME {
     OFFWHOTE_TO_BLACK: string;
     GREY_TO_WHITE: string;
     WHITE_TO_DARK_GREY: string;
+    SOUND_CONTAINER: string;
 }
 

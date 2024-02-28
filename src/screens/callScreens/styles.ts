@@ -78,7 +78,8 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     context: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: hp(9)
     },
     avatar: {
         width: hp(15.6),

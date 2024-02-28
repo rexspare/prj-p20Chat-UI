@@ -1,18 +1,15 @@
-import { Modal, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground, TextInput, ScrollView } from 'react-native'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
+import { Image, ImageBackground, Modal, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
+import Feather from 'react-native-vector-icons/Feather';
+import { BodyText, If, TouchableCustom } from '..';
+import { AddImageIcon, SendMsgIcon } from '../../assets/icons';
+import { IMAGES } from '../../assets/images';
 import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
-import { AppHeader, BodyText, CommonHeader, If, Label, TextButton, TouchableCustom } from '..';
-import { RNCamera } from 'react-native-camera';
 import { hasNotch, isDeviceTablet, isIOS } from '../../utils/myUtils';
-import Feather from 'react-native-vector-icons/Feather'
-import { AddImageIcon, CaptureIcon, FlashIcon, GalleryCamIcon, SendIcon, SendMsgIcon, SwitchCamIcon } from '../../assets/icons';
-import { BlurView, VibrancyView } from '@react-native-community/blur';
-import BlurContainer from '../blurContainer';
-import { IMAGES } from '../../assets/images';
-import ImagePicker from 'react-native-image-crop-picker';
 
 interface galleryProps {
     isVisible: boolean;

@@ -56,7 +56,8 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
         },
         {
             id: 2,
-            name: lang["_30"]
+            name: lang["_30"],
+            onPress: () => navigation.navigate(SCREENS.STARED)
         },
         {
             id: 3,
@@ -172,7 +173,10 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
                                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                                             style={styles.btnContainer1}
                                         >
-                                            <DeletecIcon width={hp(1.6)} height={hp(2.14)} />
+                                            <DeletecIcon
+                                                fill={COLORS.WHITE}
+                                                width={hp(1.6)}
+                                                height={hp(2.14)} />
                                         </TouchableOpacity>
                                         <TouchableOpacity
                                             activeOpacity={0.8}

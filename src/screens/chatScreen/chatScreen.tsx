@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef, useState, useEffect } from 'react'
 import { FlatList, StatusBar, View, Animated } from 'react-native'
 import { ChatBubble, ChatHeader, ChatInput, ChatItem, If, Layout, MediaPicker, Spacer } from '../../components'
-import { BlockUserModal, MuteUserModal } from '../../components/popups'
+import { BlockUserModal, MuteUserModal, VideoPlayerModal } from '../../components/popups'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
@@ -25,6 +25,7 @@ const ChatScreen = () => {
   const [blockModalVisible, setblockModalVisible] = useState(false)
   const [muteModalVisible, setmuteModalVisible] = useState(false)
   const [isMediaPIckerVisble, setisMediaPIckerVisble] = useState(false)
+  const [isVideoPlayerVisible, setisVideoPlayerVisible] = useState(false)
 
   const toggleMediaPicker = () => {
     if (isMediaPIckerVisble) {
@@ -87,6 +88,12 @@ const ChatScreen = () => {
   }, [navigation])
 
 
+  const handlePlayVideo = (item: any) => {
+    setisVideoPlayerVisible(true)
+  }
+
+
+
   return (
     <>
       <StatusBar backgroundColor={theme.PRIMARY_TO_BLACK} barStyle={'light-content'} />
@@ -109,9 +116,10 @@ const ChatScreen = () => {
                 <ChatBubble
                   item={item}
                   index={index}
+                  playVideo={() => handlePlayVideo(item)}
                 />
                 <If condition={index == openedChat?.messages.length - 1}>
-                  <Spacer height={hp(15)} />
+                  <Spacer height={hp(20)} />
                 </If>
               </>)}
             showsVerticalScrollIndicator={false}
@@ -144,6 +152,12 @@ const ChatScreen = () => {
           isVisible={muteModalVisible}
           onClose={() => setmuteModalVisible(false)}
         />
+
+        <VideoPlayerModal
+          isVisible={isVideoPlayerVisible}
+          onClose={() => setisVideoPlayerVisible(false)}
+        />
+
       </Layout>
     </>
   )

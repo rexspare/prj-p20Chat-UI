@@ -9,6 +9,7 @@ import HistoryItem from "./historyItem"
 import SettingItem from "./settingItem"
 import GroupContactItem from "./groupContactItem"
 import ChatBubble from "./chatBubble"
+import StaredItem from "./staredItem"
 
 export {
     ChatItem,
@@ -21,5 +22,6 @@ export {
     HistoryItem,
     SettingItem,
     GroupContactItem,
-    ChatBubble
+    ChatBubble,
+    StaredItem
 }

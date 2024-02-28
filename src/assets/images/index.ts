@@ -10,6 +10,7 @@ const IMAGES = {
     QR: require('./qr.png'),
     BLUR: require('./blur/blur.png'),
     BLUR_BIG: require('./blur/blurBig.png'),
+    TRACK: require('./track.png'),
 }
 
 export * from './coins'

@@ -6,10 +6,25 @@ import { getItem } from './src/services/asyncStorage';
 import { ASYNC_KEYS, THEMES } from './src/assets/constants';
 import useAppConfig from './src/hooks/AppConfig';
 import { DarkTheme, LightTheme } from './src/assets/themes';
+import TrackPlayer from 'react-native-track-player';
 
 const App = () => {
 
   const { setActiveTheme, setTheme, activetheme } = useAppConfig()
+
+  useEffect(() => {
+    setupPlayer()
+  }, [])
+
+  const setupPlayer = async () => {
+    try {
+      await TrackPlayer.setupPlayer({
+        waitForBuffer: true,
+     });
+    } catch (e) {
+      console.log('Configure TrackPlayer:', e);
+    }
+  };
 
   useEffect(() => {
     getTheme()

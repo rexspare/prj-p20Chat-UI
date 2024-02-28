@@ -33,6 +33,7 @@ enum SCREENS {
     GROUP = "GROUP",
     VIDEO_CALL = "VIDEO_CALL",
     AUDIO_CALL = "AUDIO_CALL",
+    STARED = "STARED",
 }
 
 enum ASYNC_KEYS {

@@ -31,6 +31,7 @@ import GalleryCamIcon from './gelleryCamIcon.svg'
 import CaptureIcon from './captureIcon.svg'
 import SwitchCamIcon from './switchCamIcon.svg'
 import AddImageIcon from './addImageIcon.svg'
+import StopIcon from './stopIcon.svg'
 
 export {
     CheckBox,
@@ -65,5 +66,6 @@ export {
     GalleryCamIcon,
     CaptureIcon,
     SwitchCamIcon,
-    AddImageIcon
+    AddImageIcon,
+    StopIcon
 }

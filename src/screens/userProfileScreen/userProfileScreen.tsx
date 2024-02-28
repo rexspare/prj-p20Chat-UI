@@ -17,6 +17,7 @@ import useKeyboard from '../../hooks/Keyboard'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
 import { BlockUserModal } from '../../components/popups'
+import { SCREENS } from '../../assets/constants'
 
 const UserProfileScreen = () => {
     const { lang, theme } = useAppConfig()
@@ -94,6 +95,7 @@ const UserProfileScreen = () => {
                 size={hp(2)}
                 style={{ marginRight: hp(1) }}
             />,
+            onPress: () => navigation.navigate(SCREENS.STARED)
         },
     ]
 
@@ -185,7 +187,10 @@ const UserProfileScreen = () => {
 
                         {
                             Setting_Menu.map((item, index) => (
-                                <View style={styles.itemContianer}>
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    onPress={() => item?.onPress && item?.onPress()}
+                                    style={styles.itemContianer}>
                                     <View style={styles.iconContainer}>
                                         {item.icon}
                                     </View>
@@ -193,7 +198,7 @@ const UserProfileScreen = () => {
                                         <BodyText style={styles.txt3}>{item.name}</BodyText>
                                     </View>
                                     {item.rightIcon}
-                                </View>
+                                </TouchableOpacity>
                             ))
                         }
 

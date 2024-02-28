@@ -39,6 +39,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
     const [searchVal, setsearchVal] = useState('')
     const openedChat = useInbox(inboxStateSelectors.openedChat)
     const setopenedChat = useInbox(inboxStateSelectors.setopenedChat)
+    const setselectedConatct = useInbox(inboxStateSelectors.setselectedConatct)
 
 
     const styles = styles_(theme)
@@ -46,7 +47,11 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
     const MainMenuList: any[] = [
         {
             id: 1,
-            name: lang["_46"]
+            name: lang["_46"],
+            onPress: () => {
+                setselectedConatct(openedChat)
+                navigation.navigate(SCREENS.USER_PROFILE)
+            }
         },
         {
             id: 2,

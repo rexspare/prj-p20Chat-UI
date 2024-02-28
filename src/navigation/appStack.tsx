@@ -13,6 +13,7 @@ import {
     NewsDetailScreen,
     NotificationSettingScreen,
     SettingMainScreen,
+    StaredScreen,
     UserProfileScreen,
     VideoCallScreen,
     WallpaperSettingScreen
@@ -36,6 +37,7 @@ export type InitialNavigationStackParamList = {
     [SCREENS.GROUP]: undefined;
     [SCREENS.VIDEO_CALL]: undefined;
     [SCREENS.AUDIO_CALL]: undefined;
+    [SCREENS.STARED]: undefined;
 };
 
 const Stack = createNativeStackNavigator<InitialNavigationStackParamList>();
@@ -62,6 +64,7 @@ const AppStack = () => {
             <Stack.Screen name={SCREENS.GROUP} component={GroupScreen} />
             <Stack.Screen name={SCREENS.VIDEO_CALL} component={VideoCallScreen} />
             <Stack.Screen name={SCREENS.AUDIO_CALL} component={AudioCallScreen} />
+            <Stack.Screen name={SCREENS.STARED} component={StaredScreen} />
         </Stack.Navigator>
     )
 }
