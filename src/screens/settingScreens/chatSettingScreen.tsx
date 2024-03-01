@@ -51,7 +51,7 @@ const ChatSettingScreen = () => {
                         key={index}
                         activeOpacity={0.8}
                         style={styles.item}
-                        onPress={() => menu.onPress()}
+                        onPressIn={() => menu.onPress()}
                     >
                         <View style={styles.iconContainer}>
                             {menu.icon}

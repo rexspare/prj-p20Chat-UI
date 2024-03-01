@@ -54,7 +54,7 @@ const ProfileImageScreen = () => {
       >
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => selectImage()}
+          onPressIn={() => selectImage()}
         >
           <CameraIcon
             width={hp(5.3)}

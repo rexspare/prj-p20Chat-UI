@@ -49,14 +49,16 @@ const UserProfileScreen = () => {
             icon: <CallIcon
                 fill={COLORS.SECONDARY}
                 width={hp(2.46)}
-                height={hp(2.46)} />
+                height={hp(2.46)} />,
+            onPress: () => navigation.navigate(SCREENS.AUDIO_CALL, { isIncomming: false })
         },
         {
             id: 2,
             name: lang["_179"],
             icon: <VideoCallIcon
                 width={hp(2.68)}
-                height={hp(2.68)} />
+                height={hp(2.68)} />,
+            onPress: () => navigation.navigate(SCREENS.VIDEO_CALL)
         },
         {
             id: 3,
@@ -112,7 +114,7 @@ const UserProfileScreen = () => {
                                 <TouchableOpacity
                                     activeOpacity={0.8}
                                     hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                                    onPress={() => menuRef?.current?.open()}
+                                    onPressIn={() => menuRef?.current?.open()}
                                 >
                                     <VerticalDotsIcon height={hp(2.46)} />
                                 </TouchableOpacity>
@@ -150,6 +152,7 @@ const UserProfileScreen = () => {
                                         key={index}
                                         activeOpacity={0.8}
                                         style={styles.iconBtn}
+                                        onPressIn={() => item.onPress && item.onPress()}
                                     >
                                         {item.icon}
 
@@ -189,7 +192,7 @@ const UserProfileScreen = () => {
                             Setting_Menu.map((item, index) => (
                                 <TouchableOpacity
                                     activeOpacity={0.8}
-                                    onPress={() => item?.onPress && item?.onPress()}
+                                    onPressIn={() => item?.onPress && item?.onPress()}
                                     style={styles.itemContianer}>
                                     <View style={styles.iconContainer}>
                                         {item.icon}

@@ -14,7 +14,8 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     item: {
         ...COMMON_STYLES.flexRowSpaceBetween,
         paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
-        marginTop: hp(3.5)
+        marginTop: hp(3),
+        minHeight: hp(5),
     },
     iconContainer: {
         width: hp(4)

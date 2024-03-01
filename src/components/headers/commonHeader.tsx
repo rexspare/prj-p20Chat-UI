@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { BackIcon } from '../../assets/icons';
 import useAppConfig from '../../hooks/AppConfig';
 import { Icon } from 'react-native-vector-icons/Icon';
+import { GestureHandlerRootView, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 interface commonHeaderProps {
     hideBackBtn?: boolean;
@@ -31,35 +32,32 @@ const CommonHeader: FC<commonHeaderProps> = (props) => {
     const navigation = useNavigation()
 
     return (
-        <View style={[styles.main, stylesProp]}>
+        <GestureHandlerRootView>
+            <View style={[styles.main, stylesProp]}>
 
-            <If condition={title != undefined}>
-                <View style={styles.titleContainer}>
-                    <Label style={styles.title}>{title}</Label>
-                </View>
-            </If>
+                <If condition={title != undefined}>
+                    <View style={styles.titleContainer}>
+                        <Label style={styles.title}>{title}</Label>
+                    </View>
+                </If>
 
-            <If condition={hideBackBtn == false}>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                    onPress={() => navigation.goBack()}
-                    style={styles.iconContainer}
-                >
-                    <BackIcon
-                        fill={iconColor}
-                        width={hp(2.4)}
-                        height={hp(2)}
-                        onPress={() => navigation.goBack()}
-                    />
-                </TouchableOpacity>
-            </If>
+                <If condition={hideBackBtn == false}>
+                    <TouchableWithoutFeedback
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        onPressIn={() => navigation.goBack()}
+                        style={styles.iconContainer}
+                    >
+                        <BackIcon
+                            fill={iconColor}
+                            width={hp(2.4)}
+                            height={hp(2)}
+                            onPress={() => navigation.goBack()}
+                        />
+                    </TouchableWithoutFeedback>
+                </If>
 
-
-
-
-
-        </View >
+            </View >
+        </GestureHandlerRootView>
     )
 }
 

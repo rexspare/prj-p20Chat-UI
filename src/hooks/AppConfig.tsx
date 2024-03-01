@@ -28,7 +28,6 @@ const useAppConfig = () => {
             setisLoading(true)
             await setItem(ASYNC_KEYS.ACTIVE_THEME, theme)
             setActiveTheme(theme)
-
             switch (theme) {
                 case THEMES.DEFAULT:
                     if (DEFAULT_THEME == 'light') {

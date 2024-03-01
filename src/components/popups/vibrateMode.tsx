@@ -75,7 +75,7 @@ const VibrateModeModal: FC<vibrateModeProps> = (props) => {
 
                                     <TouchableOpacity
                                         activeOpacity={0.8}
-                                        onPress={() => setselected(item.id)}
+                                        onPressIn={() => setselected(item.id)}
                                         style={[styles.outerCirle, {
                                             ...(selected == item.id && { borderColor: COLORS.SECONDARY })
                                         }]}>
@@ -91,6 +91,7 @@ const VibrateModeModal: FC<vibrateModeProps> = (props) => {
                     <View style={styles.row}>
                         <TextButton
                             title={lang['_40']}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
@@ -98,6 +99,7 @@ const VibrateModeModal: FC<vibrateModeProps> = (props) => {
                         <TextButton
                             title={lang['_41']}
                             style={styles.btn}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />

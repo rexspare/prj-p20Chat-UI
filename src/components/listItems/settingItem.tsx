@@ -27,7 +27,7 @@ const SettingItem: FC<settingItemProps> = (props) => {
         <TouchableOpacity
             activeOpacity={0.8}
             style={styles.main}
-            onPress={() => onPress && onPress()}
+            onPressIn={() => onPress && onPress()}
         >
             <View style={styles.row}>
 
@@ -59,7 +59,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         ...COMMON_STYLES.flexRowSpaceBetween,
         paddingHorizontal: isDeviceTablet() ? '2%' : '4%',
         minHeight: hp(6),
-        marginVertical: hp(1)
+        marginVertical: hp(1),
     },
     row: {
         flexDirection: 'row',

@@ -17,7 +17,7 @@ const FabButton: FC<fabButtonProps> = (props) => {
             <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.pressable}
-                onPress={() => onPress()}
+                onPressIn={() => onPress()}
             >
                 <NewMsgIcon width={hp(2.9)} height={hp(2.9)} />
             </TouchableOpacity>

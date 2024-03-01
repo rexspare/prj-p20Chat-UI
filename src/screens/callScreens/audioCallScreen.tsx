@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import React, { useState, useEffect } from 'react'
 import { Image, ImageBackground, StatusBar, View } from 'react-native'
 import { BackIcon, CallAcceptIcon, CallDeclineIcon, CallMicIcon, CallMsgIcon, CallSpeakerIcon, CallVidIcon } from '../../assets/icons'
@@ -17,6 +17,8 @@ const AudioCallScreen = () => {
     const { lang, theme } = useAppConfig()
     const { keyboardStatus } = useKeyboard()
     const navigation = useNavigation()
+    const route = useRoute()
+
     const styles = styles_(theme)
 
     const openedChat = useInbox(inboxStateSelectors.openedChat)
@@ -144,7 +146,7 @@ const AudioCallScreen = () => {
                             // INCOMMING
                             <View style={styles.incomingContainer}>
 
-                                <View style={COMMON_STYLES.flexRowSpaceBetween}>
+                                <View style={styles.rowBtn}>
                                     <CallMsgIcon
                                         width={hp(6.2)}
                                         height={hp(6.2)}
@@ -157,22 +159,23 @@ const AudioCallScreen = () => {
 
 
                                 </View>
-
-                                <SwipeButton
-                                    containerStyles={styles.swiper}
-                                    height={hp(6)}
-                                    onSwipeFail={() => { }}
-                                    onSwipeStart={() => { }}
-                                    onSwipeSuccess={() => setisOngoingCall(true)}
-                                    railBackgroundColor="rgba(255, 255, 255, 0.2)"
-                                    thumbIconWidth={hp(6)}
-                                    thumbIconComponent={renderThumb}
-                                    thumbIconStyles={{ borderWidth: 0 }}
-                                    railStyles={{ borderWidth: 0, backgroundColor: COLORS.TRANSPARENT }}
-                                    title={lang['_205']}
-                                    titleStyles={styles.swiperTxt}
-                                />
-
+                                {
+                                    route?.params?.isIncomming &&
+                                    <SwipeButton
+                                        containerStyles={styles.swiper}
+                                        height={hp(6)}
+                                        onSwipeFail={() => { }}
+                                        onSwipeStart={() => { }}
+                                        onSwipeSuccess={() => setisOngoingCall(true)}
+                                        railBackgroundColor="rgba(255, 255, 255, 0.2)"
+                                        thumbIconWidth={hp(6)}
+                                        thumbIconComponent={renderThumb}
+                                        thumbIconStyles={{ borderWidth: 0 }}
+                                        railStyles={{ borderWidth: 0, backgroundColor: COLORS.TRANSPARENT }}
+                                        title={lang['_205']}
+                                        titleStyles={styles.swiperTxt}
+                                    />
+                                }
                             </View>
                     }
                 </ImageBackground>

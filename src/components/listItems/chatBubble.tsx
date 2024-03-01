@@ -16,7 +16,7 @@ import TrackPlayer, {
 } from 'react-native-track-player';
 import Feather from 'react-native-vector-icons/Feather';
 import Video from 'react-native-video';
-import { BodyText, If } from '..';
+import { BodyText, If, TouchableCustom } from '..';
 import { MESSAGE_TYPES } from '../../assets/constants';
 import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, RightCaretIcon, SeenIcon, StarMsgIcon } from '../../assets/icons';
 import { FRIENDS_AVATARS } from '../../assets/images';
@@ -225,12 +225,15 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                         {/* AUDIO */}
                         <If condition={repliedToMsg.type == MESSAGE_TYPES.AUDIO}>
                             <View style={styles.controls}>
-                                <Feather
-                                    name={playbackState.state == State.Playing ? "pause" : "play"}
-                                    color={theme.BLACK_TO_WHITE}
-                                    size={hp(3)}
+                                <TouchableCustom
                                     onPress={() => togglePlayback()}
-                                />
+                                >
+                                    <Feather
+                                        name={playbackState.state == State.Playing ? "pause" : "play"}
+                                        color={theme.BLACK_TO_WHITE}
+                                        size={hp(3)}
+                                    />
+                                </TouchableCustom>
                                 <Slider
                                     style={styles.slider}
                                     value={progress.position}
@@ -299,12 +302,14 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                     {/* AUDIO */}
                     <If condition={item.type == MESSAGE_TYPES.AUDIO}>
                         <View style={styles.controls}>
-                            <Feather
-                                name={playbackState.state == State.Playing ? "pause" : "play"}
-                                color={theme.BLACK_TO_WHITE}
-                                size={hp(3)}
-                                onPress={() => togglePlayback()}
-                            />
+                            <TouchableCustom
+                                onPress={() => togglePlayback()}>
+                                <Feather
+                                    name={playbackState.state == State.Playing ? "pause" : "play"}
+                                    color={theme.BLACK_TO_WHITE}
+                                    size={hp(3)}
+                                />
+                            </TouchableCustom>
                             <Slider
                                 style={styles.slider}
                                 value={progress.position}

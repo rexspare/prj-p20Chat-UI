@@ -80,7 +80,7 @@ const ChatFontModal: FC<chatFontProps> = (props) => {
 
                                     <TouchableOpacity
                                         activeOpacity={0.8}
-                                        onPress={() => handleChange(item)}
+                                        onPressIn={() => handleChange(item)}
                                         style={[styles.outerCirle, {
                                             ...(chatFontSize == item.value && { borderColor: COLORS.SECONDARY })
                                         }]}>
@@ -108,6 +108,7 @@ const ChatFontModal: FC<chatFontProps> = (props) => {
                                 :
                                 <TextButton
                                     title={lang['_41']}
+                                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                                     style={styles.btn}
                                     textStyle={styles.btnTxt}
                                     onPress={() => onClose()}

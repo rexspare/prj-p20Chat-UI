@@ -38,7 +38,7 @@ const PrimaryButton: React.FC<primaryButtonProps> = (props) => {
                 style
             ]}
             activeOpacity={0.8}
-            onPress={() => onPress && onPress()}
+            onPressIn={() => onPress && onPress()}
             disabled={disabled || isLoading}
         >
             <If condition={icon != undefined && icon != true}>

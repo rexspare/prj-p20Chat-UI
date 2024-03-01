@@ -4,7 +4,7 @@ import { isTablet } from 'react-native-device-info';
 import {
     Menu
 } from 'react-native-popup-menu';
-import { BodyText, If } from '..';
+import { BodyText, If, TouchableCustom } from '..';
 import { MESSAGE_TYPES } from '../../assets/constants';
 import { COLORS, FONTS, FONT_SIZE, hp, wp, COMMON_STYLES } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
@@ -122,12 +122,14 @@ const StaredBubble: FC<staredBubbleProps> = (props) => {
                     {/* AUDIO */}
                     <If condition={item.type == MESSAGE_TYPES.AUDIO}>
                         <View style={styles.controls}>
-                            <Feather
-                                name={playbackState.state == State.Playing ? "pause" : "play"}
-                                color={theme.BLACK_TO_WHITE}
-                                size={hp(3)}
-                                onPress={() => togglePlayback()}
-                            />
+                            <TouchableCustom
+                                onPress={() => togglePlayback()} >
+                                <Feather
+                                    name={playbackState.state == State.Playing ? "pause" : "play"}
+                                    color={theme.BLACK_TO_WHITE}
+                                    size={hp(3)}
+                                />
+                            </TouchableCustom>
                             <Slider
                                 style={styles.slider}
                                 value={progress.position}

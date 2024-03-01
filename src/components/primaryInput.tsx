@@ -85,7 +85,7 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                 <If condition={props.isPassword == true}>
                     <TouchableOpacity style={styles.eyeBtn}
                         activeOpacity={0.8}
-                        onPress={() => props?.renderRightIcon ? onPressRightIcon() : setisSecureTextEntry(!isSecureTextEntry)}
+                        onPressIn={() => props?.renderRightIcon ? onPressRightIcon() : setisSecureTextEntry(!isSecureTextEntry)}
                     >
                         {
                             props?.renderRightIcon ?

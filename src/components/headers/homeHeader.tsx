@@ -135,7 +135,7 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
                         <TouchableOpacity
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                            onPress={() => handleBackPress()}
+                            onPressIn={() => handleBackPress()}
                         >
                             <BackIcon
                                 fill={theme.WHITE_TO_BLACK}
@@ -182,7 +182,7 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
                                             activeOpacity={0.8}
                                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                                             style={styles.btnContainer}
-                                            onPress={() => setmuteModalVisible(true)}
+                                            onPressIn={() => setmuteModalVisible(true)}
                                         >
                                             <MuteIcon width={hp(2.14)} height={hp(2.14)} />
                                         </TouchableOpacity>
@@ -192,7 +192,7 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
                                         activeOpacity={0.8}
                                         hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                                         style={styles.btnContainer}
-                                        onPress={() => setshowSearch(true)}
+                                        onPressIn={() => setshowSearch(true)}
                                     >
                                         <SearchIcon
                                             fill={COLORS.WHITE}
@@ -207,7 +207,7 @@ const HomeHeader: FC<homeHeaderProps> = (props) => {
                                     <TouchableOpacity
                                         activeOpacity={0.8}
                                         hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                                        onPress={() => menuRef?.current?.open()}
+                                        onPressIn={() => menuRef?.current?.open()}
                                     >
                                         <VerticalDotsIcon height={hp(2.46)} />
                                     </TouchableOpacity>

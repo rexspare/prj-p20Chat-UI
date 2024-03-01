@@ -100,7 +100,7 @@ const SelectSoundModal: FC<selectSoundProps> = (props) => {
 
                                         <TouchableOpacity
                                             activeOpacity={0.8}
-                                            onPress={() => setselected(item.id)}
+                                            onPressIn={() => setselected(item.id)}
                                             style={[styles.outerCirle, {
                                                 ...(selected == item.id && { borderColor: COLORS.SECONDARY })
                                             }]}>
@@ -116,12 +116,14 @@ const SelectSoundModal: FC<selectSoundProps> = (props) => {
                         <View style={styles.row}>
                             <TextButton
                                 title={lang['_40']}
+                                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                                 textStyle={styles.btnTxt}
                                 onPress={() => onClose()}
                             />
 
                             <TextButton
                                 title={lang['_41']}
+                                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                                 style={styles.btn}
                                 textStyle={styles.btnTxt}
                                 onPress={() => onClose()}

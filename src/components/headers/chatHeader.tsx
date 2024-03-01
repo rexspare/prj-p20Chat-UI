@@ -48,10 +48,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
         {
             id: 1,
             name: lang["_46"],
-            onPress: () => {
-                setselectedConatct(openedChat)
-                navigation.navigate(SCREENS.USER_PROFILE)
-            }
+            onPress: () => openUserProfile()
         },
         {
             id: 2,
@@ -94,13 +91,18 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
         setsearchVal(val)
     }
 
+    const openUserProfile = () => {
+        setselectedConatct(openedChat)
+        navigation.navigate(SCREENS.USER_PROFILE)
+    }
+
     return (
         <View style={styles.main}>
             <View style={styles.userContainer}>
                 <TouchableOpacity
                     activeOpacity={0.8}
-                    hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                    onPress={() => handleBackPress()}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    onPressIn={() => handleBackPress()}
                 >
                     <BackIcon
                         fill={COLORS.WHITE}
@@ -112,6 +114,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                 <If condition={!showSearch}>
                     <TouchableOpacity
                         activeOpacity={0.8}
+                        onPressIn={() => openUserProfile()}
                         style={styles.userContainer}>
                         <Image
                             source={openedChat.avatar}
@@ -151,7 +154,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                             style={styles.btnContainer1}
-                            onPress={() => navigation.navigate(SCREENS.VIDEO_CALL)}
+                            onPressIn={() => navigation.navigate(SCREENS.VIDEO_CALL)}
                         >
                             <VideoIcon
                                 width={hp(2.5)}
@@ -162,7 +165,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
                             style={styles.btnContainer}
-                            onPress={() => navigation.navigate(SCREENS.AUDIO_CALL)}
+                            onPressIn={() => navigation.navigate(SCREENS.AUDIO_CALL)}
                         >
                             <CallIcon
                                 fill={COLORS.WHITE}

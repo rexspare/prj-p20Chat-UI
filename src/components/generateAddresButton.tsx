@@ -35,7 +35,7 @@ const GenerateAddresButton: React.FC<generateAddresButtonProps> = (props) => {
                     props.style
                 ]}
                 activeOpacity={0.8}
-                onPress={() => props.onPress()}
+                onPressIn={() => props.onPress()}
                 disabled={disabled || props.isLoading}
             >
 

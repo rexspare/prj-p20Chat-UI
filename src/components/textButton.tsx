@@ -9,14 +9,17 @@ interface textButtonProps {
     style?: ViewStyle | [ViewStyle] | any;
     textStyle?: TextStyle | [TextStyle] | any;
     isLoading?: boolean;
+    hitSlop?: any
 }
 
 const TextButton: React.FC<textButtonProps> = (props) => {
+    const { hitSlop = { top: 5, bottom: 5, left: 5, right: 5 } } = props
     return (
         <TouchableOpacity
             style={[styles.main, props.style]}
             activeOpacity={0.8}
-            onPress={() => props.onPress()}
+            hitSlop={hitSlop}
+            onPressIn={() => props.onPress()}
             disabled={props.isLoading}
         >
             {

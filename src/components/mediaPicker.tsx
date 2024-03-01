@@ -125,7 +125,7 @@ const MediaPicker: FC<mediaPickerProps> = (props) => {
                         <TouchableOpacity
                             activeOpacity={0.8}
                             style={styles.roundBtn}
-                            onPress={() => item?.onPress && item?.onPress()}
+                            onPressIn={() => item?.onPress && item?.onPress()}
                         >
                             {item.icon}
                         </TouchableOpacity>

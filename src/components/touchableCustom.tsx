@@ -19,7 +19,7 @@ const TouchableCustom: FC<touchableCustomProps> = ({
             activeOpacity={0.8}
             style={style}
             hitSlop={hitSlop ? hitSlop : { top: 5, bottom: 5, left: 5, right: 5 }}
-            onPress={() => onPress()}
+            onPressIn={() => onPress()}
         >
             {children}
         </TouchableOpacity>

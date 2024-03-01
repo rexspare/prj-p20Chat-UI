@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { FC, useState } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { BodyText, Label, TouchableCustom } from '..'
 import { SCREENS } from '../../assets/constants'
 import { HeartIcon, ShareIcon } from '../../assets/icons'
@@ -29,7 +29,7 @@ const NewsItem: FC<newsItem> = (props) => {
     }
 
     return (
-        <TouchableCustom
+        <TouchableOpacity
             style={styles.main}
             onPress={() => handleSelect()}
         >
@@ -72,7 +72,7 @@ const NewsItem: FC<newsItem> = (props) => {
                 </View>
 
             </View>
-        </TouchableCustom>
+        </TouchableOpacity>
     )
 }
 

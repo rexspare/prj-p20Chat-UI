@@ -4,7 +4,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import useAppConfig from '../hooks/AppConfig';
 import { ITHEME } from '../models/config';
 import If from './if';
-
 interface ILayoutProps {
     containerStyle?: StyleProp<ViewStyle>;
     contentContainerStyle?: StyleProp<ViewStyle>;

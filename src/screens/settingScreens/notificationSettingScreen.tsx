@@ -1,14 +1,13 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
-import { SCREENS } from '../../assets/constants'
-import { ChatSettingIcon, ThemeIcon } from '../../assets/icons'
-import { hp, wp } from '../../assets/stylesGuide'
+import { wp } from '../../assets/stylesGuide'
 import { BodyText, CommonHeader, Layout } from '../../components'
-import { AppThemeModal, SelectSoundModal, VibrateModeModal } from '../../components/popups'
+import { SelectSoundModal, VibrateModeModal } from '../../components/popups'
 import useAppConfig from '../../hooks/AppConfig'
 import { ISettingItem } from '../../models/app'
 import { styles as styles_ } from './styles'
+import { GestureHandlerRootView, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const NotificationSettingScreen = () => {
     const { lang, theme } = useAppConfig()
@@ -40,6 +39,7 @@ const NotificationSettingScreen = () => {
             title: lang['_158'],
             subtle: 'Default(Down)',
             onPress: () => setisSoundModalVisble(true)
+
         },
         {
             id: 2,
@@ -64,6 +64,11 @@ const NotificationSettingScreen = () => {
         },
     ]
 
+    const closeModal = () => {
+        setisVibrateModalVisible(false)
+        setisSoundModalVisble(false)
+    }
+
 
     return (
         <Layout fixed={true}>
@@ -74,72 +79,75 @@ const NotificationSettingScreen = () => {
                 stylesProp={styles.header}
             />
             <Layout>
+                <GestureHandlerRootView>
 
-                <BodyText style={styles.txt1}>{lang['_157']}</BodyText>
-                {
-                    MessageMenu.map((menu: ISettingItem, index) => (
-                        <TouchableOpacity
-                            key={index}
-                            activeOpacity={0.8}
-                            style={styles.item}
-                            onPress={() => menu.onPress()}
-                        >
-                            <View style={{ flex: 1 }}>
-                                <BodyText style={styles.itemTitle}>{menu.title}</BodyText>
-                                <BodyText style={styles.itemSubtle}>{menu.subtle}</BodyText>
-                            </View>
+                    <BodyText style={styles.txt1}>{lang['_157']}</BodyText>
+                    {
+                        MessageMenu.map((menu: ISettingItem, index) => (
+                            <TouchableWithoutFeedback
+                                key={index}
+                                style={styles.item}
+                                onPressIn={() => menu.onPress()}
+                            >
+                                <View style={{ flex: 1 }}>
+                                    <BodyText style={styles.itemTitle}>{menu.title}</BodyText>
+                                    <BodyText style={styles.itemSubtle}>{menu.subtle}</BodyText>
+                                </View>
 
-                        </TouchableOpacity>
-                    ))
-                }
+                            </TouchableWithoutFeedback>
+                        ))
+                    }
 
-                <BodyText style={styles.txt1}>{lang['_160']}</BodyText>
-                {
-                    GroupMenu.map((menu: ISettingItem, index) => (
-                        <TouchableOpacity
-                            key={index}
-                            activeOpacity={0.8}
-                            style={styles.item}
-                            onPress={() => menu.onPress()}
-                        >
-                            <View style={{ flex: 1 }}>
-                                <BodyText style={styles.itemTitle}>{menu.title}</BodyText>
-                                <BodyText style={styles.itemSubtle}>{menu.subtle}</BodyText>
-                            </View>
+                    <BodyText style={styles.txt1}>{lang['_160']}</BodyText>
+                    {
+                        GroupMenu.map((menu: ISettingItem, index) => (
+                            <TouchableWithoutFeedback
+                                key={index}
+                                style={styles.item}
+                                onPressIn={() => menu.onPress()}
+                            >
+                                <View style={{ flex: 1 }}>
+                                    <BodyText style={styles.itemTitle}>{menu.title}</BodyText>
+                                    <BodyText style={styles.itemSubtle}>{menu.subtle}</BodyText>
+                                </View>
 
-                        </TouchableOpacity>
-                    ))
-                }
+                            </TouchableWithoutFeedback>
+                        ))
+                    }
 
-                <BodyText style={styles.txt1}>{lang['_161']}</BodyText>
-                {
-                    CallMenu.map((menu: ISettingItem, index) => (
-                        <TouchableOpacity
-                            key={index}
-                            activeOpacity={0.8}
-                            style={styles.item}
-                            onPress={() => menu.onPress()}
-                        >
-                            <View style={{ flex: 1 }}>
-                                <BodyText style={styles.itemTitle}>{menu.title}</BodyText>
-                                <BodyText style={styles.itemSubtle}>{menu.subtle}</BodyText>
-                            </View>
+                    <BodyText style={styles.txt1}>{lang['_161']}</BodyText>
+                    {
+                        CallMenu.map((menu: ISettingItem, index) => (
+                            <TouchableWithoutFeedback
+                                key={index}
+                                style={styles.item}
+                                onPressIn={() => menu.onPress()}
+                            >
+                                <View style={{ flex: 1 }}>
+                                    <BodyText style={styles.itemTitle}>{menu.title}</BodyText>
+                                    <BodyText style={styles.itemSubtle}>{menu.subtle}</BodyText>
+                                </View>
 
-                        </TouchableOpacity>
-                    ))
-                }
+                            </TouchableWithoutFeedback>
+                        ))
+                    }
+                </GestureHandlerRootView>
 
             </Layout>
 
-            <SelectSoundModal
-                isVisible={isSoundModalVisble}
-                onClose={() => setisSoundModalVisble(false)}
-            />
+            {
+                isSoundModalVisble &&
+                <SelectSoundModal
+                    isVisible={isSoundModalVisble}
+                    onClose={closeModal}
+                />}
 
-            <VibrateModeModal
-                isVisible={isVibrateModalVisible}
-                onClose={() => setisVibrateModalVisible(false)}
-            />
+            {
+                isVibrateModalVisible &&
+                <VibrateModeModal
+                    isVisible={isVibrateModalVisible}
+                    onClose={closeModal}
+                />}
 
         </Layout>
     )

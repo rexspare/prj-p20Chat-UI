@@ -66,7 +66,7 @@ const HistorySettingScreen = () => {
                   style={styles.row1}>
                   <TouchableOpacity
                     activeOpacity={0.8}
-                    onPress={() => setselectedTime(item.id)}
+                    onPressIn={() => setselectedTime(item.id)}
                     style={[styles.outerCirle, {
                       ...(selectedTime == item.id && { borderColor: COLORS.SECONDARY })
                     }]}>

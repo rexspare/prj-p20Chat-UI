@@ -61,7 +61,7 @@ const WallpaperSettingScreen = () => {
                         <TouchableOpacity
                             key={index}
                             activeOpacity={0.8}
-                            onPress={() => menu.onPress()}
+                            onPressIn={() => menu.onPress()}
                         >
                             {
                                 menu.id == 4 ?

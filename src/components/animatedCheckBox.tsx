@@ -34,7 +34,7 @@ const AnimatedCheckBox: FC<checkBoxProps> = ({ checked, onPress, style, containe
     }, [checked]);
 
     return (
-        <TouchableOpacity onPress={() => onCheck()} style={[styles.container, containerStyle]}>
+        <TouchableOpacity onPressIn={() => onCheck()} style={[styles.container, containerStyle]}>
             <Animated.View style={[styles.checkbox, style, { transform: [{ scale: scaleValue }] }]}>
                 {
                     checked ?

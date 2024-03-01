@@ -18,7 +18,7 @@ const AppThemeModal: FC<appThemeProps> = (props) => {
         onClose = () => { }
     } = props
 
-    const { lang, theme, handleChangeTheme, isLoading, activetheme,} = useAppConfig()
+    const { lang, theme, handleChangeTheme, isLoading, activetheme, } = useAppConfig()
 
     const styles = styles_(theme)
 
@@ -93,7 +93,7 @@ const AppThemeModal: FC<appThemeProps> = (props) => {
 
                                     <TouchableOpacity
                                         activeOpacity={0.8}
-                                        onPress={() => handleChange(item)}
+                                        onPressIn={() => handleChange(item)}
                                         style={[styles.outerCirle, {
                                             ...(activetheme == item.value && { borderColor: COLORS.SECONDARY })
                                         }]}>
@@ -109,6 +109,7 @@ const AppThemeModal: FC<appThemeProps> = (props) => {
                     <View style={styles.row}>
                         <TextButton
                             title={lang['_40']}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
@@ -121,6 +122,7 @@ const AppThemeModal: FC<appThemeProps> = (props) => {
                                 :
                                 <TextButton
                                     title={lang['_41']}
+                                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                                     style={styles.btn}
                                     textStyle={styles.btnTxt}
                                     onPress={() => onClose()}

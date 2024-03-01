@@ -33,7 +33,7 @@ const CustomSwitch: React.FC<customeSwicthProps> = (props) => {
     });
 
     return (
-        <TouchableOpacity onPress={toggleSwitch} activeOpacity={0.8}>
+        <TouchableOpacity onPressIn={toggleSwitch} activeOpacity={0.8}>
             <View style={[styles.switchContainer, style]}>
                 <Animated.View
                     style={[

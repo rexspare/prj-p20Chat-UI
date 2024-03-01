@@ -128,7 +128,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
                         accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarTestID}
-                        onPress={onPress}
+                        onPressIn={onPress}
                         onLongPress={onLongPress}
                         style={{
                             flex: 1,

@@ -77,7 +77,7 @@ const CallItem: FC<callItemProps> = (props) => {
           <View style={styles.row}>
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={() => {
+              onPressIn={() => {
                 setopenedChat(item)
                 navigation.navigate(SCREENS.VIDEO_CALL)
               }}
@@ -91,7 +91,7 @@ const CallItem: FC<callItemProps> = (props) => {
 
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={() => {
+              onPressIn={() => {
                 setopenedChat(item)
                 navigation.navigate(SCREENS.AUDIO_CALL)
               }}

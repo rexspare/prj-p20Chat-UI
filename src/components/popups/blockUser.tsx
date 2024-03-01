@@ -49,11 +49,13 @@ const BlockUserModal: FC<blockUserProps> = (props) => {
                     <View style={styles.row}>
                         <TextButton
                             title={lang['_40']}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
                         <TextButton
                             title={lang['_41']}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                             style={styles.btn}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}

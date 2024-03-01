@@ -72,7 +72,6 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         height: hp(7.5),
         paddingHorizontal: hp(0.7),
         borderWidth: 0,
-        marginTop: hp(4),
         marginBottom: hp(6),
     },
     swiperTxt: {
@@ -101,6 +100,10 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         fontSize: FONT_SIZE._18,
         color: COLORS.WHITE,
         marginTop: hp(0.5)
+    },
+    rowBtn: {
+        marginBottom: hp(5),
+        ...COMMON_STYLES.flexRowSpaceBetween
     }
 })
 

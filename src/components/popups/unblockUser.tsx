@@ -47,6 +47,7 @@ const UnblockUserModal: FC<unblockUserProps> = (props) => {
 
                     <TextButton
                         title={`${lang['_170']} ${user?.name}`}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         textStyle={styles.btnTxt}
                         onPress={() => onClose()}
                     />

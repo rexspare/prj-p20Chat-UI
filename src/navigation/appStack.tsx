@@ -36,7 +36,7 @@ export type InitialNavigationStackParamList = {
     [SCREENS.USER_PROFILE]: undefined;
     [SCREENS.GROUP]: undefined;
     [SCREENS.VIDEO_CALL]: undefined;
-    [SCREENS.AUDIO_CALL]: undefined;
+    [SCREENS.AUDIO_CALL]: { isIncomming?: boolean };
     [SCREENS.STARED]: undefined;
 };
 
@@ -47,7 +47,7 @@ const AppStack = () => {
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false,
-            animation: 'fade_from_bottom'
+            animation: 'slide_from_right'
         }}>
             <Stack.Screen name={SCREENS.HOME} component={BottomStack} />
             <Stack.Screen name={SCREENS.CHAT} component={ChatScreen} />

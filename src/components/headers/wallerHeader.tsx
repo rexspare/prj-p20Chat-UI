@@ -64,7 +64,7 @@ const WalletHeader: FC<walletHeaderProps> = (props) => {
                         <TouchableOpacity
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                            onPress={() => handleBackPress()}
+                            onPressIn={() => handleBackPress()}
                         >
                             <BackIcon
                                 fill={theme.WHITE_TO_BLACK}
@@ -86,7 +86,7 @@ const WalletHeader: FC<walletHeaderProps> = (props) => {
                         <TouchableOpacity
                             activeOpacity={0.8}
                             hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-                            onPress={() => menuRef?.current?.open()}
+                            onPressIn={() => menuRef?.current?.open()}
                         >
                             <VerticalDotsIcon height={hp(2.46)} />
                         </TouchableOpacity>

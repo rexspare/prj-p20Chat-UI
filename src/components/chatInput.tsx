@@ -219,7 +219,7 @@ const ChatInput: FC<chatInputProps> = (props) => {
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
                                                 style={styles.roundBtn}
-                                                onPress={() => toggleMediaPicker()}
+                                                onPressIn={() => toggleMediaPicker()}
                                             >
                                                 <Feather
                                                     name='plus'

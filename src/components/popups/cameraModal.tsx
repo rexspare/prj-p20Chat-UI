@@ -137,10 +137,11 @@ const CameraModal: FC<cameraProps> = (props) => {
                                 }]}></View>
                             </TouchableCustom>
 
-                            <SwitchCamIcon
-                                onPress={() => setfrontCam(!frontCam)}
-                                width={hp(3)}
-                                height={hp(3)} />
+                            <TouchableCustom onPress={() => setfrontCam(!frontCam)}>
+                                <SwitchCamIcon
+                                    width={hp(3)}
+                                    height={hp(3)} />
+                            </TouchableCustom>
 
                         </ImageBackground>
                     </View>

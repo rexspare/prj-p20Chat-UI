@@ -68,7 +68,7 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                                     style={styles.row1}>
                                     <TouchableOpacity
                                         activeOpacity={0.8}
-                                        onPress={() => setselectedTime(item.id)}
+                                        onPressIn={() => setselectedTime(item.id)}
                                         style={[styles.outerCirle, {
                                             ...(selectedTime == item.id && { borderColor: COLORS.SECONDARY })
                                         }]}>
@@ -84,12 +84,14 @@ const MuteUserModal: FC<muteUserProps> = (props) => {
                     <View style={styles.row}>
                         <TextButton
                             title={lang['_40']}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />
                         <TextButton
                             title={lang['_41']}
                             style={styles.btn}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                             textStyle={styles.btnTxt}
                             onPress={() => onClose()}
                         />

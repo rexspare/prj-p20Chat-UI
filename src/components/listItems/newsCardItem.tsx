@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { FC } from 'react'
 import useAppConfig from '../../hooks/AppConfig'
 import { COLORS, FONT_SIZE, hp } from '../../assets/stylesGuide'
@@ -25,7 +25,7 @@ const NewsCardItem: FC<newsCardItemProps> = (props) => {
     }
 
     return (
-        <TouchableCustom
+        <TouchableOpacity
             onPress={() => handleSelect()}
         >
             <ImageBackground
@@ -43,7 +43,7 @@ const NewsCardItem: FC<newsCardItemProps> = (props) => {
 
                 </ImageBackground>
             </ImageBackground>
-        </TouchableCustom>
+        </TouchableOpacity>
     )
 }
 
