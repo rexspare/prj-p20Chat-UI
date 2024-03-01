@@ -15,6 +15,7 @@ import FontSizIcon from './fontsizeIcon.svg'
 import WallpaperIcon from './wallpaper.svg'
 import RightSettingChev from './chevRightSetting.svg'
 import TickSettingIcon from './tickSettingIcon.svg'
+import SecurityIcon from './securityIcon.svg'
 
 export {
     SettingIcon,
@@ -33,5 +34,6 @@ export {
     FontSizIcon,
     WallpaperIcon,
     RightSettingChev,
-    TickSettingIcon
+    TickSettingIcon,
+    SecurityIcon
 }

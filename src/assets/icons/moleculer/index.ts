@@ -32,6 +32,8 @@ import CaptureIcon from './captureIcon.svg'
 import SwitchCamIcon from './switchCamIcon.svg'
 import AddImageIcon from './addImageIcon.svg'
 import StopIcon from './stopIcon.svg'
+import ScanWithBar from './scanWithBar.svg'
+import ScanWithBarWhite from './scanWithBarWhite.svg'
 
 export {
     CheckBox,
@@ -67,5 +69,7 @@ export {
     CaptureIcon,
     SwitchCamIcon,
     AddImageIcon,
-    StopIcon
+    StopIcon,
+    ScanWithBar,
+    ScanWithBarWhite
 }

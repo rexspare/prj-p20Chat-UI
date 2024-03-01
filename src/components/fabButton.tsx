@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { FC } from 'react'
 import { COLORS, hp, COMMON_STYLES } from '../assets/stylesGuide'
-import { NewMsgIcon } from '../assets/icons'
+import { NewMsgIcon, TabMessage } from '../assets/icons'
 
 interface fabButtonProps {
     onPress: Function;
@@ -19,7 +19,10 @@ const FabButton: FC<fabButtonProps> = (props) => {
                 style={styles.pressable}
                 onPressIn={() => onPress()}
             >
-                <NewMsgIcon width={hp(2.9)} height={hp(2.9)} />
+                <TabMessage
+                    fill={COLORS.WHITE}
+                    width={hp(2.25)}
+                    height={hp(2.25)} />
             </TouchableOpacity>
         </View>
     )
@@ -36,7 +39,16 @@ const styles = StyleSheet.create({
         ...COMMON_STYLES.center_,
         position: 'absolute',
         bottom: hp(4),
-        right: hp(3)
+        right: hp(3),
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     },
     pressable: {
         width: hp(6.5),

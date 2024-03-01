@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { FC, ReactNode, useRef, useState } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import {
     Menu,
     MenuOption,
@@ -25,6 +25,7 @@ interface appHeaderProps {
     showRightIcon?: boolean;
     onChangeInput?: Function;
     onBackPress?: Function | null;
+    style?: ViewStyle;
 }
 
 const AppHeader: FC<appHeaderProps> = (props) => {
@@ -36,7 +37,8 @@ const AppHeader: FC<appHeaderProps> = (props) => {
         renderRightIcon,
         showRightIcon = false,
         onChangeInput = () => { },
-        onBackPress = null
+        onBackPress = null,
+        style
     } = props
 
     const navigation = useNavigation()
@@ -65,7 +67,7 @@ const AppHeader: FC<appHeaderProps> = (props) => {
 
 
     return (
-        <View style={styles.main}>
+        <View style={[styles.main, style]}>
 
             <If condition={title != undefined && showSearch == false}>
                 <View style={styles.titleContainer}>

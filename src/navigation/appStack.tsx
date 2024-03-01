@@ -12,6 +12,7 @@ import {
     LanguageSettingScreen,
     NewsDetailScreen,
     NotificationSettingScreen,
+    SecuritySettingScreen,
     SettingMainScreen,
     StaredScreen,
     UserProfileScreen,
@@ -31,6 +32,7 @@ export type InitialNavigationStackParamList = {
     [SCREENS.CHAT_SETTING]: undefined;
     [SCREENS.LANG_SETTING]: undefined;
     [SCREENS.NOTIFICATION_SETTING]: undefined;
+    [SCREENS.SECURITY_SETTING]: undefined;
     [SCREENS.WALLPAPER_SETTING]: undefined;
     [SCREENS.BLOCKED_CONTACTS]: undefined;
     [SCREENS.USER_PROFILE]: undefined;
@@ -57,6 +59,7 @@ const AppStack = () => {
             <Stack.Screen name={SCREENS.DISPLAY_SETTING} component={DisplaySettingScreen} />
             <Stack.Screen name={SCREENS.CHAT_SETTING} component={ChatSettingScreen} />
             <Stack.Screen name={SCREENS.WALLPAPER_SETTING} component={WallpaperSettingScreen} />
+            <Stack.Screen name={SCREENS.SECURITY_SETTING} component={SecuritySettingScreen} />
             <Stack.Screen name={SCREENS.NOTIFICATION_SETTING} component={NotificationSettingScreen} />
             <Stack.Screen name={SCREENS.BLOCKED_CONTACTS} component={BlockedContactScreen} />
             <Stack.Screen name={SCREENS.LANG_SETTING} component={LanguageSettingScreen} />

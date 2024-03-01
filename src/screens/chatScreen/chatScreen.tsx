@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef, useState, useEffect } from 'react'
-import { FlatList, StatusBar, View, Animated } from 'react-native'
+import { FlatList, StatusBar, View, Animated, ImageBackground } from 'react-native'
 import { ChatBubble, ChatHeader, ChatInput, ChatItem, If, Layout, MediaPicker, Spacer } from '../../components'
 import { BlockUserModal, MuteUserModal, VideoPlayerModal } from '../../components/popups'
 import useAppConfig from '../../hooks/AppConfig'
@@ -9,6 +9,8 @@ import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
 import { hp } from '../../assets/stylesGuide'
 import { inbox } from '../../data'
+import { IMAGES } from '../../assets/images'
+import { isDeviceTablet } from '../../utils/myUtils'
 
 const ChatScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -17,9 +19,10 @@ const ChatScreen = () => {
   const listRef = useRef<FlatList>(null)
   const marginValue = useRef(new Animated.Value(0)).current;
   const radiusValue = useRef(new Animated.Value(0)).current;
+  const inputMarginValue = useRef(new Animated.Value(hp(3))).current;
   const bottomList = useRef(new Animated.Value(-hp(26))).current;
 
-  const styles = styles_(theme, marginValue, radiusValue)
+  const styles = styles_(theme, marginValue, radiusValue, inputMarginValue)
   const openedChat = useInbox(inboxStateSelectors.openedChat)
   const setopenedChat = useInbox(inboxStateSelectors.setopenedChat)
   const [blockModalVisible, setblockModalVisible] = useState(false)
@@ -46,6 +49,11 @@ const ChatScreen = () => {
         useNativeDriver: false,
       }).start();
 
+      Animated.timing(inputMarginValue, {
+        toValue: hp(3),
+        duration: 500,
+        useNativeDriver: false,
+      }).start();
       setisMediaPIckerVisble(false)
 
     } else {
@@ -62,6 +70,11 @@ const ChatScreen = () => {
       }).start();
       Animated.timing(bottomList, {
         toValue: 0,
+        duration: 500,
+        useNativeDriver: false,
+      }).start();
+      Animated.timing(inputMarginValue, {
+        toValue: hp(1),
         duration: 500,
         useNativeDriver: false,
       }).start();
@@ -107,32 +120,36 @@ const ChatScreen = () => {
 
 
         <Animated.View style={styles.container}>
-
-          <FlatList
-            ref={listRef}
-            data={openedChat?.messages}
-            renderItem={({ item, index }: any) => (
-              <>
-                <ChatBubble
-                  item={item}
-                  index={index}
-                  playVideo={() => handlePlayVideo(item)}
-                />
-                <If condition={index == openedChat?.messages.length - 1}>
-                  <Spacer height={hp(15)} />
-                </If>
-              </>)}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.contentContainerStyle}
-          />
-
-          <View style={styles.aboluteContainer}>
-            <ChatInput
-              listRef={listRef}
-              toggleMediaPicker={toggleMediaPicker}
+          <ImageBackground
+            source={isDeviceTablet() ? IMAGES.WA_BG_TAB : IMAGES.WA_BG}
+            style={{ flex: 1 }}
+          >
+            <FlatList
+              ref={listRef}
+              data={openedChat?.messages}
+              renderItem={({ item, index }: any) => (
+                <>
+                  <ChatBubble
+                    item={item}
+                    index={index}
+                    playVideo={() => handlePlayVideo(item)}
+                  />
+                  <If condition={index == openedChat?.messages.length - 1}>
+                    <Spacer height={hp(15)} />
+                  </If>
+                </>)}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.contentContainerStyle}
             />
-          </View>
 
+            <Animated.View style={styles.aboluteContainer}>
+              <ChatInput
+                listRef={listRef}
+                toggleMediaPicker={toggleMediaPicker}
+              />
+            </Animated.View >
+
+          </ImageBackground>
         </Animated.View>
 
         {/* MEDIA PICKER */}

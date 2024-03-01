@@ -331,7 +331,7 @@ export default ChatInput
 
 const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
     main: {
-        width: wp(90),
+        width: wp(98),
         minHeight: hp(6.43),
         height: 'auto',
         borderRadius: hp(6.43) / 2,
@@ -349,7 +349,7 @@ const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
         paddingHorizontal: isDeviceTablet() ? '2%' : '5%'
     },
     main1: {
-        width: wp(90),
+        width: wp(98),
         minHeight: hp(6.43),
         height: 'auto',
         borderRadius: hp(6.43) / 2,

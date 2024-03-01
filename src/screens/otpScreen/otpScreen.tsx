@@ -1,14 +1,12 @@
-import React, { useRef, useState } from 'react'
-import { Image, View } from 'react-native'
-import PhoneInput from "react-native-phone-number-input"
-import { IMAGES } from '../../assets/images'
-import { BodyText, CommonHeader, If, Label, Layout, PrimaryButton } from '../../components'
+import { useNavigation } from '@react-navigation/native'
+import React, { useState } from 'react'
+import { View } from 'react-native'
+import OtpInputs from 'react-native-otp-inputs'
+import { SCREENS } from '../../assets/constants'
+import { BgLayout, BodyText, CommonHeader, If, Label, PrimaryButton } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { styles as styles_ } from './styles'
-import OtpInputs from 'react-native-otp-inputs';
-import { useNavigation } from '@react-navigation/native'
-import { SCREENS } from '../../assets/constants'
 
 const OtpScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -19,14 +17,7 @@ const OtpScreen = () => {
   const [code, setCode] = useState('');
 
   return (
-    <Layout fixed={true}>
-
-      {/* BRANDING */}
-      <Image
-        source={IMAGES.LOGO_OPACITY_BG}
-        style={styles.img}
-      />
-
+    <BgLayout fixed={true}>
 
       <CommonHeader />
 
@@ -57,7 +48,7 @@ const OtpScreen = () => {
         </View>
       </If>
 
-    </Layout>
+    </BgLayout>
   )
 }
 

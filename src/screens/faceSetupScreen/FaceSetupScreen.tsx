@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { Image, ImageBackground, TouchableOpacity, View } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
-import { CameraIcon } from '../../assets/icons'
+import { CameraIcon, ScanWithBar, ScanWithBarWhite } from '../../assets/icons'
 import { IMAGES } from '../../assets/images'
 import { hp } from '../../assets/stylesGuide'
-import { BodyText, CommonHeader, If, Label, Layout, PrimaryButton } from '../../components'
+import { BodyText, CommonHeader, If, Label, Layout, PrimaryButton, TextButton } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { styles as styles_ } from './styles'
 import { useNavigation } from '@react-navigation/native'
 import { SCREENS } from '../../assets/constants'
 
-const ProfileImageScreen = () => {
+const FaceSetupScreen = () => {
   const { lang, theme } = useAppConfig()
   const { keyboardStatus } = useKeyboard()
   const navigation = useNavigation()
@@ -38,33 +38,39 @@ const ProfileImageScreen = () => {
 
       <CommonHeader />
 
-      <Label style={styles.txt}>{lang["_20"]}</Label>
+      <Label style={styles.txt}>{lang["_210"]}</Label>
 
-      <ImageBackground
-        source={image ? { uri: image } : IMAGES.AVATAR}
-        style={styles.imgBg}
-        imageStyle={styles.avatar}
-      >
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPressIn={() => selectImage()}
-        >
-          <CameraIcon
-            width={hp(5.3)}
-            height={hp(5.3)}
-          />
-        </TouchableOpacity>
-      </ImageBackground>
+      <BodyText style={styles.txt1}>{lang['_211']}</BodyText>
 
 
-      <BodyText style={styles.txt1}>{lang['_21']}</BodyText>
+      <View style={styles.scanContainer}>
+        {
+          theme.mode == 'light' ?
+            <ScanWithBar
+              width={hp(26)}
+              height={hp(26)}
+            />
+            :
+            <ScanWithBarWhite
+              width={hp(26)}
+              height={hp(26)}
+            />
+        }
+      </View>
 
       <If condition={keyboardStatus == false}>
         <View style={styles.btnContainer}>
 
           <PrimaryButton
-            title={lang['_19']}
-            onPress={() => navigation.navigate(SCREENS.FACE_SETUP)}
+            title={lang['_212']}
+            onPress={() => navigation.navigate(SCREENS.APP)}
+          />
+
+          <TextButton
+            title={lang['_213']}
+            onPress={() => navigation.navigate(SCREENS.APP)}
+            style={styles.txtBtn}
+            textStyle={styles.btnTxt}
           />
 
         </View>
@@ -74,4 +80,4 @@ const ProfileImageScreen = () => {
   )
 }
 
-export default ProfileImageScreen
+export default FaceSetupScreen

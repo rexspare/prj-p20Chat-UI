@@ -47,38 +47,38 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
         switch (route) {
             case SCREENS.MESSAGES:
                 return <TabMessage
-                    fill={focused ? COLORS.SECONDARY : theme.TAB_ICON}
+                    fill={focused ? COLORS.SECONDARY : COLORS.DISBALED}
                     width={hp(2.25)}
                     height={hp(2.25)}
                 />
             case SCREENS.CALLS:
                 return <TabCall
-                    fill={focused ? COLORS.SECONDARY : theme.TAB_ICON}
+                    fill={focused ? COLORS.SECONDARY : COLORS.DISBALED}
                     width={hp(2.25)}
                     height={hp(2.25)}
                 />
             case SCREENS.WALLET:
                 return <TabWallet
-                    fill={focused ? COLORS.SECONDARY : theme.TAB_ICON}
-                    width={hp(5.9)}
-                    height={hp(5.9)}
+                    fill={focused ? COLORS.SECONDARY : COLORS.DISBALED}
+                    width={hp(2.25)}
+                    height={hp(2.25)}
                 />
             case SCREENS.CONTACTS:
                 return <TabContact
-                    fill={focused ? COLORS.SECONDARY : theme.TAB_ICON}
+                    fill={focused ? COLORS.SECONDARY : COLORS.DISBALED}
                     width={hp(2.25)}
                     height={hp(2.25)}
                 />
             case SCREENS.NEWS:
                 return <TabNews
-                    fill={focused ? COLORS.SECONDARY : theme.TAB_ICON}
+                    fill={focused ? COLORS.SECONDARY : COLORS.DISBALED}
                     width={hp(2.25)}
                     height={hp(2.25)}
                 />
 
             default:
                 return <TabMessage
-                    fill={focused ? COLORS.SECONDARY : theme.TAB_ICON}
+                    fill={focused ? COLORS.SECONDARY : COLORS.DISBALED}
                     width={hp(2.25)}
                     height={hp(2.25)}
                 />
@@ -90,11 +90,12 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
             flexDirection: 'row',
             backgroundColor: theme.BACKGROUND,
             overflow: 'hidden',
-            paddingBottom: (isIOS() && hasNotch()) ? hp(3) : hp(0.5),
+            paddingBottom: (isIOS() && hasNotch()) ? hp(3) : hp(0),
             paddingTop: hp(0.5),
             borderTopWidth: 1,
             borderColor: theme.BORDER,
             paddingHorizontal: '3%',
+
         }}>
             {state.routes.map((route: any, index: number) => {
                 const { options } = descriptors[route.key];
@@ -136,19 +137,18 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
                             paddingVertical: 10,
                             justifyContent: 'center',
                             alignItems: 'center',
+
                         }}
                     >
                         {getIcon(descriptors[route.key].route.name, isFocused)}
 
-                        <If condition={descriptors[route.key].route.name != SCREENS.WALLET}>
-                            <BodyText style={{
-                                fontSize: FONT_SIZE._14,
-                                fontFamily: FONTS.SEMI_BOLD,
-                                color: isFocused ? COLORS.SECONDARY : theme.TAB_ICON,
-                                letterSpacing: -0.5,
-                                marginTop: hp(0.5),
-                            }}>{options.title}</BodyText>
-                        </If>
+                        <BodyText style={{
+                            fontSize: FONT_SIZE._12,
+                            fontFamily: FONTS.REGULAR,
+                            color: isFocused ? COLORS.SECONDARY : theme.ACCENT,
+                            letterSpacing: -0.5,
+                            marginTop: hp(1.25),
+                        }}>{options.title}</BodyText>
                     </TouchableOpacity>
                 );
             })}

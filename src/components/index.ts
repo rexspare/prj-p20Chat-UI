@@ -1,5 +1,6 @@
 import If from "./if";
 import Layout from "./layout";
+import BgLayout from "./bgLayout";
 import Spacer from "./spacer";
 import TextButton from "./textButton";
 import PrimaryButton from "./primaryButton";
@@ -20,6 +21,7 @@ export * from './listItems'
 export {
     If,
     Layout,
+    BgLayout,
     Spacer,
     TextButton,
     PrimaryButton,

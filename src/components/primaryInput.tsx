@@ -29,10 +29,15 @@ interface primaryInputPros {
     maxLength?: number;
     onFocus?: () => {};
     onPressRightIcon?: () => void;
+    highlight?: boolean;
 }
 
 const PrimaryInput: React.FC<primaryInputPros> = (props) => {
-    const { onPressRightIcon = () => { }, onChange = () => { } } = props
+    const {
+        onPressRightIcon = () => { },
+        onChange = () => { },
+        highlight = false
+    } = props
     const { theme } = useAppConfig()
     const styles = styles_(theme)
 
@@ -54,7 +59,8 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                 styles.container,
                 props.inputContainer,
                 {
-                    paddingLeft: props?.renderLeftIcon ? 10 : 0
+                    paddingLeft: props?.renderLeftIcon ? 10 : 0,
+                    ...((highlight && isFocused) && { borderColor: COLORS.SECONDARY })
                 }]}>
 
                 <If condition={props.renderLeftIcon != undefined}>

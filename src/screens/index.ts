@@ -1,8 +1,10 @@
+import SplashScreen from "./splashScreen/splashScreen"
 import LandingScreen from "./landingScreen/landingScreen"
 import PhoneScreen from "./phoneScreen/phoneScreen"
 import OtpScreen from "./otpScreen/otpScreen"
 import ProfileNameScreen from "./profileNameScreen/profileNameScreen"
 import ProfileImageScreen from "./profileImageScreen/profileImageScreen"
+import FaceSetupScreen from "./faceSetupScreen/FaceSetupScreen"
 
 import MessagesScreen from "./messagesScreen/messagesScreen"
 import ChatScreen from "./chatScreen/chatScreen"
@@ -30,11 +32,13 @@ import StaredScreen from "./staredScreen/staredScreen"
 export * from './settingScreens'
 
 export {
+    SplashScreen,
     LandingScreen,
     PhoneScreen,
     OtpScreen,
     ProfileNameScreen,
     ProfileImageScreen,
+    FaceSetupScreen,
     MessagesScreen,
     ChatScreen,
     CallHistoryScreen,

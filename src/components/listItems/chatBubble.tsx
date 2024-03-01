@@ -1,6 +1,5 @@
-import Slider from '@react-native-community/slider';
 import React, { FC, useRef } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { isTablet } from 'react-native-device-info';
 import {
     Menu,
@@ -26,6 +25,8 @@ import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
 import { isDeviceTablet, nextIndexExists } from '../../utils/myUtils';
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import Slider from 'react-native-slider'
 
 interface IMESSAGE {
     id: number
@@ -57,7 +58,7 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
     const setnewMessage = useInbox(inboxStateSelectors.setnewMessage)
     const openedChat = useInbox(inboxStateSelectors.openedChat)
 
-    const styles = styles_(theme, item)
+    const styles = styles_(theme, item, item?.meUser == true)
 
     const OtherChatOptions: any[] = [
         {
@@ -124,7 +125,6 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
         },
     ]
 
-
     const chatArray = inbox
 
     const checkDateToShow = () => {
@@ -145,14 +145,6 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
     }
     const repliedToMsg = (item?.replyingTo != undefined || item?.replyingTo != null) &&
         openedChat?.messages?.find((x: any) => x?.id == item?.replyingTo)
-
-    const format = (seconds: any) => {
-        let mins = parseInt(seconds / 60)
-            .toString()
-            .padStart(2, '0')
-        let secs = (Math.trunc(seconds) % 60).toString().padStart(2, '0');
-        return `${mins}:${secs}`;
-    };
 
     const togglePlayback = async () => {
         try {
@@ -205,111 +197,65 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
 
     };
 
-    return (
-        <TouchableOpacity
-            activeOpacity={0.8}
-            onLongPress={() => menuRef?.current?.open()}
-            style={styles.main}>
 
-            <View >
+    // RENDER  BUBLE
+    const renderBubble = () => {
+        switch (item.type) {
+            case MESSAGE_TYPES.TEXT:
+                return (
+                    <View style={styles.textBubble}>
+                        <BodyText style={styles.msgTxt}>{item.message}</BodyText>
 
-                {/* REPLIED TO BUBBLE */}
-                <If condition={item?.replyingTo != undefined || item?.replyingTo != null}>
-                    <View style={styles.bubbleReply}>
-
-                        {/* TEXT */}
-                        <If condition={repliedToMsg.type == MESSAGE_TYPES.TEXT}>
-                            <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>
-                        </If>
-
-                        {/* AUDIO */}
-                        <If condition={repliedToMsg.type == MESSAGE_TYPES.AUDIO}>
-                            <View style={styles.controls}>
-                                <TouchableCustom
-                                    onPress={() => togglePlayback()}
-                                >
-                                    <Feather
-                                        name={playbackState.state == State.Playing ? "pause" : "play"}
-                                        color={theme.BLACK_TO_WHITE}
-                                        size={hp(3)}
+                        <View style={styles.timeSeenContainer}>
+                            <View style={styles.timeSeen}>
+                                <BodyText style={styles.timeTxt}>{item.time}</BodyText>
+                                <If condition={item.meUser}>
+                                    <SeenIcon
+                                        fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
+                                        width={hp(1.4)}
+                                        height={hp(1.4)}
                                     />
-                                </TouchableCustom>
-                                <Slider
-                                    style={styles.slider}
-                                    value={progress.position}
-                                    minimumValue={0}
-                                    maximumValue={progress?.duration}
-                                    minimumTrackTintColor={theme.BLACK_TO_WHITE}
-                                    maximumTrackTintColor={theme.BLACK_TO_WHITE}
-                                    thumbTintColor={theme.BLACK_TO_WHITE}
-                                    onSlidingComplete={async value => {
-                                        const seconds = Math.floor(value);
-                                    }}
-
-                                />
-                            </View>
-                            {repliedToMsg?.message && <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>}
-
-                        </If>
-
-                        {/* IMAGE */}
-                        <If condition={repliedToMsg.type == MESSAGE_TYPES.IMAGE}>
-                            <Image
-                                source={repliedToMsg.media}
-                                style={styles.img}
-                            />
-                            {repliedToMsg?.message && <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>}
-                        </If>
-
-                        {/* VIDEO */}
-                        <If condition={repliedToMsg.type == MESSAGE_TYPES.VIDEO}>
-                            <View style={styles.videoContainer}>
-                                <Video
-                                    ref={videoRef}
-                                    source={{ uri: repliedToMsg.media }}
-                                    resizeMode="cover"
-                                    paused={true}
-                                    style={styles.video}
-                                />
-                                <TouchableOpacity
-                                    activeOpacity={0.8}
-                                    onPress={() => repliedToMsg.type == MESSAGE_TYPES.VIDEO && playVideo(item)}
-                                    style={styles.videoOverlay}>
-                                    <RightCaretIcon
-                                        fill={COLORS.WHITE}
-                                        width={hp(3)}
-                                        height={hp(3)}
-                                    />
-                                </TouchableOpacity>
+                                </If>
                             </View>
 
-                            {repliedToMsg?.message && <BodyText style={styles.txt2}>{repliedToMsg.message}</BodyText>}
-                        </If>
-
+                        </View>
                     </View>
-                </If>
-                {/* REPLIED TO BUBBLE */}
+                )
+            case MESSAGE_TYPES.IMAGE:
+                return (
+                    <View style={styles.imgBubble}>
+                        <ImageBackground
+                            source={item.media}
+                            style={styles.img}
+                            imageStyle={{ borderRadius: hp(3), }}
+                        >
+                            <View style={styles.timeSeen1}>
+                                <BodyText style={styles.timeTxt1}>{item.time}</BodyText>
+                                <If condition={item.meUser}>
+                                    <SeenIcon
+                                        fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
+                                        width={hp(1.4)}
+                                        height={hp(1.4)}
+                                    />
+                                </If>
+                            </View>
+                        </ImageBackground>
+                    </View>
+                )
 
-
-
-                <View style={styles.bubble}>
-
-                    {/* TEXT */}
-                    <If condition={item.type == MESSAGE_TYPES.TEXT}>
-                        <BodyText style={styles.txt}>{item.message}</BodyText>
-                    </If>
-
-                    {/* AUDIO */}
-                    <If condition={item.type == MESSAGE_TYPES.AUDIO}>
+            case MESSAGE_TYPES.AUDIO:
+                return (
+                    <View style={styles.textBubble}>
                         <View style={styles.controls}>
                             <TouchableCustom
                                 onPress={() => togglePlayback()}>
-                                <Feather
+                                <AntDesign
                                     name={playbackState.state == State.Playing ? "pause" : "play"}
                                     color={theme.BLACK_TO_WHITE}
                                     size={hp(3)}
                                 />
                             </TouchableCustom>
+                            
                             <Slider
                                 style={styles.slider}
                                 value={progress.position}
@@ -321,64 +267,39 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                                 onSlidingComplete={async value => {
                                     const seconds = Math.floor(value);
                                 }}
-
                             />
+                            <BodyText style={styles.audioDuration}>0.45</BodyText>
+
                         </View>
-                        {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}
-
-                    </If>
-
-                    {/* IMAGE */}
-                    <If condition={item.type == MESSAGE_TYPES.IMAGE}>
-                        <Image
-                            source={item.media}
-                            style={styles.img}
-                        />
-                        {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}
-                    </If>
-
-                    {/* VIDEO */}
-                    <If condition={item.type == MESSAGE_TYPES.VIDEO}>
-                        <View style={styles.videoContainer}>
-                            <Video
-                                ref={videoRef}
-                                source={{ uri: item.media }}
-                                resizeMode="cover"
-                                paused={true}
-                                style={styles.video}
-                            />
-                            <TouchableOpacity
-                                activeOpacity={0.8}
-                                onPress={() => item.type == MESSAGE_TYPES.VIDEO && playVideo(item)}
-                                style={styles.videoOverlay}>
-                                <RightCaretIcon
-                                    fill={COLORS.WHITE}
-                                    width={hp(3)}
-                                    height={hp(3)}
-                                />
-                            </TouchableOpacity>
+                        <View style={styles.timeSeenContainer}>
+                            <View style={styles.timeSeen}>
+                                <BodyText style={styles.timeTxt}>{item.time}</BodyText>
+                                <If condition={item.meUser}>
+                                    <SeenIcon
+                                        fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
+                                        width={hp(1.4)}
+                                        height={hp(1.4)}
+                                    />
+                                </If>
+                            </View>
                         </View>
-
-                        {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}
-                    </If>
-
-                </View>
-
-                {/* TIME */}
-                <If condition={checkDateToShow() == false}>
-                    <View style={styles.timeContainer}>
-                        <BodyText style={styles.time}>{item.time}</BodyText>
-                        <If condition={item.meUser}>
-                            <SeenIcon
-                                fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
-                                width={hp(1.9)}
-                                height={hp(1.8)}
-                            />
-                        </If>
                     </View>
-                </If>
-            </View>
+                )
 
+            default:
+                return <></>
+        }
+    }
+
+
+
+    return (
+        <TouchableOpacity
+            activeOpacity={0.8}
+            onLongPress={() => menuRef?.current?.open()}
+            style={styles.main}>
+
+            {renderBubble()}
 
             {/* MENU */}
             <Menu ref={menuRef}>
@@ -410,68 +331,13 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
 
 export default ChatBubble
 
-const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
+const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.create({
     main: {
         flexDirection: 'row',
         justifyContent: item.meUser == true ? 'flex-end' : 'flex-start',
         marginTop: hp(1)
     },
-    container: {
-
-    },
-    bubble: {
-        minHeight: hp(5.3),
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 'auto',
-        backgroundColor: item.meUser == true ? theme.MY_CHAT_BUBBLE : theme.CHAT_BUBLE,
-        borderRadius: hp(3),
-        paddingHorizontal: hp(2.2),
-        paddingVertical: hp(1.2),
-        maxWidth: isTablet() ? 400 : wp(60)
-    },
-    bubbleReply: {
-        minHeight: hp(5.3),
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 'auto',
-        backgroundColor: item.meUser == false ? theme.MY_CHAT_BUBBLE : theme.CHAT_BUBLE,
-        borderRadius: hp(3),
-        paddingHorizontal: hp(2.2),
-        paddingVertical: hp(1.2),
-        maxWidth: isTablet() ? 400 : wp(60),
-        ...(item.meUser == true ? { right: hp(2.5), } : { left: hp(2.5), }),
-        bottom: -hp(1.2),
-    },
-    txt: {
-        fontFamily: FONTS.REGULAR,
-        fontSize: FONT_SIZE._14,
-        lineHeight: FONT_SIZE._20,
-        color: theme.BLACK_TO_WHITE,
-        textAlign: item.meUser == true ? 'right' : 'left',
-        width: '100%'
-    },
-    txt2: {
-        fontFamily: FONTS.REGULAR,
-        fontSize: FONT_SIZE._12,
-        lineHeight: FONT_SIZE._18,
-        color: theme.PRIMARY,
-        textAlign: item.meUser == true ? 'right' : 'left',
-        width: '100%'
-    },
-    time: {
-        fontFamily: FONTS.REGULAR,
-        fontSize: FONT_SIZE._12,
-        color: theme.ACCENT,
-        textAlign: item.meUser == true ? 'right' : 'left',
-        marginTop: hp(1.2),
-        margin: hp(0.5)
-    },
-    timeContainer: {
-        flexDirection: 'row',
-        justifyContent: item.meUser == true ? 'flex-end' : 'flex-start',
-        alignItems: 'flex-end'
-    },
+    // MENU
     optionsContainerStyle: {
         borderRadius: hp(1.2),
         width: hp(30),
@@ -484,41 +350,104 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         borderRadius: hp(1),
         backgroundColor: theme.BACKGROUND
     },
-    img: {
-        width: wp(50),
-        height: hp(30),
-        borderRadius: hp(1),
-        ...(item?.message && { marginVertical: hp(1) })
+    // TEXT BUBLE 
+    textBubble: {
+        minHeight: hp(5.3),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: 'auto',
+        backgroundColor: item?.meUser == true ? theme.NEW_MY_CHAT_BUBBLE : theme.NEW_CHAT_BUBBLE,
+        borderRadius: hp(3),
+        paddingHorizontal: hp(2.2),
+        paddingVertical: hp(1.2),
+        maxWidth: isTablet() ? 600 : wp(85),
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.00,
+
+        elevation: 1,
     },
-    videoContainer: {
-        width: isTablet() ? 300 : wp(50),
-        height: isTablet() ? 300 : wp(45),
-        borderRadius: hp(1),
-        ...(item?.message && { marginVertical: hp(1) })
-    },
-    video: {
-        width: '100%',
+    timeSeenContainer: {
         height: '100%',
-        borderRadius: hp(1)
+        flexDirection: 'column-reverse'
     },
-    videoOverlay: {
-        width: '100%',
-        height: '100%',
-        borderRadius: hp(1),
-        backgroundColor: COLORS.BLACK_OP,
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
+    timeSeen: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+    },
+    msgTxt: {
+        fontFamily: FONTS.REGULAR,
+        fontSize: FONT_SIZE._14,
+        color: meUser ? COLORS.BLACK : theme.BLACK_TO_WHITE,
+        flexShrink: 1,
+        textAlign: 'left'
+    },
+    timeTxt: {
+        fontFamily: FONTS.REGULAR,
+        fontSize: FONT_SIZE._8,
+        color: meUser ? COLORS.ACCENT : theme.ACCENT,
+        marginRight: 3,
+        marginLeft: 6
+    },
+    // IMAGE BUBBLE
+    imgBubble: {
+        backgroundColor: item?.meUser == true ? theme.NEW_MY_CHAT_BUBBLE : theme.NEW_CHAT_BUBBLE,
+        borderRadius: hp(3),
+        width: isTablet() ? 400 : wp(60),
+        height: (isTablet() ? 400 : wp(60)) * 0.75,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.00,
+        elevation: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 3
     },
+    img: {
+        borderRadius: hp(3),
+        width: '100%',
+        height: '100%',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+    },
+    timeSeen1: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        marginRight: hp(2),
+        marginBottom: hp(1)
+    },
+    timeTxt1: {
+        fontFamily: FONTS.REGULAR,
+        fontSize: FONT_SIZE._8,
+        color: COLORS.WHITE,
+        marginRight: 3,
+        marginLeft: 6
+    },
+    // AUDIO BUBBLE
     slider: {
-        width: isDeviceTablet() ? 250 : wp(40),
+        width: isDeviceTablet() ? 200 : wp(35),
         alignSelf: 'center',
+        marginHorizontal: 10,
+        height: hp(4)
     },
     controls: {
         ...COMMON_STYLES.flexRowSpaceBetween,
+    },
+    audioDuration: {
+        color: COLORS.PRIMARY,
+        fontFamily: FONTS.REGULAR,
+        fontSize: FONT_SIZE._10,
     }
+
 })

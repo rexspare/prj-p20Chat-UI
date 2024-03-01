@@ -588,7 +588,7 @@ const inbox = [
         type: MESSAGE_TYPES.IMAGE,
         message: "This is caption",
         seen: true,
-        media: WALLPAPER_TYPE.BRIGHT
+        media: require('../assets/images/dummy/msgImage.png')
     },
 
 ]

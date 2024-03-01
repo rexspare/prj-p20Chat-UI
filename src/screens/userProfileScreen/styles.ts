@@ -8,8 +8,6 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         backgroundColor: theme.PRIMARY_TO_BLACK,
     },
     container: {
-        borderTopLeftRadius: hp(3.5),
-        borderTopRightRadius: hp(3.5),
         overflow: 'hidden',
         paddingHorizontal: isDeviceTablet() ? '2%' : "5%",
         backgroundColor: theme.mode == 'light' ? "#F8F8F8" : theme.BACKGROUND
@@ -23,17 +21,21 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         flex: 1,
         backgroundColor: theme.mode == 'light' ? "#F8F8F8" : theme.BACKGROUND
     },
+    header: {
+        marginTop: (isIOS() && hasNotch()) ? 60 + hp(2) : hp(3)
+    },
+    userContainer: {
+        marginTop: - hp(8.5),
+        width: '70%',
+        alignSelf: 'center'
+    },
     avatarContainer: {
         width: hp(16),
         height: hp(16),
         borderRadius: hp(16),
-        borderWidth: 4,
-        borderColor: COLORS.SECONDARY,
         alignSelf: 'center',
         ...COMMON_STYLES.center_,
-        position: 'absolute',
-        top: (isIOS() && hasNotch()) ? 60 : hp(1),
-        backgroundColor: theme.BACKGROUND
+        backgroundColor: theme.BACKGROUND,
     },
     avatar: {
         width: '94%',
@@ -58,34 +60,38 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     txt: {
         fontSize: FONT_SIZE._24,
-        color: theme.BLACK_TO_WHITE,
-        marginTop: hp(10),
-        marginBottom: hp(2)
+        color: COLORS.WHITE,
+        marginTop: hp(2.2),
+        marginBottom: hp(2),
+        fontFamily: FONTS.MEDIUM
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: hp(1)
+        marginTop: hp(3),
+        width: hp(38),
+        alignSelf: 'center'
     },
     iconBtn: {
         backgroundColor: theme.WHITE_TO_BLACK,
-        minWidth: hp(12),
+        minWidth: hp(11.8),
+        minHeight: hp(8.36),
         borderRadius: hp(2),
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: hp(1.5)
+        paddingVertical: hp(1.5),
     },
     txt1: {
-        fontSize: FONT_SIZE._16,
+        fontSize: FONT_SIZE._14,
         color: COLORS.SECONDARY,
-        fontFamily: FONTS.SEMI_BOLD,
+        fontFamily: FONTS.REGULAR,
         marginTop: hp(1),
     },
     txt2: {
         fontSize: FONT_SIZE._18,
         color: theme.BLACK_TO_WHITE,
-        marginTop: hp(4),
+        marginTop: hp(4.5),
         textAlign: 'left',
     },
     phoneContainer: {

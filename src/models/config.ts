@@ -6,7 +6,9 @@ export interface ITHEME {
     BACKGROUND: string;
     TEXT: string;
     BORDER: string;
+    BORDER_BOTTOM: string;
     CHAT_BG: string;
+    CHAT_SCREEN_BG: string;
     TAB_ICON: string;
     CHAT_BUBLE: string;
     MY_CHAT_BUBBLE: string;
@@ -23,5 +25,6 @@ export interface ITHEME {
     GREY_TO_WHITE: string;
     WHITE_TO_DARK_GREY: string;
     SOUND_CONTAINER: string;
+    NEW_CHAT_BUBBLE: string;
+    NEW_MY_CHAT_BUBBLE: string;
 }
-

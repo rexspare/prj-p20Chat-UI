@@ -10,7 +10,7 @@ import { CHATS_LIST, COINSLIST } from '../../data'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { BlockUserModal, MuteUserModal } from '../../components/popups'
 import { useWallet, walletStateSelectors } from '../../states/wallet'
-import { AboutIcon, BackIcon, BellIcon, BlockIcon, DisplayIcon, HelpIcon, LangIcon, OrLine, RightChev, ScanQRIcon, SettingIcon } from '../../assets/icons'
+import { AboutIcon, BackIcon, BellIcon, BlockIcon, DisplayIcon, HelpIcon, LangIcon, OrLine, RightChev, ScanQRIcon, SecurityIcon, SettingIcon } from '../../assets/icons'
 import { SCREENS } from '../../assets/constants'
 import { FRIENDS_AVATARS, IMAGES } from '../../assets/images'
 import { ISettingItem } from '../../models/app'
@@ -32,34 +32,41 @@ const SettingMainScreen = () => {
         },
         {
             id: 2,
+            title: lang['_214'],
+            subtle: lang['_215'],
+            icon: <SecurityIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(2.78)} />,
+            onPress: () => navigation.navigate(SCREENS.SECURITY_SETTING)
+        },
+        {
+            id: 3,
             title: lang['_125'],
             subtle: lang['_126'],
             icon: <BellIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(2.78)} />,
             onPress: () => navigation.navigate(SCREENS.NOTIFICATION_SETTING)
         },
         {
-            id: 3,
+            id: 4,
             title: lang['_127'],
             subtle: lang['name'],
             icon: <LangIcon fill={theme.BLACK_TO_WHITE} width={hp(3.11)} height={hp(2.62)} />,
             onPress: () => navigation.navigate(SCREENS.LANG_SETTING)
         },
         {
-            id: 4,
+            id: 5,
             title: lang['_128'],
             subtle: `5 ${lang['_129']}`,
             icon: <BlockIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(3)} />,
             onPress: () => navigation.navigate(SCREENS.BLOCKED_CONTACTS)
         },
         {
-            id: 5,
+            id: 6,
             title: lang['_130'],
             subtle: `5 ${lang['_131']}`,
             icon: <HelpIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(2.57)} />,
             onPress: () => { }
         },
         {
-            id: 6,
+            id: 7,
             title: lang['_132'],
             subtle: `V1.0.0`,
             icon: <AboutIcon fill={theme.BLACK_TO_WHITE} width={hp(2.57)} height={hp(2.57)} />,

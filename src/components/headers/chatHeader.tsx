@@ -126,7 +126,7 @@ const ChatHeader: FC<chatHeaderProps> = (props) => {
                                 numberOfLines={1}
                                 style={styles.title}
                             >{openedChat.name}</Label>
-                            <BodyText style={styles.status}>Online</BodyText>
+                            <BodyText style={styles.status}>Online <BodyText style={{ color: COLORS.ONLINE }}>•</BodyText></BodyText>
                         </View>
                     </TouchableOpacity>
                 </If>

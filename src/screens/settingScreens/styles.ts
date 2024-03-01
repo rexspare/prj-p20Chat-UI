@@ -8,7 +8,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         backgroundColor: theme.PRIMARY_TO_BLACK,
     },
     header: {
-        borderBottomWidth: 1,
+        borderBottomWidth: 1 / 3,
         borderColor: theme.BORDER
     },
     item: {
@@ -97,7 +97,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         height: hp(5.5),
         borderBottomWidth: 1 / 3,
         alignSelf: 'center',
-        borderColor: theme.BORDER
+        borderColor: theme.BORDER,
     },
     item2: {
         ...COMMON_STYLES.flexRowSpaceBetween,

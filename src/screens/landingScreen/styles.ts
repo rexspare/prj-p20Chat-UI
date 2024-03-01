@@ -1,5 +1,5 @@
 import { StyleProp, StyleSheet } from "react-native";
-import { FONTS, FONT_SIZE, hp } from "../../assets/stylesGuide";
+import { COLORS, FONTS, FONT_SIZE, hp } from "../../assets/stylesGuide";
 import { ITHEME } from "../../models/config";
 import { hasNotch, isDeviceTablet, isIOS } from "../../utils/myUtils";
 
@@ -12,13 +12,25 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         alignSelf: 'center',
     },
     txt: {
-        marginTop: hp(4)
+        marginTop: hp(4),
+        fontSize: FONT_SIZE._32,
+        fontFamily: FONTS.REGULAR,
+        textAlign: 'left',
+        paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
+    },
+    txt3: {
+        marginTop: hp(2),
+        fontSize: FONT_SIZE._16,
+        fontFamily: FONTS.REGULAR,
+        textAlign: 'left',
+        paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
+        color: COLORS.SECONDARY
     },
     btnContainer: {
         width: '100%',
         position: 'absolute',
         bottom: 0,
-        paddingHorizontal: '5%',
+        paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
         marginBottom: (isIOS() && hasNotch()) ? hp(3.5) : hp(2)
     },
     row: {
@@ -34,7 +46,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     txt2: {
         fontFamily: FONTS.MEDIUM,
-         fontSize: FONT_SIZE._14,
+        fontSize: FONT_SIZE._14,
         color: theme.PRIMARY_TO_WHITE,
         flexShrink: 1
     },

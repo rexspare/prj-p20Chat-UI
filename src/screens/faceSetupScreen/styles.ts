@@ -9,10 +9,11 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         paddingHorizontal: '5%',
-        marginBottom: (isIOS() && hasNotch()) ? hp(3.5) : hp(2)
+        marginBottom: (isIOS() && hasNotch()) ? hp(3.5) : hp(2),
+        alignItems: 'center'
     },
     txt: {
-        marginTop: hp(14.5),
+        marginTop: hp(3),
         color: theme.BLACK_TO_WHITE,
         fontFamily: FONTS.SEMI_BOLD
     },
@@ -22,17 +23,17 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         fontSize: FONT_SIZE._14,
         marginTop: hp(1),
     },
-    imgBg: {
-        width: hp(18.2),
-        height: hp(18.2),
+    scanContainer: {
         alignSelf: 'center',
-        marginVertical: hp(3),
-        backgroundColor: theme.BACKGROUND,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
+        marginTop: hp(16),
     },
-    avatar: {
-        borderRadius: hp(17)
+    txtBtn: {
+        marginVertical: hp(1)
+    },
+    btnTxt: {
+        color: theme.BLACK_TO_WHITE,
+        fontFamily: FONTS.REGULAR,
+        fontSize: FONT_SIZE._16,
     }
 
 })

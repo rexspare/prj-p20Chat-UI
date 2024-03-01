@@ -35,6 +35,7 @@ enum COLORS {
     GREY_25 = "rgba(217, 217, 217, 0.25)",
     UNREAD_MSG = "#8280FF",
     READ_MSG = "#4C48FF",
+    ONLINE = "#04CE00"
 }
 
 enum FONT_SIZE {
@@ -43,6 +44,7 @@ enum FONT_SIZE {
     _20 = hp(2.14),
     _18 = hp(1.9),
     _16 = hp(1.7),
+    _15 = hp(1.6),
     _14 = hp(1.5),
     _12 = hp(1.28),
     _10 = hp(1),

@@ -134,14 +134,24 @@ const UserProfileScreen = () => {
                             </MenuOptions>
                         </Menu>
                     }
+                    style={styles.header}
                 />
+
+                {/* IMAGE AVATAR */}
+                <View style={styles.userContainer}>
+                    <View style={styles.avatarContainer} >
+                        <Image
+                            source={selectedConatct.avatar}
+                            style={styles.avatar}
+                        />
+                    </View>
+                    <Label style={styles.txt}>{selectedConatct.name}</Label>
+                </View>
 
                 <Layout
                     fixed={true}
                     containerStyle={styles.container}
                 >
-
-                    <Label style={styles.txt}>{selectedConatct.name}</Label>
 
                     <Layout containerStyle={styles.layout} >
 
@@ -232,13 +242,7 @@ const UserProfileScreen = () => {
                     </Layout>
 
                 </Layout>
-                {/* IMAGE AVATAR */}
-                <View style={styles.avatarContainer} >
-                    <Image
-                        source={selectedConatct.avatar}
-                        style={styles.avatar}
-                    />
-                </View>
+
 
                 <BlockUserModal
                     isVisible={blockModalVisible}

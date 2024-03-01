@@ -3,7 +3,8 @@ import ChatSettingScreen from "./chatSettingScreen";
 import WallpaperSettingScreen from "./wallpaperSettingScreen";
 import NotificationSettingScreen from "./notificationSettingScreen";
 import BlockedContactScreen from "./blockedContactScreen";
-import LanguageSettingScreen from "./LanguageSettingScreen";
+import LanguageSettingScreen from "./languageSettingScreen";
+import SecuritySettingScreen from "./securitySettingScreen";
 
 export {
     DisplaySettingScreen,
@@ -11,5 +12,6 @@ export {
     WallpaperSettingScreen,
     NotificationSettingScreen,
     BlockedContactScreen,
-    LanguageSettingScreen
+    LanguageSettingScreen,
+    SecuritySettingScreen
 }

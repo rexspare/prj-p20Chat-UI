@@ -6,6 +6,8 @@
     "BACKGROUND": "#FFFFFF",
     "TEXT": "#000000",
     "BORDER": "#D9D9D9",
+    "BORDER_BOTTOM": "rgba(0, 0, 0, 0.06)",
+    "CHAT_SCREEN_BG": "#EDEDED",
     "CHAT_BG": "#006B5F",
     "TAB_ICON": "#8A91A8",
     "CHAT_BUBLE": "#F8F8FB",
@@ -22,5 +24,7 @@
     "OFFWHOTE_TO_BLACK": "#F8F8FB",
     "GREY_TO_WHITE": "#7D7D7D",
     "WHITE_TO_DARK_GREY": "#FFFFFF",
-    "SOUND_CONTAINER": "#EFF0F1"
+    "SOUND_CONTAINER": "#EFF0F1",
+    "NEW_CHAT_BUBBLE": "#FFFFFF",
+    "NEW_MY_CHAT_BUBBLE": "#FFF9C1"
 }

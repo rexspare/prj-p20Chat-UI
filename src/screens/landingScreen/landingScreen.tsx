@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Image, View } from 'react-native'
 import { SCREENS } from '../../assets/constants'
 import { IMAGES } from '../../assets/images'
-import { AnimatedCheckBox, BodyText, Label, Layout, PrimaryButton } from '../../components'
+import { AnimatedCheckBox, BgLayout, BodyText, Label, Layout, PrimaryButton } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import { styles as styles_ } from './styles'
 
@@ -16,7 +16,7 @@ const LandingScreen = () => {
   const [checked, setchecked] = useState(false)
 
   return (
-    <Layout fixed={true}>
+    <BgLayout fixed={true}>
 
       {/* BRANDING */}
       <Image
@@ -24,10 +24,11 @@ const LandingScreen = () => {
         style={styles.img}
       />
 
-      <Label style={styles.txt}>{lang["_01"]}</Label>
+      <Label style={styles.txt}>{lang["_208"]}</Label>
+      <BodyText style={styles.txt3}>{lang['_209']}</BodyText>
+
 
       <View style={styles.btnContainer}>
-
 
         <View style={styles.row}>
           <AnimatedCheckBox
@@ -51,7 +52,7 @@ const LandingScreen = () => {
 
       </View>
 
-    </Layout>
+    </BgLayout>
   )
 }
 

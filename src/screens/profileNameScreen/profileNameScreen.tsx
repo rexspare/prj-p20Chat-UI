@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Image, View } from 'react-native'
 import PhoneInput from "react-native-phone-number-input"
 import { IMAGES } from '../../assets/images'
-import { BodyText, CommonHeader, If, Label, Layout, PrimaryButton, PrimaryInput } from '../../components'
+import { BgLayout, BodyText, CommonHeader, If, Label, Layout, PrimaryButton, PrimaryInput } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { styles as styles_ } from './styles'
@@ -20,14 +20,7 @@ const ProfileNameScreen = () => {
   const [name, setname] = useState('')
 
   return (
-    <Layout fixed={true}>
-
-      {/* BRANDING */}
-      <Image
-        source={IMAGES.LOGO_OPACITY_BG}
-        style={styles.img}
-      />
-
+    <BgLayout fixed={true}>
 
       <CommonHeader />
 
@@ -38,6 +31,7 @@ const ProfileNameScreen = () => {
       <PrimaryInput
         title={lang['_17']}
         value={name}
+        highlight={true}
         onChange={(txt) => setname(txt)}
         containerStyles={styles.inputContainer}
       />
@@ -56,7 +50,7 @@ const ProfileNameScreen = () => {
         </View>
       </If>
 
-    </Layout>
+    </BgLayout>
   )
 }
 

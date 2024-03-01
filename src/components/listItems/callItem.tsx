@@ -121,17 +121,12 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     width: '100%',
   },
   item: {
-    width: isDeviceTablet() ? "96%" : "90%",
+    width: isDeviceTablet() ? "98%" : "92%",
     ...COMMON_STYLES.flexRowSpaceBetween,
-    paddingVertical: hp(1.5),
-    borderBottomWidth: 1 / 2,
-    borderColor: theme.BORDER,
+    paddingVertical: hp(1.8),
+    borderBottomWidth: 0.5,
+    borderColor: theme.BORDER_BOTTOM,
     alignSelf: 'center'
-  },
-  line: {
-    width: isDeviceTablet() ? "96%" : "90%",
-    borderBottomWidth: 1 / 2,
-    backgroundColor: theme.BORDER
   },
   avatarContainer: {
     width: hp(5.9),

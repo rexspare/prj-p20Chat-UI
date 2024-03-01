@@ -1,13 +1,12 @@
-import React, { useState, useRef } from 'react'
-import { Image, View } from 'react-native'
-import { IMAGES } from '../../assets/images'
-import { BodyText, CommonHeader, If, Label, Layout, PrimaryButton } from '../../components'
-import useAppConfig from '../../hooks/AppConfig'
-import { styles as styles_ } from './styles'
-import PhoneInput from "react-native-phone-number-input";
-import useKeyboard from '../../hooks/Keyboard'
 import { useNavigation } from '@react-navigation/native'
+import React, { useRef, useState } from 'react'
+import { View } from 'react-native'
+import PhoneInput from "react-native-phone-number-input"
 import { SCREENS } from '../../assets/constants'
+import { BgLayout, BodyText, CommonHeader, If, Label, PrimaryButton } from '../../components'
+import useAppConfig from '../../hooks/AppConfig'
+import useKeyboard from '../../hooks/Keyboard'
+import { styles as styles_ } from './styles'
 
 const PhoneScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -22,13 +21,7 @@ const PhoneScreen = () => {
   const phoneInput = useRef<PhoneInput>(null);
 
   return (
-    <Layout fixed={true}>
-
-      {/* BRANDING */}
-      <Image
-        source={IMAGES.LOGO_OPACITY_BG}
-        style={styles.img}
-      />
+    <BgLayout fixed={true}>
 
 
       <CommonHeader />
@@ -73,7 +66,7 @@ const PhoneScreen = () => {
         </View>
       </If>
 
-    </Layout>
+    </BgLayout>
   )
 }
 

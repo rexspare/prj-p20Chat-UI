@@ -9,7 +9,7 @@ import {
 } from 'react-native-popup-menu';
 import { BodyText, Label, PrimaryInput } from '..';
 import { BackIcon, DeletecIcon, MuteIcon, SearchIcon, VerticalDotsIcon } from '../../assets/icons';
-import { COLORS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
+import { COLORS, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
@@ -264,7 +264,8 @@ const styles_ = (theme: ITHEME, showSelectedContent: boolean) => StyleSheet.crea
     },
     title: {
         color: COLORS.WHITE,
-        fontSize: FONT_SIZE._18
+        fontSize: FONT_SIZE._20,
+        fontFamily: FONTS.REGULAR
     },
     leftRowContainer: {
         flexDirection: 'row',

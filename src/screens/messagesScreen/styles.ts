@@ -8,8 +8,6 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         backgroundColor: theme.PRIMARY_TO_BLACK
     },
     container: {
-        borderTopLeftRadius: hp(3.5),
-        borderTopRightRadius: hp(3.5),
         overflow:'hidden',
     },
     contentContainerStyle: {

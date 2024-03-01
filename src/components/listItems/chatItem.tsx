@@ -83,31 +83,36 @@ const ChatItem: FC<chatItemProps> = (props) => {
           {/* NAME */}
           <View style={styles.txtContainer}>
 
-            <View style={styles.row}>
-              <Label style={styles.txt} numberOfLines={1}>{item.name} </Label>
+            {/* NAME AND DATE */}
+            <View style={styles.nameDate}>
+              <View style={styles.row}>
+                <Label style={styles.txt} numberOfLines={1}>{item.name} </Label>
 
-              <If condition={item.unReadMessages > 0}>
-                <View style={styles.circle}>
-                  <BodyText style={styles.txt3} >{item.unReadMessages}</BodyText>
-                </View>
-              </If>
+                <If condition={item.unReadMessages > 0}>
+                  <View style={styles.circle}>
+                    <BodyText style={styles.txt3} >{item.unReadMessages}</BodyText>
+                  </View>
+                </If>
+
+              </View>
+
+              <BodyText style={styles.txt4}>{item.time}</BodyText>
 
             </View>
 
-            <BodyText
-              numberOfLines={1}
-              style={item.unReadMessages > 0 ? styles.txt2 : styles.txt1}>
-              {item.lastMessage}</BodyText>
-          </View>
+            {/* LAST MESSAGE AND SEEN ICON */}
+            <View style={styles.msgSeen}>
+              <BodyText
+                numberOfLines={1}
+                style={item.unReadMessages > 0 ? styles.txt2 : styles.txt1}>
+                {item.lastMessage}</BodyText>
 
-          {/* NAME AND SEEN ICON */}
-          <View style={styles.timeContainer}>
-            <BodyText style={styles.txt4}>{item.time}</BodyText>
-            <SeenIcon
-              fill={item.unReadMessages > 0 ? theme.BACKGROUND : theme.BLACK_TO_WHITE}
-              width={hp(1.8)}
-              height={hp(1.8)}
-            />
+              <SeenIcon
+                fill={item.unReadMessages > 0 ? theme.BACKGROUND : theme.BLACK_TO_WHITE}
+                width={hp(1.8)}
+                height={hp(1.8)}
+              />
+            </View>
           </View>
 
         </View>
@@ -124,21 +129,16 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     width: '100%',
   },
   item: {
-    width: isDeviceTablet() ? "96%" : "90%",
+    width: isDeviceTablet() ? "98%" : "92%",
     ...COMMON_STYLES.flexRowSpaceBetween,
-    paddingVertical: hp(1.5),
-    borderBottomWidth: 1 / 2,
-    borderColor: theme.BORDER,
+    paddingVertical: hp(2),
+    borderBottomWidth: 0.5,
+    borderColor: theme.BORDER_BOTTOM,
     alignSelf: 'center'
   },
-  line: {
-    width: isDeviceTablet() ? "96%" : "90%",
-    borderBottomWidth: 1 / 2,
-    backgroundColor: theme.BORDER
-  },
   avatarContainer: {
-    width: hp(5.9),
-    height: hp(5.9),
+    width: hp(4),
+    height: hp(4),
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
@@ -158,33 +158,42 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     flex: 1,
     flexShrink: 1,
     alignItems: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'space-between',
   },
   txt: {
     color: theme.BLACK_TO_WHITE,
-    fontSize: FONT_SIZE._16,
-    maxWidth:'90%'
+    fontSize: FONT_SIZE._15,
+    maxWidth: '90%',
+    fontFamily: FONTS.MEDIUM,
   },
   txt1: {
     color: theme.ACCENT,
-    fontSize: FONT_SIZE._14,
-    fontFamily: FONTS.MEDIUM,
-    marginTop: hp(0.25)
-
+    fontSize: FONT_SIZE._14 - 0.5,
+    fontFamily: FONTS.REGULAR,
   },
   txt2: {
     color: theme.PRIMARY,
-    fontSize: FONT_SIZE._14,
-    fontFamily: FONTS.BOLD,
-    marginTop: hp(0.25)
+    fontSize: FONT_SIZE._14 - 0.5,
+    fontFamily: FONTS.MEDIUM,
   },
   txt3: {
     color: COLORS.WHITE,
     fontSize: FONT_SIZE._12,
-    fontFamily: FONTS.BOLD,
+    fontFamily: FONTS.REGULAR,
   },
   row: {
-    ...COMMON_STYLES.flexRowSpaceBetween
+    ...COMMON_STYLES.flexRowSpaceBetween,
+    flex: 1,
+    justifyContent: 'flex-start'
+  },
+  nameDate: {
+    ...COMMON_STYLES.flexRowSpaceBetween,
+    width: '100%',
+    marginBottom: hp(0.75)
+  },
+  msgSeen: {
+    ...COMMON_STYLES.flexRowSpaceBetween,
+    width: '100%',
   },
   circle: {
     backgroundColor: COLORS.SECONDARY,
@@ -197,9 +206,10 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     color: theme.ACCENT,
     fontSize: FONT_SIZE._12,
     fontFamily: FONTS.MEDIUM,
-    marginBottom: hp(0.25)
   },
   timeContainer: {
     alignItems: 'flex-end',
+    minHeight: hp(5),
+    justifyContent: 'space-between'
   }
 })
