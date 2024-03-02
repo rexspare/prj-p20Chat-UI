@@ -151,7 +151,7 @@ const StaredBubble: FC<staredBubbleProps> = (props) => {
                     {/* IMAGE */}
                     <If condition={item.type == MESSAGE_TYPES.IMAGE}>
                         <Image
-                            source={item.media}
+                            source={item.media[0]}
                             style={styles.img}
                         />
                         {item?.message && <BodyText style={styles.txt}>{item.message}</BodyText>}

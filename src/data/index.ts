@@ -545,12 +545,33 @@ const inbox = [
         seen: true
     },
     {
+        id: 55,
+        meUser: false,
+        time: '12:22 PM',
+        type: MESSAGE_TYPES.CRYPTO,
+        message: `Yeah sure! get him too.`,
+        seen: true,
+        amount: 1000,
+        crypto: 'PVTUSD'
+    },
+    {
+        id: 54,
+        meUser: true,
+        time: '12:22 PM',
+        type: MESSAGE_TYPES.CRYPTO,
+        message: `Yeah sure! get him too.`,
+        seen: true,
+        amount: 1000,
+        crypto: 'PVTUSD'
+    },
+    {
         id: 6,
         meUser: true,
         time: '12:25 PM',
         type: MESSAGE_TYPES.TEXT,
         message: `Alright! See you soon!`,
-        seen: true
+        seen: true,
+        stared: true
     },
     {
         id: 10,
@@ -569,8 +590,28 @@ const inbox = [
         message: ``,
         seen: true,
         media: "https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg",
-
-        replyingTo: 6
+    },
+    {
+        id: 99,
+        meUser: true,
+        time: '12:27 PM',
+        type: MESSAGE_TYPES.IMAGE,
+        seen: true,
+        media: [
+            require('../assets/images/dummy/msgImage.png'),
+            require('../assets/images/dummy/msg1.png'),
+            require('../assets/images/dummy/msg2.png'),
+            require('../assets/images/dummy/msg3.png')
+        ]
+    },
+    {
+        id: 81,
+        meUser: false,
+        time: '12:27 PM',
+        type: MESSAGE_TYPES.TEXT,
+        message: `These pics look so so good! Thanks`,
+        seen: true,
+        media: "",
     },
     {
         id: 8,
@@ -579,16 +620,25 @@ const inbox = [
         type: MESSAGE_TYPES.TEXT,
         message: `okay sure!`,
         seen: true,
-        media: ""
+        media: "",
+        replyingTo: 81
+    },
+    {
+        id: 98,
+        meUser: true,
+        time: '12:27 PM',
+        type: MESSAGE_TYPES.IMAGE,
+        seen: true,
+        media: [  require('../assets/images/dummy/msgImage.png'), ]
     },
     {
         id: 9,
-        meUser: true,
+        meUser: false,
         time: '12:27 PM',
         type: MESSAGE_TYPES.IMAGE,
         message: "This is caption",
         seen: true,
-        media: require('../assets/images/dummy/msgImage.png')
+        media: [require('../assets/images/dummy/msgImage.png'), ]
     },
 
 ]

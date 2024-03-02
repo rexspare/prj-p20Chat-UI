@@ -944,6 +944,8 @@ PODS:
   - React-Mapbuffer (0.73.4):
     - glog
     - React-debug
+  - react-native-biometrics (3.0.1):
+    - React-Core
   - react-native-blur (4.4.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1149,6 +1151,8 @@ PODS:
     - React-Core
   - RNCClipboard (1.13.2):
     - React-Core
+  - RNCMaskedView (0.3.1):
+    - React-Core
   - RNDeviceInfo (10.12.0):
     - React-Core
   - RNGestureHandler (2.15.0):
@@ -1232,6 +1236,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector-modern`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
+  - react-native-biometrics (from `../node_modules/react-native-biometrics`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
@@ -1263,6 +1268,7 @@ DEPENDENCIES:
   - RNAudioRecorderPlayer (from `../node_modules/react-native-audio-recorder-player`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
+  - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
@@ -1345,6 +1351,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   React-Mapbuffer:
     :path: "../node_modules/react-native/ReactCommon"
+  react-native-biometrics:
+    :path: "../node_modules/react-native-biometrics"
   react-native-blur:
     :path: "../node_modules/@react-native-community/blur"
   react-native-camera:
@@ -1407,6 +1415,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCClipboard:
     :path: "../node_modules/@react-native-clipboard/clipboard"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-masked-view/masked-view"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   RNGestureHandler:
@@ -1462,6 +1472,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 9ac353eccf6ab54d1e0a33862ba91221d1e88460
   React-logger: 0a57b68dd2aec7ff738195f081f0520724b35dab
   React-Mapbuffer: 63913773ed7f96b814a2521e13e6d010282096ad
+  react-native-biometrics: 352e5a794bfffc46a0c86725ea7dc62deb085bdc
   react-native-blur: 27113acc008facbc8accae5fb3a78b8424f64cfd
   react-native-camera: 3eae183c1d111103963f3dd913b65d01aef8110f
   react-native-document-picker: 3599b238843369026201d2ef466df53f77ae0452
@@ -1493,6 +1504,7 @@ SPEC CHECKSUMS:
   RNAudioRecorderPlayer: f790fc1afb118552ae6285d60adde52ee6b5d9ef
   RNCAsyncStorage: 7deab901e27d1f989a83e8be6ce91b673772c848
   RNCClipboard: 60fed4b71560d7bfe40e9d35dea9762b024da86d
+  RNCMaskedView: 090213d32d8b3bb83a4dcb7d12c18f0152591906
   RNDeviceInfo: db5c64a060e66e5db3102d041ebe3ef307a85120
   RNGestureHandler: deda62b8339496ba721a45e0f3e2d7a319932cee
   RNImageCropPicker: e7ab6fb43d2fc3e84651e786ef4a080d63b0ed3d

@@ -10,26 +10,52 @@ import useKeyboard from '../../hooks/Keyboard'
 import { styles as styles_ } from './styles'
 import { useNavigation } from '@react-navigation/native'
 import { SCREENS } from '../../assets/constants'
+import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
 
 const FaceSetupScreen = () => {
   const { lang, theme } = useAppConfig()
   const { keyboardStatus } = useKeyboard()
   const navigation = useNavigation()
 
+  const rnBiometrics = new ReactNativeBiometrics()
+
   const styles = styles_(theme)
 
-  const [image, setimage] = useState("")
 
-  const selectImage = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true,
-    }).then(res => {
-      setimage(res.path)
+  const handleBiometric = async () => {
+    try {
+      const { available, biometryType } = await rnBiometrics.isSensorAvailable()
+
+      if (available && biometryType === BiometryTypes.FaceID) {
+        proceedBiometric()
+      } else if (available && biometryType === BiometryTypes.TouchID) {
+        proceedBiometric()
+      } else if (available && biometryType === BiometryTypes.Biometrics) {
+        proceedBiometric()
+      } else {
+        console.log('Biometrics not supported')
+        return
+      }
+
+
+    } catch (error) {
+
+    }
+  }
+
+  const proceedBiometric = () => {
+    let epochTimeSeconds = Math.round((new Date()).getTime() / 1000).toString()
+    let payload = epochTimeSeconds + 'some message'
+
+    rnBiometrics.createSignature({
+      promptMessage: 'Sign in',
+      payload: payload
     })
-      .catch((error) => {
-
+      .then((resultObject) => {
+        const { success, signature } = resultObject
+        if (success) {
+          console.log(signature)
+        }
       })
   }
 
@@ -63,7 +89,7 @@ const FaceSetupScreen = () => {
 
           <PrimaryButton
             title={lang['_212']}
-            onPress={() => navigation.navigate(SCREENS.APP)}
+            onPress={() => navigation.navigate(SCREENS.BIOMETRIC)}
           />
 
           <TextButton

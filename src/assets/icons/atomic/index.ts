@@ -7,6 +7,7 @@ import DownCaret from './downCaret.svg'
 import CopyIcon from './copyIcon.svg'
 import RightChev from './rightChev.svg'
 import RightCaretIcon from './rightCaretIcon.svg'
+import StartFilledIcon from './starFilledIcon.svg'
 
 export {
     SeenIcon,
@@ -17,5 +18,6 @@ export {
     DownCaret,
     CopyIcon,
     RightChev,
-    RightCaretIcon
+    RightCaretIcon,
+    StartFilledIcon
 }

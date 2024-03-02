@@ -8,6 +8,7 @@ enum SCREENS {
     PROFILE_NAME = "PROFILE_NAME",
     PROFILE_IMAGE = "PROFILE_IMAGE",
     FACE_SETUP = "FACE_SETUP",
+    BIOMETRIC = "BIOMETRIC",
     HOME = "HOME",
     MESSAGES = "MESSAGES",
     CALLS = "CALLS",
@@ -65,7 +66,8 @@ enum MESSAGE_TYPES {
     VIDEO = "video",
     AUDIO = "audio",
     IMAGE = "image",
-    DOCUMENT = "document"
+    DOCUMENT = "document",
+    CRYPTO = "crypto"
 }
 
 export {

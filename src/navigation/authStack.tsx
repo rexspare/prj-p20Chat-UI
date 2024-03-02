@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SCREENS } from '../assets/constants';
-import { FaceSetupScreen, LandingScreen, OtpScreen, PhoneScreen, ProfileImageScreen, ProfileNameScreen, SplashScreen } from '../screens';
+import { BiometricScreen, FaceSetupScreen, LandingScreen, OtpScreen, PhoneScreen, ProfileImageScreen, ProfileNameScreen, SplashScreen } from '../screens';
 
 type InitialNavigationStackParamList = {
     [SCREENS.SPLASH]: undefined;
@@ -12,6 +12,7 @@ type InitialNavigationStackParamList = {
     [SCREENS.PROFILE_NAME]: undefined;
     [SCREENS.PROFILE_IMAGE]: undefined;
     [SCREENS.FACE_SETUP]: undefined;
+    [SCREENS.BIOMETRIC]: undefined;
 };
 
 const Stack = createNativeStackNavigator<InitialNavigationStackParamList>();
@@ -33,6 +34,7 @@ const AuthStack = () => {
             <Stack.Screen name={SCREENS.PROFILE_NAME} component={ProfileNameScreen} />
             <Stack.Screen name={SCREENS.PROFILE_IMAGE} component={ProfileImageScreen} />
             <Stack.Screen name={SCREENS.FACE_SETUP} component={FaceSetupScreen} />
+            <Stack.Screen name={SCREENS.BIOMETRIC} component={BiometricScreen} />
         </Stack.Navigator>
     )
 }

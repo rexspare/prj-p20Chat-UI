@@ -34,6 +34,8 @@ import AddImageIcon from './addImageIcon.svg'
 import StopIcon from './stopIcon.svg'
 import ScanWithBar from './scanWithBar.svg'
 import ScanWithBarWhite from './scanWithBarWhite.svg'
+import ScanIcon from './scanIcon.svg'
+import SuccessIcon from './successIcon.svg'
 
 export {
     CheckBox,
@@ -71,5 +73,7 @@ export {
     AddImageIcon,
     StopIcon,
     ScanWithBar,
-    ScanWithBarWhite
+    ScanWithBarWhite,
+    ScanIcon,
+    SuccessIcon
 }

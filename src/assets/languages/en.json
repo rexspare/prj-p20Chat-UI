@@ -222,5 +222,11 @@
     "_220": "Face ID",
     "_221": "Re-scan Face ID",
     "_222": "PIN Lock",
-    "_223": "Setup Pin Lock"
+    "_223": "Setup Pin Lock",
+    "_224": "Recieved",
+    "_225": "Sent",
+    "_226": "Replying to",
+    "_227": "Scanning",
+    "_228": "Please look the camera and hold still",
+    "_229": "Success"
 }

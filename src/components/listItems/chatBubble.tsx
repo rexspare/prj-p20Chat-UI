@@ -17,8 +17,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import Video from 'react-native-video';
 import { BodyText, If, TouchableCustom } from '..';
 import { MESSAGE_TYPES } from '../../assets/constants';
-import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, RightCaretIcon, SeenIcon, StarMsgIcon } from '../../assets/icons';
-import { FRIENDS_AVATARS } from '../../assets/images';
+import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, RightCaretIcon, SeenIcon, StarIcon, StarMsgIcon, StartFilledIcon } from '../../assets/icons';
+import { FRIENDS_AVATARS, IMAGES } from '../../assets/images';
 import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
 import { inbox } from '../../data';
 import useAppConfig from '../../hooks/AppConfig';
@@ -35,8 +35,11 @@ interface IMESSAGE {
     type: string;
     message: string | null;
     seen: boolean,
-    media: string | null;
+    media: any;
     replyingTo: string | number | null;
+    amount: number | string;
+    crypto: string;
+    stared?: boolean;
 }
 
 interface chatBubbleProps {
@@ -57,8 +60,9 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
     const newMessage = useInbox(inboxStateSelectors.newMessage)
     const setnewMessage = useInbox(inboxStateSelectors.setnewMessage)
     const openedChat = useInbox(inboxStateSelectors.openedChat)
+    const meUser = item?.meUser == true
 
-    const styles = styles_(theme, item, item?.meUser == true)
+    const styles = styles_(theme, item, meUser)
 
     const OtherChatOptions: any[] = [
         {
@@ -125,18 +129,6 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
         },
     ]
 
-    const chatArray = inbox
-
-    const checkDateToShow = () => {
-        const nextExists = nextIndexExists(chatArray, index)
-        if (nextExists) {
-            const nextItem = chatArray[index + 1] as IMESSAGE
-            return item.meUser == nextItem.meUser && item.time == nextItem.time
-        } else {
-            return false
-        }
-    }
-
     const handleReply = () => {
         setnewMessage({
             ...newMessage,
@@ -198,7 +190,44 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
     };
 
 
-    // RENDER  BUBLE
+    const renderTimeSeenType1 = () => (
+        <View style={styles.timeSeenContainer}>
+            <View style={styles.timeSeen}>
+                <If condition={item.stared}>
+                    <StartFilledIcon
+                        width={hp(1)}
+                        height={hp(1)}
+                        style={{ marginRight: 4 }}
+                    />
+                </If>
+                <BodyText style={styles.timeTxt}>{item.time}</BodyText>
+                <If condition={item.meUser}>
+                    <SeenIcon
+                        fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
+                        width={hp(1.4)}
+                        height={hp(1.4)}
+                    />
+                </If>
+            </View>
+
+        </View>
+    )
+
+
+    const renderTimeSeenType2 = () => (
+        <View style={styles.timeSeen1}>
+            <BodyText style={styles.timeTxt1}>{item.time}</BodyText>
+            <If condition={item.meUser}>
+                <SeenIcon
+                    fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
+                    width={hp(1.4)}
+                    height={hp(1.4)}
+                />
+            </If>
+        </View>
+    )
+
+    // RENDER BUBLE
     const renderBubble = () => {
         switch (item.type) {
             case MESSAGE_TYPES.TEXT:
@@ -206,40 +235,47 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                     <View style={styles.textBubble}>
                         <BodyText style={styles.msgTxt}>{item.message}</BodyText>
 
-                        <View style={styles.timeSeenContainer}>
-                            <View style={styles.timeSeen}>
-                                <BodyText style={styles.timeTxt}>{item.time}</BodyText>
-                                <If condition={item.meUser}>
-                                    <SeenIcon
-                                        fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
-                                        width={hp(1.4)}
-                                        height={hp(1.4)}
-                                    />
-                                </If>
-                            </View>
+                        {renderTimeSeenType1()}
 
-                        </View>
                     </View>
                 )
             case MESSAGE_TYPES.IMAGE:
                 return (
-                    <View style={styles.imgBubble}>
-                        <ImageBackground
-                            source={item.media}
-                            style={styles.img}
-                            imageStyle={{ borderRadius: hp(3), }}
-                        >
-                            <View style={styles.timeSeen1}>
-                                <BodyText style={styles.timeTxt1}>{item.time}</BodyText>
-                                <If condition={item.meUser}>
-                                    <SeenIcon
-                                        fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
-                                        width={hp(1.4)}
-                                        height={hp(1.4)}
-                                    />
-                                </If>
+                    <View style={item?.message ? styles.longImgBubble : styles.imgBubble}>
+                        {
+                            // MULTIIMAGE
+                            item.media?.length > 1 ?
+                                <View style={styles.multiImgContainer} >
+                                    {
+                                        item.media.map((img: any, index: number) => (
+                                            <ImageBackground
+                                                key={index}
+                                                source={img}
+                                                style={styles.multiImg}
+                                            >
+                                                <If condition={index == 3}>
+                                                    <BodyText style={styles.imgNumTxt}>+45</BodyText>
+                                                </If>
+                                            </ImageBackground>
+                                        ))
+                                    }
+
+                                </View>
+                                :
+                                <ImageBackground
+                                    source={item.media[0]}
+                                    style={item.message ? styles.longImg : styles.img}
+                                    imageStyle={item.message ? styles.longImgStyle : { borderRadius: hp(3) - 2, }}
+                                >
+                                    {item.message ? null : renderTimeSeenType2()}
+                                </ImageBackground>
+                        }
+                        <If condition={item.message}>
+                            <View style={styles.imgTxtContainer}>
+                                <BodyText style={styles.msgTxt}>{item.message}</BodyText>
+                                {renderTimeSeenType1()}
                             </View>
-                        </ImageBackground>
+                        </If>
                     </View>
                 )
 
@@ -255,7 +291,7 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                                     size={hp(3)}
                                 />
                             </TouchableCustom>
-                            
+
                             <Slider
                                 style={styles.slider}
                                 value={progress.position}
@@ -271,17 +307,148 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                             <BodyText style={styles.audioDuration}>0.45</BodyText>
 
                         </View>
-                        <View style={styles.timeSeenContainer}>
-                            <View style={styles.timeSeen}>
-                                <BodyText style={styles.timeTxt}>{item.time}</BodyText>
-                                <If condition={item.meUser}>
-                                    <SeenIcon
-                                        fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
-                                        width={hp(1.4)}
-                                        height={hp(1.4)}
-                                    />
-                                </If>
-                            </View>
+                        {renderTimeSeenType1()}
+                    </View>
+                )
+
+            case MESSAGE_TYPES.CRYPTO:
+                return (
+                    <View style={styles.cryptoBubble}>
+                        <BodyText style={styles.sentRecievedTxt}>{lang[meUser ? '_225' : '_224']}</BodyText>
+                        <BodyText style={styles.cryptoAmount}>{item.amount} <BodyText style={styles.cryptoType}>{item.crypto}</BodyText></BodyText>
+
+                        <View style={styles.timeSeen2}>
+                            <BodyText style={styles.timeTxt}>{item.time}</BodyText>
+                            <If condition={item.meUser}>
+                                <SeenIcon
+                                    fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
+                                    width={hp(1.4)}
+                                    height={hp(1.4)}
+                                />
+                            </If>
+                        </View>
+
+                    </View>
+                )
+
+            case MESSAGE_TYPES.VIDEO:
+                return (
+                    <View style={styles.imgBubble}>
+                        <View style={styles.videoContainer}>
+                            <Video
+                                ref={videoRef}
+                                source={{ uri: item.media }}
+                                resizeMode="cover"
+                                paused={true}
+                                style={styles.video}
+                            />
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                onPress={() => item.type == MESSAGE_TYPES.VIDEO && playVideo(item)}
+                                style={styles.videoOverlay}>
+                                <RightCaretIcon
+                                    fill={COLORS.WHITE}
+                                    width={hp(3)}
+                                    height={hp(3)}
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
+                )
+            default:
+                return <></>
+        }
+    }
+
+    // RENDER REPLY  BUBLE
+    const renderReplyBubble = () => {
+        switch (repliedToMsg.type) {
+            case MESSAGE_TYPES.TEXT:
+                return (
+                    <View style={styles.textRepliedBubble}>
+                        <BodyText style={styles.repliedToUser}>{`${lang['_226']} ${openedChat.name}`}</BodyText>
+                        <BodyText style={styles.repliedtxt}>{`${repliedToMsg.message}`}</BodyText>
+                    </View>
+                )
+            case MESSAGE_TYPES.IMAGE:
+                return (
+                    <View style={styles.textRepliedBubble}>
+                        <BodyText style={styles.repliedToUser}>{`${lang['_226']} ${openedChat.name}`}</BodyText>
+                        <ImageBackground
+                            source={IMAGES.AVATAR}
+                            style={styles.repliedImg}
+                            imageStyle={{ borderRadius: hp(3) - 2, }}
+                        >
+                            {item.message ? null : renderTimeSeenType2()}
+                        </ImageBackground>
+                    </View>
+                )
+
+            case MESSAGE_TYPES.AUDIO:
+                return (
+                    <View style={styles.textRepliedBubble}>
+                        <BodyText style={styles.repliedToUser}>{`${lang['_226']} ${openedChat.name}`}</BodyText>
+
+                        <View style={styles.controls}>
+                            <TouchableCustom
+                                onPress={() => togglePlayback()}>
+                                <AntDesign
+                                    name={playbackState.state == State.Playing ? "pause" : "play"}
+                                    color={theme.BLACK_TO_WHITE}
+                                    size={hp(3)}
+                                />
+                            </TouchableCustom>
+
+                            <Slider
+                                style={styles.slider}
+                                value={progress.position}
+                                minimumValue={0}
+                                maximumValue={progress?.duration}
+                                minimumTrackTintColor={theme.BLACK_TO_WHITE}
+                                maximumTrackTintColor={theme.BLACK_TO_WHITE}
+                                thumbTintColor={theme.BLACK_TO_WHITE}
+                                onSlidingComplete={async value => {
+                                    const seconds = Math.floor(value);
+                                }}
+                            />
+                            <BodyText style={styles.audioDuration}>0.45</BodyText>
+                        </View>
+                    </View>
+                )
+
+            case MESSAGE_TYPES.CRYPTO:
+                return (
+                    <View style={styles.textRepliedBubble}>
+                        <BodyText style={styles.repliedToUser}>{`${lang['_226']} ${openedChat.name}`}</BodyText>
+                        <BodyText style={styles.repliedtxt}>{`${repliedToMsg.message}`}</BodyText>
+                    </View>
+                )
+            case MESSAGE_TYPES.VIDEO:
+                return (
+                    <View style={styles.videoRepliedBubble}>
+                        <BodyText style={styles.repliedToUser}>{`${lang['_226']} ${openedChat.name}`}</BodyText>
+                        <View style={[styles.videoContainer, {
+                            width: wp(35),
+                            height: wp(35)
+                        }]}>
+                            <Video
+                                ref={videoRef}
+                                source={{ uri: item.media }}
+                                resizeMode="cover"
+                                paused={true}
+                                style={styles.video}
+                            />
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                onPress={() => item.type == MESSAGE_TYPES.VIDEO && playVideo(item)}
+                                style={styles.videoOverlay}>
+                                <RightCaretIcon
+                                    fill={COLORS.WHITE}
+                                    width={hp(3)}
+                                    height={hp(3)}
+                                />
+                            </TouchableOpacity>
                         </View>
                     </View>
                 )
@@ -292,42 +459,57 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
     }
 
 
-
     return (
-        <TouchableOpacity
-            activeOpacity={0.8}
-            onLongPress={() => menuRef?.current?.open()}
-            style={styles.main}>
-
-            {renderBubble()}
-
-            {/* MENU */}
-            <Menu ref={menuRef}>
-                <MenuTrigger>
-
-                </MenuTrigger>
-                <MenuOptions
-                    optionsContainerStyle={styles.optionsContainerStyle}
-                >
-                    <View style={styles.menuContainer}>
-                        {
-                            (item?.meUser ? ChatOptions : OtherChatOptions).map((item, index) => (
-                                <MenuOption
-                                    key={index}
-                                    onSelect={() => item?.onPress && item?.onPress()}
-                                >
-                                    <View >
-                                        {item.icon}
-                                    </View>
-                                </MenuOption>
-                            ))
-                        }
+        <>
+            <If condition={item?.replyingTo != undefined || item?.replyingTo != null}>
+                <View style={styles.main}>
+                    <View>
+                        {renderReplyBubble()}
                     </View>
-                </MenuOptions>
-            </Menu>
-        </TouchableOpacity>
+                </View>
+            </If>
+
+            <TouchableOpacity
+                activeOpacity={0.8}
+                onLongPress={() => menuRef?.current?.open()}
+                style={styles.main}>
+                <View>
+
+                    {renderBubble()}
+                </View>
+
+                {/* MENU */}
+                <Menu ref={menuRef}>
+                    <MenuTrigger>
+
+                    </MenuTrigger>
+                    <MenuOptions
+                        optionsContainerStyle={styles.optionsContainerStyle}
+                    >
+                        <View style={styles.menuContainer}>
+                            {
+                                (item?.meUser ? ChatOptions : OtherChatOptions).map((item, index) => (
+                                    <MenuOption
+                                        key={index}
+                                        onSelect={() => item?.onPress && item?.onPress()}
+                                    >
+                                        <View >
+                                            {item.icon}
+                                        </View>
+                                    </MenuOption>
+                                ))
+                            }
+                        </View>
+                    </MenuOptions>
+                </Menu>
+            </TouchableOpacity>
+        </>
     )
 }
+
+const arr = [{
+    id: 1
+}]
 
 export default ChatBubble
 
@@ -335,7 +517,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
     main: {
         flexDirection: 'row',
         justifyContent: item.meUser == true ? 'flex-end' : 'flex-start',
-        marginTop: hp(1)
+        marginTop: hp(1.2)
     },
     // MENU
     optionsContainerStyle: {
@@ -374,12 +556,13 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
     },
     timeSeenContainer: {
         height: '100%',
-        flexDirection: 'column-reverse'
+        flexDirection: 'column-reverse',
+        marginLeft: 5,
     },
     timeSeen: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     msgTxt: {
         fontFamily: FONTS.REGULAR,
@@ -393,7 +576,6 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         fontSize: FONT_SIZE._8,
         color: meUser ? COLORS.ACCENT : theme.ACCENT,
         marginRight: 3,
-        marginLeft: 6
     },
     // IMAGE BUBBLE
     imgBubble: {
@@ -413,6 +595,21 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         alignItems: 'center',
         padding: 3
     },
+    longImgBubble: {
+        backgroundColor: item?.meUser == true ? theme.NEW_MY_CHAT_BUBBLE : theme.NEW_CHAT_BUBBLE,
+        borderRadius: hp(3),
+        width: isTablet() ? 400 : wp(60),
+        minHeight: isTablet() ? 400 : wp(60),
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.00,
+        elevation: 1,
+        padding: 3
+    },
     img: {
         borderRadius: hp(3),
         width: '100%',
@@ -420,12 +617,72 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
     },
+    repliedImg: {
+        borderRadius: hp(3),
+        width: isTablet() ? 300 : wp(50),
+        minHeight: isTablet() ? 300 : wp(50),
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+    },
+    multiImg: {
+        width: ((isTablet() ? 400 : wp(60)) - 6) / 2,
+        height: (((isTablet() ? 400 : wp(60)) * 0.75) - 6) / 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    longImg: {
+        borderRadius: hp(3),
+        width: '100%',
+        minHeight: isTablet() ? 400 : wp(60),
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+    },
+    longImgStyle: {
+        borderTopLeftRadius: hp(3) - 2,
+        borderTopRightRadius: hp(3) - 2,
+        borderBottomLeftRadius: hp(1),
+        borderBottomRightRadius: hp(1),
+    },
+    multiImgContainer: {
+        borderRadius: hp(3) - 2,
+        width: '100%',
+        height: '100%',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        flexWrap: 'wrap',
+        overflow: 'hidden'
+    },
+    imgTxtContainer: {
+        minHeight: hp(5.3),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: 'auto',
+        backgroundColor: item?.meUser == true ? theme.NEW_MY_CHAT_BUBBLE : theme.NEW_CHAT_BUBBLE,
+        borderRadius: hp(3),
+        paddingHorizontal: hp(2.2),
+        paddingVertical: hp(1.2),
+        maxWidth: isTablet() ? 400 : wp(60),
+    },
+    imgNumTxt: {
+        color: COLORS.WHITE,
+        fontFamily: FONTS.MEDIUM,
+        fontSize: FONT_SIZE._14,
+    },
     timeSeen1: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
         marginRight: hp(2),
         marginBottom: hp(1)
+    },
+    timeSeen2: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        alignSelf: 'flex-end',
+        marginTop: hp(0.4)
     },
     timeTxt1: {
         fontFamily: FONTS.REGULAR,
@@ -448,6 +705,115 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         color: COLORS.PRIMARY,
         fontFamily: FONTS.REGULAR,
         fontSize: FONT_SIZE._10,
-    }
+    },
+    // CRYPTO,
+    cryptoBubble: {
+        height: 'auto',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: 'auto',
+        backgroundColor: item?.meUser == true ? theme.NEW_MY_CHAT_BUBBLE : theme.NEW_CHAT_BUBBLE,
+        borderRadius: hp(1.4),
+        paddingHorizontal: hp(2.2),
+        paddingVertical: hp(0.8),
+        maxWidth: isTablet() ? 600 : wp(85),
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.00,
 
+        elevation: 1,
+    },
+    sentRecievedTxt: {
+        fontFamily: FONTS.REGULAR,
+        color: COLORS.SECONDARY,
+        fontSize: FONT_SIZE._6
+    },
+    repliedToUser: {
+        fontFamily: FONTS.REGULAR,
+        color: COLORS.SECONDARY,
+        fontSize: FONT_SIZE._8,
+        textAlign: 'left'
+    },
+    cryptoAmount: {
+        fontFamily: FONTS.EXTRA_BOLD,
+        color: COLORS.PRIMARY,
+        fontSize: FONT_SIZE._14,
+        marginVertical: hp(0.3)
+    },
+    cryptoType: {
+        fontFamily: FONTS.REGULAR,
+        color: COLORS.PRIMARY,
+        fontSize: FONT_SIZE._14,
+    },
+    // TEXT REPLIED BUBLE 
+    textRepliedBubble: {
+        marginBottom: -hp(0.5),
+        minHeight: hp(5.3),
+        width: 'auto',
+        backgroundColor: 'rgba(255,255,255,0.9)',
+        borderRadius: hp(3),
+        paddingHorizontal: hp(2.5),
+        paddingVertical: hp(1.2),
+        maxWidth: isTablet() ? 600 : wp(85),
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.00,
+        elevation: 1,
+    },
+    repliedtxt: {
+        fontFamily: FONTS.REGULAR,
+        fontSize: FONT_SIZE._12,
+        color: meUser ? COLORS.BLACK : theme.BLACK_TO_WHITE,
+        flexShrink: 1,
+        textAlign: 'left',
+        marginTop: hp(0.5)
+    },
+    videoContainer: {
+        width: '100%',
+        height: '100%',
+        borderRadius: hp(3),
+        ...(item?.message && { marginVertical: hp(1) })
+    },
+    video: {
+        width: '100%',
+        height: '100%',
+        borderRadius: hp(3)
+    },
+    videoOverlay: {
+        width: '100%',
+        height: '100%',
+        borderRadius: hp(3) - 3,
+        backgroundColor: COLORS.BLACK_OP,
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    videoRepliedBubble: {
+        marginBottom: -hp(0.5),
+        minHeight: hp(5.3),
+        backgroundColor: 'rgba(255,255,255,0.9)',
+        borderRadius: hp(3),
+        paddingHorizontal: hp(1),
+        paddingTop: hp(1.2),
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.00,
+        elevation: 1,
+    },
 })
