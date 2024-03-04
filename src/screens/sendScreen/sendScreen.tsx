@@ -1,17 +1,16 @@
 import { useNavigation } from '@react-navigation/native'
+import { FlashList } from '@shopify/flash-list'
 import React, { useState } from 'react'
-import { AppHeader, BodyText, ChatItem, CoinItem, CommonHeader, FabButton, HomeHeader, If, Label, Layout, PrimaryButton, PrimaryInput, Spacer, TouchableCustom } from '../../components'
+import { Image, StatusBar, View } from 'react-native'
+import { SCREENS } from '../../assets/constants'
+import { RightChev, ScanQRIcon } from '../../assets/icons'
+import { hp } from '../../assets/stylesGuide'
+import { AppHeader, BodyText, CoinItem, If, Layout, PrimaryButton, PrimaryInput, Spacer, TouchableCustom } from '../../components'
+import { COINSLIST } from '../../data'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
-import { styles as styles_ } from './styles'
-import { FlatList, Image, StatusBar, View } from 'react-native'
-import { COLORS, hp } from '../../assets/stylesGuide'
-import { CHATS_LIST, COINSLIST } from '../../data'
-import { inboxStateSelectors, useInbox } from '../../states/inbox'
-import { BlockUserModal, MuteUserModal } from '../../components/popups'
 import { useWallet, walletStateSelectors } from '../../states/wallet'
-import { RightChev, ScanQRIcon } from '../../assets/icons'
-import { SCREENS } from '../../assets/constants'
+import { styles as styles_ } from './styles'
 
 const SendScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -64,17 +63,19 @@ const SendScreen = () => {
 
           {
             !isAssetselected ?
-              <FlatList
-                data={filteredDataSource}
-                renderItem={({ item, index }) => (
-                  <CoinItem
-                    item={item}
-                    onPress={() => handleSelect(item)}
-                  />
-                )}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.contentContainerStyle}
-              />
+                <FlashList
+                  data={filteredDataSource}
+                  renderItem={({ item, index }) => (
+                    <CoinItem
+                      item={item}
+                      onPress={() => handleSelect(item)}
+                    />
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  estimatedItemSize={hp(11)}
+                  // contentContainerStyle={styles.contentContainerStyle}
+                  ListHeaderComponent={() => <Spacer height={hp(0.5)}/>}
+                />
               :
               <Layout>
                 <TouchableCustom

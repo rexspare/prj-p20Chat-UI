@@ -4,12 +4,13 @@ import { FlatList, TouchableOpacity, View } from 'react-native'
 import { SCREENS } from '../../assets/constants'
 import { ChatSettingIcon, ThemeIcon } from '../../assets/icons'
 import { hp, wp } from '../../assets/stylesGuide'
-import { BodyText, CommonHeader, ContactItem, Layout } from '../../components'
+import { BodyText, CommonHeader, ContactItem, Layout, Spacer } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import { ISettingItem } from '../../models/app'
 import { styles as styles_ } from './styles'
 import { CHATS_LIST } from '../../data'
 import { UnblockUserModal } from '../../components/popups'
+import { FlashList } from '@shopify/flash-list'
 
 const BlockedContactScreen = () => {
     const { lang, theme } = useAppConfig()
@@ -38,7 +39,7 @@ const BlockedContactScreen = () => {
 
             <Layout
                 fixed={true}>
-                <FlatList
+                <FlashList
                     data={data.slice(0, 4)}
                     renderItem={({ item, index }) => (
                         <ContactItem
@@ -46,7 +47,9 @@ const BlockedContactScreen = () => {
                             onPress={(user: any) => handleUnblock(user)}
                         />)}
                     showsVerticalScrollIndicator={false}
-                    contentContainerStyle={styles.contentContainerStyle}
+                    estimatedItemSize={hp(10)}
+                    // contentContainerStyle={styles.contentContainerStyle}
+                    ListHeaderComponent={() => <Spacer height={hp(0.5)} />}
                 />
 
             </Layout>

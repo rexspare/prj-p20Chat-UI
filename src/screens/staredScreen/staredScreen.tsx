@@ -1,14 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
+import { FlashList } from '@shopify/flash-list'
 import React, { useState } from 'react'
-import { FlatList, StatusBar } from 'react-native'
-import { AppHeader, ContactItem, Layout, StaredHeader, StaredItem } from '../../components'
+import { StatusBar } from 'react-native'
+import { hp } from '../../assets/stylesGuide'
+import { Layout, Spacer, StaredHeader, StaredItem } from '../../components'
+import { VideoPlayerModal } from '../../components/popups'
+import { STARED_MESSAGES } from '../../data'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
-import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
-import { SCREENS } from '../../assets/constants'
-import { STARED_MESSAGES } from '../../data'
-import { VideoPlayerModal } from '../../components/popups'
 
 const StaredScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -41,7 +41,7 @@ const StaredScreen = () => {
         <Layout
           fixed={true}
           containerStyle={styles.container}>
-          <FlatList
+          <FlashList
             data={filteredDataSource}
             renderItem={({ item, index }) => (
               <StaredItem
@@ -50,7 +50,9 @@ const StaredScreen = () => {
               />
             )}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.contentContainerStyle}
+            estimatedItemSize={hp(20)}
+            // contentContainerStyle={styles.contentContainerStyle}
+            ListHeaderComponent={() => <Spacer height={hp(0.5)} />}
           />
 
         </Layout>

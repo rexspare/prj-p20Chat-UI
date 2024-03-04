@@ -30,5 +30,5 @@ const BodyText: React.FC<bodyTextProps | any> = (props) => {
     )
 }
 
-export default BodyText
+export default React.memo(BodyText)
 

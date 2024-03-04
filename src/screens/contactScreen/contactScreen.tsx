@@ -1,12 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { FlatList, StatusBar } from 'react-native'
-import { AppHeader, ContactItem, Layout } from '../../components'
+import { AppHeader, ContactItem, Layout, Spacer } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
 import { styles as styles_ } from './styles'
 import { SCREENS } from '../../assets/constants'
+import { FlashList } from '@shopify/flash-list'
+import { hp } from '../../assets/stylesGuide'
 
 const ContactScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -31,7 +33,7 @@ const ContactScreen = () => {
         <Layout
           fixed={true}
           containerStyle={styles.container}>
-          <FlatList
+          <FlashList
             data={filteredDataSource}
             renderItem={({ item, index }) => (
               <ContactItem
@@ -43,7 +45,9 @@ const ContactScreen = () => {
               />
             )}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.contentContainerStyle}
+            estimatedItemSize={hp(10)}
+            // contentContainerStyle={styles.contentContainerStyle}
+            ListHeaderComponent={() => <Spacer height={hp(0.5)} />}
           />
 
         </Layout>

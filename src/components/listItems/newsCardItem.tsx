@@ -47,7 +47,7 @@ const NewsCardItem: FC<newsCardItemProps> = (props) => {
     )
 }
 
-export default NewsCardItem
+export default React.memo(NewsCardItem)
 
 const styles = StyleSheet.create({
     main: {

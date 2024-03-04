@@ -100,7 +100,7 @@ const NewsFeedItem: FC<newsFeedItemProps> = (props) => {
     )
 }
 
-export default NewsFeedItem
+export default React.memo(NewsFeedItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {

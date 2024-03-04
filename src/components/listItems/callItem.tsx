@@ -114,7 +114,7 @@ const CallItem: FC<callItemProps> = (props) => {
   )
 }
 
-export default CallItem
+export default React.memo(CallItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
   main: {

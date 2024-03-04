@@ -1,17 +1,17 @@
 import { useNavigation } from '@react-navigation/native'
+import { FlashList } from '@shopify/flash-list'
 import React, { useState } from 'react'
-import { BodyText, ChatItem, CoinItem, CommonHeader, FabButton, HomeHeader, Label, Layout, PrimaryButton, TouchableCustom, WalletHeader } from '../../components'
+import { Image, StatusBar, View } from 'react-native'
+import { SCREENS } from '../../assets/constants'
+import { OutgoingIcon, QrIcon, SendIcon } from '../../assets/icons'
+import { hp } from '../../assets/stylesGuide'
+import { BodyText, CoinItem, Label, Layout, PrimaryButton, Spacer, TouchableCustom, WalletHeader } from '../../components'
+import GenerateAddresButton from '../../components/generateAddresButton'
+import { CHATS_LIST, COINSLIST } from '../../data'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
-import { styles as styles_ } from './styles'
-import { FlatList, Image, StatusBar, View } from 'react-native'
-import { COLORS, hp } from '../../assets/stylesGuide'
-import { CHATS_LIST, COINSLIST } from '../../data'
 import { inboxStateSelectors, useInbox } from '../../states/inbox'
-import { BlockUserModal, MuteUserModal } from '../../components/popups'
-import { OutgoingIcon, QrIcon, SendIcon } from '../../assets/icons'
-import GenerateAddresButton from '../../components/generateAddresButton'
-import { SCREENS } from '../../assets/constants'
+import { styles as styles_ } from './styles'
 
 const WalletScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -68,7 +68,7 @@ const WalletScreen = () => {
           fixed={true}
           containerStyle={styles.container}>
 
-          <FlatList
+          <FlashList
             data={COINSLIST}
             ListHeaderComponent={() => (
               <>
@@ -76,7 +76,7 @@ const WalletScreen = () => {
 
                 {/* QUICK SEND LIST */}
                 <View>
-                  <FlatList
+                  <FlashList
                     data={USERS}
                     horizontal
                     renderItem={({ item, index }) => (
@@ -88,8 +88,10 @@ const WalletScreen = () => {
                         <BodyText style={styles.itemTxt}>{item.name}</BodyText>
                       </TouchableCustom>
                     )}
+                    estimatedItemSize={hp(10)}
                     showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.contentContainerStyle}
+                    // contentContainerStyle={styles.contentContainerStyle}
+                    ListHeaderComponent={() => <Spacer height={hp(0.5)} />}
                   />
 
                 </View>
@@ -99,7 +101,8 @@ const WalletScreen = () => {
             )}
             renderItem={({ item, index }) => (<CoinItem item={item} />)}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.contentContainerStyle}
+            estimatedItemSize={hp(10)}
+          // contentContainerStyle={styles.contentContainerStyle}
           />
 
         </Layout>

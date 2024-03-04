@@ -50,4 +50,4 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     }
 })
 
-export default Layout;
+export default React.memo(Layout);

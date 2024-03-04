@@ -7,7 +7,7 @@ import {
   MenuOptions,
   MenuTrigger
 } from 'react-native-popup-menu'
-import { AppHeader, BodyText, CoinItem, HistoryItem, Layout, TouchableCustom, WalletDropDown } from '../../components'
+import { AppHeader, BodyText, CoinItem, HistoryItem, Layout, Spacer, TouchableCustom, WalletDropDown } from '../../components'
 import { COINSLIST, HISTORY_LIST } from '../../data'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
@@ -17,6 +17,7 @@ import { hp } from '../../assets/stylesGuide'
 import { useWallet, walletStateSelectors } from '../../states/wallet'
 import { SCREENS } from '../../assets/constants'
 import { PurgeHistoryModal } from '../../components/popups'
+import { FlashList } from '@shopify/flash-list'
 
 const TransactionHistoryScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -91,7 +92,7 @@ const TransactionHistoryScreen = () => {
 
           <BodyText style={styles.txt3}>{lang['_81']}</BodyText>
 
-          <FlatList
+          <FlashList
             data={HISTORY_LIST}
             renderItem={({ item, index }) => (
               <HistoryItem
@@ -100,7 +101,9 @@ const TransactionHistoryScreen = () => {
               />
             )}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.contentContainerStyle}
+            estimatedItemSize={hp(12)}
+            // contentContainerStyle={styles.contentContainerStyle}
+            ListHeaderComponent={() => <Spacer height={hp(0.5)} />}
           />
 
         </Layout>

@@ -74,7 +74,7 @@ const ContactItem: FC<contactItemProps> = (props) => {
   )
 }
 
-export default ContactItem
+export default React.memo(ContactItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
   main: {

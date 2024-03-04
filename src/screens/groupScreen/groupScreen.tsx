@@ -9,6 +9,7 @@ import { styles as styles_ } from './styles'
 import Feather from 'react-native-vector-icons/Feather'
 import { COLORS, hp } from '../../assets/stylesGuide'
 import { FRIENDS_AVATARS } from '../../assets/images'
+import { FlashList } from '@shopify/flash-list'
 
 const GroupScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -48,9 +49,9 @@ const GroupScreen = () => {
     if (isNextPressed == false) {
       setisNextPressed(true)
     } else {
-        Alert.alert("Group Created", "New group created")
-        setselectedContacts([])
-        setisNextPressed(false)
+      Alert.alert("Group Created", "New group created")
+      setselectedContacts([])
+      setisNextPressed(false)
     }
   }
 
@@ -148,7 +149,7 @@ const GroupScreen = () => {
           }
 
           <If condition={isNextPressed == false}>
-            <FlatList
+            <FlashList
               data={list}
               renderItem={({ item, index }) => (
                 <GroupContactItem
@@ -159,7 +160,9 @@ const GroupScreen = () => {
               )}
               ListFooterComponent={<Spacer height={hp(10)} />}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles.contentContainerStyle}
+              estimatedItemSize={hp(10)}
+              // contentContainerStyle={styles.contentContainerStyle}
+              ListHeaderComponent={() => <Spacer height={hp(0.5)} />}
             />
           </If>
 

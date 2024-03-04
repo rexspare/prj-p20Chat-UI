@@ -1,18 +1,16 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { AppHeader, BodyText, ChatItem, CoinItem, CommonHeader, FabButton, HomeHeader, If, Label, Layout, PrimaryButton, PrimaryInput, Spacer, TouchableCustom } from '../../components'
-import useAppConfig from '../../hooks/AppConfig'
-import useKeyboard from '../../hooks/Keyboard'
-import { styles as styles_ } from './styles'
 import { FlatList, Image, StatusBar, View } from 'react-native'
-import { COLORS, hp } from '../../assets/stylesGuide'
-import { CHATS_LIST, COINSLIST } from '../../data'
-import { inboxStateSelectors, useInbox } from '../../states/inbox'
-import { BlockUserModal, MuteUserModal } from '../../components/popups'
-import { useWallet, walletStateSelectors } from '../../states/wallet'
-import { OrLine, RightChev, ScanQRIcon } from '../../assets/icons'
 import { SCREENS } from '../../assets/constants'
 import { IMAGES } from '../../assets/images'
+import { hp } from '../../assets/stylesGuide'
+import { AppHeader, BodyText, CoinItem, If, Layout, PrimaryButton, Spacer } from '../../components'
+import { COINSLIST } from '../../data'
+import useAppConfig from '../../hooks/AppConfig'
+import useKeyboard from '../../hooks/Keyboard'
+import { useWallet, walletStateSelectors } from '../../states/wallet'
+import { styles as styles_ } from './styles'
+import { FlashList } from '@shopify/flash-list'
 
 const RecieveScreen = () => {
   const { lang, theme } = useAppConfig()
@@ -62,7 +60,7 @@ const RecieveScreen = () => {
 
           {
             !isAssetselected ?
-              <FlatList
+              <FlashList
                 data={filteredDataSource}
                 renderItem={({ item, index }) => (
                   <CoinItem
@@ -70,8 +68,10 @@ const RecieveScreen = () => {
                     onPress={() => handleSelect(item)}
                   />
                 )}
+                estimatedItemSize={hp(11)}
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.contentContainerStyle}
+                // contentContainerStyle={styles.contentContainerStyle}
+                ListHeaderComponent={() => <Spacer height={hp(0.5)} />}
               />
               :
               <Layout>

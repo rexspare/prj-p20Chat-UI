@@ -30,5 +30,5 @@ const Label: React.FC<labelProps> = (props) => {
     )
 }
 
-export default Label
+export default React.memo(Label)
 

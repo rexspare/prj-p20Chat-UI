@@ -201,7 +201,7 @@ const StaredBubble: FC<staredBubbleProps> = (props) => {
     )
 }
 
-export default StaredBubble
+export default React.memo(StaredBubble)
 
 const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
     main: {

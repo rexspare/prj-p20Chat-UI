@@ -53,7 +53,7 @@ const CoinItem: React.FC<coinItemProps> = (props) => {
     )
 }
 
-export default CoinItem
+export default React.memo(CoinItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {

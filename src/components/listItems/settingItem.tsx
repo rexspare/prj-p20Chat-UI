@@ -52,7 +52,7 @@ const SettingItem: FC<settingItemProps> = (props) => {
     )
 }
 
-export default SettingItem
+export default React.memo(SettingItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {

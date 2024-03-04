@@ -66,7 +66,7 @@ const HistoryItem: React.FC<historyItemProps> = (props) => {
     )
 }
 
-export default HistoryItem
+export default React.memo(HistoryItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {

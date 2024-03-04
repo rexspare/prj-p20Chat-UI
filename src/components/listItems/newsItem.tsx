@@ -76,7 +76,7 @@ const NewsItem: FC<newsItem> = (props) => {
     )
 }
 
-export default NewsItem
+export default React.memo(NewsItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {

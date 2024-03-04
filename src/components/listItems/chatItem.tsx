@@ -122,7 +122,7 @@ const ChatItem: FC<chatItemProps> = (props) => {
   )
 }
 
-export default ChatItem
+export default React.memo(ChatItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
   main: {

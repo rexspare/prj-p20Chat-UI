@@ -511,7 +511,7 @@ const arr = [{
     id: 1
 }]
 
-export default ChatBubble
+export default React.memo(ChatBubble)
 
 const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.create({
     main: {

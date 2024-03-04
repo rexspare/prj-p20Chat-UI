@@ -66,7 +66,7 @@ const StaredItem: FC<staredItemProps> = (props) => {
     )
 }
 
-export default StaredItem
+export default React.memo(StaredItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
     main: {

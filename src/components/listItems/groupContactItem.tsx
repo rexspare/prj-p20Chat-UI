@@ -74,7 +74,7 @@ const GroupContactItem: FC<groupContactItemProps> = (props) => {
   )
 }
 
-export default GroupContactItem
+export default React.memo(GroupContactItem)
 
 const styles_ = (theme: ITHEME) => StyleSheet.create({
   main: {
