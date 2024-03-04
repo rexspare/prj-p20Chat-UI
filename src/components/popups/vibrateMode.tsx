@@ -144,7 +144,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         marginLeft: hp(4)
     },
     btnTxt: {
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     row1: {
         flexDirection: 'row',

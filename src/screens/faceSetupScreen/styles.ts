@@ -15,11 +15,11 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt: {
         marginTop: hp(3),
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.SEMI_BOLD
+        fontWeight: '600'
     },
     txt1: {
         color: theme.TAB_ICON,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         marginTop: hp(1),
     },
@@ -32,7 +32,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     btnTxt: {
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._16,
     }
 

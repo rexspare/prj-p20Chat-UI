@@ -132,7 +132,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         textAlign: 'left',
         color: theme.BLACK_TO_WHITE,
         fontSize: FONT_SIZE._18,
-        fontFamily: FONTS.MEDIUM
+        fontWeight: '500'
     },
     username: {
         textAlign: 'left',

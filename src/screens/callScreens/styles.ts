@@ -27,7 +27,9 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     camera: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        backgroundColor: COLORS.BLACK,
+        ...COMMON_STYLES.center_
     },
     bottomcontainer: {
         position: 'absolute',
@@ -75,7 +77,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginBottom: hp(6),
     },
     swiperTxt: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._18,
         color: COLORS.WHITE
     },
@@ -90,13 +92,13 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         borderRadius: hp(15.6),
     },
     txt: {
-        fontFamily: FONTS.BOLD,
+        fontWeight: '700',
         fontSize: FONT_SIZE._24,
         color: COLORS.WHITE,
         marginTop: hp(1)
     },
     txt1: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._18,
         color: COLORS.WHITE,
         marginTop: hp(0.5)
@@ -104,6 +106,19 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     rowBtn: {
         marginBottom: hp(5),
         ...COMMON_STYLES.flexRowSpaceBetween
+    },
+    line: {
+        width: '60%',
+        height: 1.5,
+        backgroundColor: COLORS.WHITE,
+        position: 'absolute',
+        transform: [{ rotate: '125deg'}]
+    },
+    iconContainer: {
+        width: hp(6.2),
+        height: hp(6.2),
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 

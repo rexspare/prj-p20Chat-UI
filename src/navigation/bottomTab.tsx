@@ -144,7 +144,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
 
                         <BodyText style={{
                             fontSize: FONT_SIZE._12,
-                            fontFamily: FONTS.REGULAR,
+                            fontWeight: '400',
                             color: isFocused ? COLORS.SECONDARY : theme.ACCENT,
                             letterSpacing: -0.5,
                             marginTop: hp(1.25),

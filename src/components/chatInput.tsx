@@ -372,7 +372,7 @@ const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
         flex: 1,
         marginLeft: hp(1.215),
         height: hp(6.43),
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
     },
@@ -421,12 +421,12 @@ const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
         width: '100%'
     },
     txt1: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._12,
         color: COLORS.PRIMARY
     },
     txt2: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._12,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left',
@@ -438,7 +438,7 @@ const styles_ = (theme: ITHEME, isRecording: boolean) => StyleSheet.create({
         backgroundColor: theme.ACCENT
     },
     txt3: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._20,
         color: theme.BLACK_TO_WHITE,
         position: 'absolute',

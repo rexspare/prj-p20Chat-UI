@@ -50,14 +50,14 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     input: {
         flex: 1,
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._18,
         height: hp(7.5),
     },
     input1: {
         flex: 1,
         color: theme.ACCENT,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._16,
         lineHeight: FONT_SIZE._16,
     },
@@ -66,7 +66,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     txt: {
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._18,
         textAlign: 'left'
     },

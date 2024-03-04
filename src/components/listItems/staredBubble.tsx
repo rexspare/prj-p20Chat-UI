@@ -224,7 +224,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         maxWidth: isTablet() ? 400 : wp(60)
     },
     txt: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         lineHeight: FONT_SIZE._20,
         color: theme.BLACK_TO_WHITE,
@@ -232,7 +232,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         width: '100%'
     },
     time: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._12,
         color: theme.ACCENT,
         textAlign: item.meUser == true ? 'right' : 'left',

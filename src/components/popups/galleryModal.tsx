@@ -197,7 +197,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         marginRight: 5,
         paddingHorizontal: 15,
         color: COLORS.BLACK,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._16
     },
     sendBtn: {
@@ -208,7 +208,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         ...COMMON_STYLES.center_
     },
     txt: {
-        fontFamily: FONTS.BOLD,
+        fontWeight: '700',
         fontSize: FONT_SIZE._18,
         color: COLORS.WHITE,
     },

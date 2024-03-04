@@ -66,7 +66,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     },
     name: {
         marginVertical: 0,
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left'
@@ -79,7 +79,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     },
     priceTxt: {
         marginVertical: 0,
-        fontFamily: FONTS.BOLD,
+        fontWeight: '700',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'right'
@@ -94,7 +94,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         marginVertical: 0,
         fontSize: FONT_SIZE._12,
         textAlign: 'right',
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
     },
     container: {
         flex: 1,
@@ -105,7 +105,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         flex: 1,
     },
     title: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         marginLeft: 10,
 
     }

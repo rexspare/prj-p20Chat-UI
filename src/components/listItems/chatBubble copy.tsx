@@ -444,7 +444,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         bottom: -hp(1.2),
     },
     txt: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         lineHeight: FONT_SIZE._20,
         color: theme.BLACK_TO_WHITE,
@@ -452,7 +452,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         width: '100%'
     },
     txt2: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._12,
         lineHeight: FONT_SIZE._18,
         color: theme.PRIMARY,
@@ -460,7 +460,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE) => StyleSheet.create({
         width: '100%'
     },
     time: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._12,
         color: theme.ACCENT,
         textAlign: item.meUser == true ? 'right' : 'left',

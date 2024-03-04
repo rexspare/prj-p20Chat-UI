@@ -113,17 +113,17 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     },
     placeholderStyle: {
         fontSize: FONT_SIZE._14,
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     selectedTextStyle: {
         fontSize: FONT_SIZE._14,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: COLORS.WHITE
     },
     inputSearchStyle: {
         height: 40,
         fontSize: FONT_SIZE._12,
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     item: {
         flexDirection: 'row',
@@ -135,7 +135,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     },
     itemTxt: {
         fontSize: FONT_SIZE._14,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: theme.BLACK_TO_WHITE,
         marginLeft: 5,
     },

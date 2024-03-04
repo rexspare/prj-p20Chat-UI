@@ -14,14 +14,14 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt: {
         marginTop: hp(4),
         fontSize: FONT_SIZE._32,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         textAlign: 'left',
         paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
     },
     txt3: {
         marginTop: hp(2),
         fontSize: FONT_SIZE._16,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         textAlign: 'left',
         paddingHorizontal: isDeviceTablet() ? '2%' : '5%',
         color: COLORS.SECONDARY
@@ -38,14 +38,14 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginBottom: hp(3)
     },
     txt1: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._14,
         color: theme.BLACK_TO_PRIMARY,
         textAlign: 'left',
         flexShrink: 1
     },
     txt2: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._14,
         color: theme.PRIMARY_TO_WHITE,
         flexShrink: 1

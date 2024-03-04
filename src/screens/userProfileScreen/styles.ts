@@ -63,7 +63,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         color: COLORS.WHITE,
         marginTop: hp(2.2),
         marginBottom: hp(2),
-        fontFamily: FONTS.MEDIUM
+        fontWeight: '500'
     },
     row: {
         flexDirection: 'row',
@@ -85,7 +85,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt1: {
         fontSize: FONT_SIZE._14,
         color: COLORS.SECONDARY,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         marginTop: hp(1),
     },
     txt2: {
@@ -108,19 +108,19 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt3: {
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         textAlign: 'left',
     },
     txt4: {
         fontSize: FONT_SIZE._16,
         color: theme.ACCENT,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         textAlign: 'left',
     },
     txt5: {
         fontSize: FONT_SIZE._16,
         color: theme.ACCENT,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         textAlign: 'left',
         marginTop: hp(2)
     },

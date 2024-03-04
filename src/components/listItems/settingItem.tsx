@@ -71,7 +71,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     },
     title: {
         fontSize: FONT_SIZE._16,
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left'
     },

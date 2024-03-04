@@ -40,7 +40,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         color: theme.PRIMARY_TO_WHITE
     },
     txt3: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._18,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left',

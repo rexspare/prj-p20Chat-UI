@@ -29,13 +29,13 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt: {
         color: theme.BLACK_TO_WHITE,
         fontSize: FONT_SIZE._24,
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         marginTop: hp(3)
     },
     txt1: {
         color: theme.BLACK_TO_WHITE,
         fontSize: FONT_SIZE._16,
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         marginTop: hp(1.5)
     },
     btnContainer: {
@@ -63,12 +63,12 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt3: {
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.MEDIUM
+        fontWeight: '500'
     },
     txt4: {
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.BOLD
+        fontWeight: '700'
     },
     bulgeContainer: {
         ...COMMON_STYLES.flexRowSpaceBetween,

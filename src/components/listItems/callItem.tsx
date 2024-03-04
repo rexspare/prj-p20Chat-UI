@@ -159,14 +159,14 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
   txt1: {
     color: theme.ACCENT,
     fontSize: FONT_SIZE._12,
-    fontFamily: FONTS.REGULAR,
+    fontWeight: '400',
     marginTop: hp(0.25),
     marginLeft: 3
   },
   txt2: {
     color: theme.PRIMARY,
     fontSize: FONT_SIZE._14,
-    fontFamily: FONTS.BOLD,
+    fontWeight: '700',
     marginTop: hp(0.25)
   },
   row: {

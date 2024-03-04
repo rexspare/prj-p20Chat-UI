@@ -156,7 +156,7 @@ const styles_ = (theme: ITHEME, iconColor: string) => StyleSheet.create({
     },
     subtle: {
         fontSize: FONT_SIZE._14,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: iconColor
     },
     inputcontainerStyles: {

@@ -34,7 +34,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginRight: hp(1.5)
     },
     txt: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
     },
@@ -52,13 +52,13 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt1: {
         fontSize: FONT_SIZE._14,
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         marginBottom: hp(9)
     },
     txt2: {
         fontSize: FONT_SIZE._14,
         color: theme.PRIMARY_TO_WHITE,
-        fontFamily: FONTS.MEDIUM
+        fontWeight: '500'
     },
     row1: {
         ...COMMON_STYLES.flexRowSpaceBetween,
@@ -67,12 +67,12 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt3: {
         fontSize: FONT_SIZE._14,
         color: theme.ACCENT,
-        fontFamily: FONTS.MEDIUM
+        fontWeight: '500'
     },
     txt4: {
         fontSize: FONT_SIZE._14,
         color: theme.ACCENT,
-        fontFamily: FONTS.BOLD
+        fontWeight: '700'
     },
     btnContainer: {
         width: '100%',

@@ -89,7 +89,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         paddingLeft: hp(1.5)
     },
     timeTxt: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._12,
         color: theme.ACCENT,
         marginLeft: hp(2),

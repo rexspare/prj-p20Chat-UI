@@ -20,7 +20,8 @@ const Label: React.FC<labelProps> = (props) => {
             {...props}
             allowFontScaling={false}
             style={{
-                fontFamily: fontFamily,
+                // fontFamily: fontFamily,
+                fontWeight: '700',
                 fontSize: size,
                 color: theme.PRIMARY_TO_WHITE,
                 textAlign: 'center',

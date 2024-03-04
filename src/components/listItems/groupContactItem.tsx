@@ -125,7 +125,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
   txt1: {
     color: theme.ACCENT,
     fontSize: FONT_SIZE._14,
-    fontFamily: FONTS.MEDIUM,
+    fontWeight: '500',
     marginTop: hp(0.25)
 
   },

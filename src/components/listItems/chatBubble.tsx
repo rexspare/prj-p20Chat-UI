@@ -565,14 +565,14 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         alignItems: 'center',
     },
     msgTxt: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         color: meUser ? COLORS.BLACK : theme.BLACK_TO_WHITE,
         flexShrink: 1,
         textAlign: 'left'
     },
     timeTxt: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._8,
         color: meUser ? COLORS.ACCENT : theme.ACCENT,
         marginRight: 3,
@@ -667,7 +667,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
     },
     imgNumTxt: {
         color: COLORS.WHITE,
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._14,
     },
     timeSeen1: {
@@ -685,7 +685,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         marginTop: hp(0.4)
     },
     timeTxt1: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._8,
         color: COLORS.WHITE,
         marginRight: 3,
@@ -703,7 +703,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
     },
     audioDuration: {
         color: COLORS.PRIMARY,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._10,
     },
     // CRYPTO,
@@ -728,12 +728,12 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         elevation: 1,
     },
     sentRecievedTxt: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: COLORS.SECONDARY,
         fontSize: FONT_SIZE._6
     },
     repliedToUser: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: COLORS.SECONDARY,
         fontSize: FONT_SIZE._8,
         textAlign: 'left'
@@ -745,7 +745,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         marginVertical: hp(0.3)
     },
     cryptoType: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: COLORS.PRIMARY,
         fontSize: FONT_SIZE._14,
     },
@@ -769,7 +769,7 @@ const styles_ = (theme: ITHEME, item: IMESSAGE, meUser: boolean) => StyleSheet.c
         elevation: 1,
     },
     repliedtxt: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._12,
         color: meUser ? COLORS.BLACK : theme.BLACK_TO_WHITE,
         flexShrink: 1,

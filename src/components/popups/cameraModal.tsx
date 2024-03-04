@@ -202,7 +202,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         marginBottom: hp(1)
     },
     txt: {
-        fontFamily: FONTS.BOLD,
+        fontWeight: '700',
         fontSize: FONT_SIZE._14,
         color: COLORS.WHITE,
         marginHorizontal: 5

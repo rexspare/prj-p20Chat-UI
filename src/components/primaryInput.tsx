@@ -134,7 +134,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     title: {
         marginBottom: 4,
         textAlign: 'left',
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._14
     },
     container: {
@@ -149,7 +149,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         height: hp(5.5),
         paddingHorizontal: 10,
         fontSize: FONT_SIZE._14,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: theme.BLACK_TO_WHITE,
     },
     eyeBtn: {

@@ -23,11 +23,11 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt: {
         marginTop: hp(14.5),
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.SEMI_BOLD
+        fontWeight: '600'
     },
     txt1: {
         color: theme.TAB_ICON,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         marginTop: hp(3),
     },
@@ -52,14 +52,14 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         paddingBottom: 0,
     },
     textInputStyle: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         flex: 1,
         height: hp(6.4),
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
     },
     codeTextStyle: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         borderRightWidth: 1,

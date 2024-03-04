@@ -26,7 +26,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt: {
         color: theme.BLACK_TO_WHITE,
         fontSize: FONT_SIZE._24,
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         marginTop: hp(3)
     },
     btnContainer: {
@@ -56,12 +56,12 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt3: {
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     txt4: {
         fontSize: FONT_SIZE._16,
         color: theme.ACCENT,
-        fontFamily: FONTS.MEDIUM
+        fontWeight: '500'
     },
     btn: {
         backgroundColor: COLORS.SECONDARY_30,

@@ -30,7 +30,7 @@ const styles = (theme: ITHEME,) => StyleSheet.create({
         borderRadius: hp(0.7)
     },
     tagTxt: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._14,
         color: theme.BLACK_TO_WHITE
     },
@@ -78,7 +78,7 @@ const styles = (theme: ITHEME,) => StyleSheet.create({
         marginLeft: hp(2)
     },
     desc: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._14,
         color: COLORS.WHITE,
         textAlign: 'left',

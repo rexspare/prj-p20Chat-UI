@@ -164,7 +164,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         right: 0,
     },
     txt: {
-        fontFamily: FONTS.BOLD,
+        fontWeight: '700',
         fontSize: FONT_SIZE._18,
         color: COLORS.WHITE,
     },

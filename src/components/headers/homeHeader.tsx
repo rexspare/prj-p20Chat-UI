@@ -265,7 +265,7 @@ const styles_ = (theme: ITHEME, showSelectedContent: boolean) => StyleSheet.crea
     title: {
         color: COLORS.WHITE,
         fontSize: FONT_SIZE._20,
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     leftRowContainer: {
         flexDirection: 'row',

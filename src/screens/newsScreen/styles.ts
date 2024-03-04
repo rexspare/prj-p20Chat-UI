@@ -19,7 +19,7 @@ const styles = (theme: ITHEME,) => StyleSheet.create({
     },
     input: {
         height: hp(6.1),
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._16,
         backgroundColor: theme.OFFWHOTE_TO_BLACK,
         borderRadius: hp(2),
@@ -84,7 +84,7 @@ const styles = (theme: ITHEME,) => StyleSheet.create({
         marginBottom: hp(2)
     },
     txt3: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         color: theme.BLACK_TO_WHITE,
         fontSize: FONT_SIZE._18
     },

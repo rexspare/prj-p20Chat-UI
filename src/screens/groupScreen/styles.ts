@@ -20,14 +20,14 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginTop: hp(2)
     },
     txt: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._14,
         color: theme.ACCENT,
         textAlign: 'left',
         marginTop: hp(1.8)
     },
     txt1: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._14,
         color: theme.ACCENT,
         textAlign: 'left',
@@ -53,7 +53,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginRight: hp(2)
     },
     txt2: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         color: theme.BLACK_TO_WHITE,
         marginTop: hp(1)
@@ -91,7 +91,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         height: hp(4),
         marginLeft: hp(1.5),
         paddingVertical: 0,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         color: theme.BLACK_TO_WHITE
     }

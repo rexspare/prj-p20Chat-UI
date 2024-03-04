@@ -26,7 +26,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt1: {
         color: theme.BLACK_TO_WHITE,
         fontSize: FONT_SIZE._16,
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         marginTop: hp(3)
     },
     qr: {
@@ -62,13 +62,13 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         backgroundColor: theme.BORDER
     },
     txt2: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._14,
         marginHorizontal: 3,
         color: theme.GREY_TO_WHITE
     },
     txt3: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         marginTop: hp(3.5)

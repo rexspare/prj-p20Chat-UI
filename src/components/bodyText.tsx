@@ -19,7 +19,8 @@ const BodyText: React.FC<bodyTextProps | any> = (props) => {
             {...props}
             allowFontScaling={false}
             style={{
-                fontFamily: fontFamily,
+                // fontFamily: fontFamily,
+                fontWeight: '400',
                 fontSize: size,
                 color: theme.BLACK_TO_WHITE,
                 textAlign: 'center',

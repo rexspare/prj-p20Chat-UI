@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     txt: {
         color: COLORS.WHITE,
         fontSize: FONT_SIZE._16,
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     icon: {
         alignSelf: 'center',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         marginBottom: hp(4),
     },
     txt2: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         color: COLORS.WHITE,
         fontSize: FONT_SIZE._24,
         marginTop: hp(2),

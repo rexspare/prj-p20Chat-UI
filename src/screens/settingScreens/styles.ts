@@ -21,13 +21,13 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         width: hp(4)
     },
     itemTitle: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left'
     },
     itemSubtle: {
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         color: theme.ACCENT,
         textAlign: 'left',
@@ -66,14 +66,14 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         alignItems: 'center'
     },
     txt: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left',
         marginTop: hp(1)
     },
     txt1: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._18,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left',
@@ -84,7 +84,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginTop: hp(0.5)
     },
     txt2: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left',

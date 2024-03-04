@@ -160,11 +160,11 @@ const styles = StyleSheet.create({
     },
     placeholderStyle: {
         fontSize: normalize(13),
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     selectedTextStyle: {
         fontSize: normalize(13),
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: COLORS.TEXT
     },
     iconStyle: {
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     inputSearchStyle: {
         height: 40,
         fontSize: normalize(11),
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     item: {
         flexDirection: 'row',
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     },
     itemTxt: {
         fontSize: normalize(13),
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: COLORS.TEXT,
         marginLeft: 5,
     },
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
         width: '60%',
         paddingHorizontal: '2%',
         fontSize: normalize(13),
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         color: COLORS.TEXT,
         textAlign: 'right',
     },
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     title: {
         marginBottom: 4,
         textAlign: 'left',
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
     },
 
 

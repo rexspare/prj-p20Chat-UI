@@ -86,8 +86,8 @@ const styles_ = (filled: any, disabled: any) => StyleSheet.create({
     },
     title: {
         color: COLORS.WHITE,
-        fontSize: FONT_SIZE._12,
-        fontFamily: FONTS.REGULAR
+        fontSize: FONT_SIZE._14,
+        fontWeight: '400'
     },
     address: {
         color: COLORS.WHITE,

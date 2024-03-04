@@ -164,22 +164,22 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     color: theme.BLACK_TO_WHITE,
     fontSize: FONT_SIZE._15,
     maxWidth: '90%',
-    fontFamily: FONTS.MEDIUM,
+    fontWeight: '500',
   },
   txt1: {
     color: theme.ACCENT,
     fontSize: FONT_SIZE._14 - 0.5,
-    fontFamily: FONTS.REGULAR,
+    fontWeight: '400',
   },
   txt2: {
     color: theme.PRIMARY,
     fontSize: FONT_SIZE._14 - 0.5,
-    fontFamily: FONTS.MEDIUM,
+    fontWeight: '500',
   },
   txt3: {
     color: COLORS.WHITE,
     fontSize: FONT_SIZE._12,
-    fontFamily: FONTS.REGULAR,
+    fontWeight: '400',
   },
   row: {
     ...COMMON_STYLES.flexRowSpaceBetween,
@@ -189,7 +189,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
   nameDate: {
     ...COMMON_STYLES.flexRowSpaceBetween,
     width: '100%',
-    marginBottom: hp(0.75)
+    marginBottom: hp(0.5)
   },
   msgSeen: {
     ...COMMON_STYLES.flexRowSpaceBetween,
@@ -205,7 +205,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
   txt4: {
     color: theme.ACCENT,
     fontSize: FONT_SIZE._12,
-    fontFamily: FONTS.MEDIUM,
+    fontWeight: '500',
   },
   timeContainer: {
     alignItems: 'flex-end',

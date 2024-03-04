@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     title: {
         color: COLORS.SECONDARY,
         fontSize: normalize(11),
-        fontFamily: FONTS.MEDIUM
+        fontWeight: '500'
     }
 })

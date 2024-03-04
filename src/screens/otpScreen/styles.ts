@@ -23,11 +23,11 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt: {
         marginTop: hp(14.5),
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.SEMI_BOLD
+        fontWeight: '600'
     },
     txt1: {
         color: theme.TAB_ICON,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
         marginTop: hp(1),
     },
@@ -50,7 +50,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     OTPtext: {
         fontSize: FONT_SIZE._18,
         textAlign: 'center',
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         color: theme.BLACK_TO_WHITE
     },
     OTPFieldHighlight: {
@@ -58,12 +58,12 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     txt2: {
         color: theme.TAB_ICON,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14,
     },
     txt3: {
         color: theme.BLACK_TO_WHITE,
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._14,
     }
 

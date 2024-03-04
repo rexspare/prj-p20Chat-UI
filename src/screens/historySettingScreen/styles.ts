@@ -17,7 +17,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginTop: hp(0.5)
     },
     txt1: {
-        fontFamily: FONTS.BOLD,
+        fontWeight: '700',
         fontSize: FONT_SIZE._14,
         color: theme.ACCENT,
         textAlign: 'left',
@@ -30,7 +30,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         marginTop: hp(1.25),
     },
     txt3: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._18,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left',

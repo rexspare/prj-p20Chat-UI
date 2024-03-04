@@ -18,7 +18,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     },
     txt: {
         color: COLORS.WHITE,
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._14
     },
     txt1: {
@@ -37,7 +37,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
     txt2: {
         color: COLORS.WHITE,
         fontSize: FONT_SIZE._14,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         marginLeft: hp(1)
     },
     btnContainer: {
@@ -58,11 +58,11 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         width: '48%'
     },
     btntxt: {
-        fontFamily: FONTS.SEMI_BOLD,
+        fontWeight: '600',
         fontSize: FONT_SIZE._16
     },
     txt3: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._18,
         color: theme.BLACK_TO_WHITE,
         textAlign: 'left',
@@ -83,7 +83,7 @@ const styles = (theme: ITHEME) => StyleSheet.create({
         borderRadius: hp(4.3),
     },
     itemTxt: {
-        fontFamily: FONTS.MEDIUM,
+        fontWeight: '500',
         fontSize: FONT_SIZE._16,
         color: theme.BLACK_TO_WHITE,
         marginLeft: hp(1),

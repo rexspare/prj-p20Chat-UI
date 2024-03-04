@@ -88,7 +88,7 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
     title: {
         textAlign: 'left',
         color: theme.ACCENT,
-        fontFamily: FONTS.REGULAR,
+        fontWeight: '400',
         fontSize: FONT_SIZE._14
     },
     subtle: {
@@ -106,10 +106,10 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         marginLeft: hp(4)
     },
     btnTxt: {
-        fontFamily: FONTS.REGULAR
+        fontWeight: '400'
     },
     btnTxt1: {
-        fontFamily: FONTS.BOLD,
+        fontWeight: '700',
         color: COLORS.RED
     }
 })
