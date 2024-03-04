@@ -6,6 +6,7 @@ import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/st
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { isDefaultThemeSupported } from '../../utils/myUtils';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
 interface appThemeProps {
     isVisible: boolean;
@@ -17,7 +18,7 @@ const AppThemeModal: FC<appThemeProps> = (props) => {
         isVisible,
         onClose = () => { }
     } = props
-
+    const navigation = useNavigation()
     const { lang, theme, handleChangeTheme, isLoading, activetheme, } = useAppConfig()
 
     const styles = styles_(theme)
@@ -59,7 +60,7 @@ const AppThemeModal: FC<appThemeProps> = (props) => {
     ]
 
     const handleChange = async (item: any) => {
-        handleChangeTheme(item.value)
+        handleChangeTheme(item.value, CommonActions, navigation)
     }
 
     return (
@@ -93,6 +94,7 @@ const AppThemeModal: FC<appThemeProps> = (props) => {
 
                                     <TouchableOpacity
                                         activeOpacity={0.8}
+                                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                                         onPressIn={() => handleChange(item)}
                                         style={[styles.outerCirle, {
                                             ...(activetheme == item.value && { borderColor: COLORS.SECONDARY })

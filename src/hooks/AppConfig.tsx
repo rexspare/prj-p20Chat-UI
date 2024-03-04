@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { configStateSelectors, useConfig } from '../states/config';
 import { LightTheme, DarkTheme } from '../assets/themes';
 import { setItem } from '../services/asyncStorage';
-import { ASYNC_KEYS, CHAT_FONT_SIZE, THEMES } from '../assets/constants';
+import { ASYNC_KEYS, CHAT_FONT_SIZE, SCREENS, THEMES } from '../assets/constants';
 import { isDefaultThemeSupported } from '../utils/myUtils';
 import { Appearance } from 'react-native';
 
@@ -18,39 +18,42 @@ const useAppConfig = () => {
 
     const [isLoading, setisLoading] = useState<boolean>(false)
 
-    const handleChangeTheme = async (theme: string) => {
+    const handleChangeTheme = async (theme: string, CommonActions: any, navigation: any ) => {
+        navigation.dispatch(
+            CommonActions.reset({
+                index: 2,
+                routes: [
+                    { name: SCREENS.HOME },
+                    { name: SCREENS.SETTING },
+                    { name: SCREENS.DISPLAY_SETTING },
+                ],
+            })
+        );
+        setActiveTheme(theme)
+        switch (theme) {
+            case THEMES.DEFAULT:
+                const DEFAULT_THEME = Appearance.getColorScheme() as "light" | "dark"
+                if (DEFAULT_THEME == 'light') {
+                    setTheme(LightTheme)
+                } else {
+                    setTheme(DarkTheme)
+                }
+                break;
+            case THEMES.LIGHT:
+                setTheme(LightTheme)
+                break;
+            case THEMES.DARK:
+                setTheme(DarkTheme)
+                break;
 
-        const DEFAULT_THEME = await Appearance.getColorScheme() as "light" | "dark"
-        console.log("==>>", { theme });
-
+            default:
+                setTheme(LightTheme)
+                break;
+        }
 
         try {
-            setisLoading(true)
             await setItem(ASYNC_KEYS.ACTIVE_THEME, theme)
-            setActiveTheme(theme)
-            switch (theme) {
-                case THEMES.DEFAULT:
-                    if (DEFAULT_THEME == 'light') {
-                        setTheme(LightTheme)
-                    } else {
-                        setTheme(DarkTheme)
-                    }
-                    break;
-                case THEMES.LIGHT:
-                    setTheme(LightTheme)
-                    break;
-                case THEMES.DARK:
-                    setTheme(DarkTheme)
-                    break;
-
-                default:
-                    setTheme(LightTheme)
-                    break;
-            }
-            setisLoading(false)
         } catch (error) {
-            setisLoading(false)
-
         }
 
     }

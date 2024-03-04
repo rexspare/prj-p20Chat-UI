@@ -43,12 +43,7 @@ const CoinItem: React.FC<coinItemProps> = (props) => {
                         color: item.isPositive ? COLORS.PRIMARY : COLORS.DANGER
                     }}>{item.gain}</BodyText>
                 </View>
-
-
             </View>
-
-
-
         </TouchableOpacity>
     )
 }
@@ -61,8 +56,8 @@ const styles_ = (theme: ITHEME) => StyleSheet.create({
         backgroundColor: COLORS.TRANSPARENT,
         paddingVertical: hp(1.9),
         ...COMMON_STYLES.flexRowSpaceBetween,
-        borderBottomWidth: 1 / 2,
-        borderColor: theme.BORDER
+        borderBottomWidth: 0.5,
+        borderColor: theme.BORDER_BOTTOM,
     },
     name: {
         marginVertical: 0,
