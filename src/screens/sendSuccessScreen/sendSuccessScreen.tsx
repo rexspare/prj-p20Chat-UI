@@ -1,17 +1,12 @@
-import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
-import { AppHeader, BodyText, ChatItem, CoinItem, CommonHeader, FabButton, HomeHeader, If, Label, Layout, PrimaryButton, PrimaryInput, Spacer, TouchableCustom } from '../../components'
+import { useNavigation, CommonActions } from '@react-navigation/native'
+import React from 'react'
+import { Image, StatusBar, View } from 'react-native'
+import { AppHeader, BodyText, Label, Layout, PrimaryButton } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import useKeyboard from '../../hooks/Keyboard'
-import { styles as styles_ } from './styles'
-import { FlatList, Image, ImageBackground, StatusBar, View } from 'react-native'
-import { COLORS, hp } from '../../assets/stylesGuide'
-import { CHATS_LIST, COINSLIST } from '../../data'
-import { inboxStateSelectors, useInbox } from '../../states/inbox'
-import { BlockUserModal, MuteUserModal } from '../../components/popups'
 import { useWallet, walletStateSelectors } from '../../states/wallet'
-import { RightChev, ScanQRIcon } from '../../assets/icons'
-import { IMAGES } from '../../assets/images'
+import { styles as styles_ } from './styles'
+import { SCREENS } from '../../assets/constants'
 
 
 
@@ -22,6 +17,27 @@ const SendSuccessScreen = () => {
 
   const styles = styles_(theme)
   const selectedAsset = useWallet(walletStateSelectors.selectedAsset)
+
+  const handleBack = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          {
+            name: SCREENS.HOME,
+            state: {
+              routes: [
+                {
+                  name: SCREENS.WALLET
+                }
+              ]
+            }
+          }
+        ],
+      })
+    );
+  }
+
 
   return (
     <>
@@ -61,7 +77,7 @@ const SendSuccessScreen = () => {
         <View style={styles.btnContainer}>
           <PrimaryButton
             title={lang['_114']}
-            onPress={() => { }}
+            onPress={() => handleBack()}
             style={styles.btn}
             textStyle={styles.btnTxt}
           />
