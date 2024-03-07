@@ -133,6 +133,7 @@ const ChatScreen = () => {
                     item={item}
                     index={index}
                     playVideo={() => handlePlayVideo(item)}
+                    chatList={openedChat?.messages}
                   />
                   <If condition={index == openedChat?.messages.length - 1}>
                     <Spacer height={hp(15)} />

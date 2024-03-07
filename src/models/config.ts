@@ -27,4 +27,5 @@ export interface ITHEME {
     SOUND_CONTAINER: string;
     NEW_CHAT_BUBBLE: string;
     NEW_MY_CHAT_BUBBLE: string;
+    DATE_BUBBLE: string;
 }

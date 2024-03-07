@@ -83,7 +83,7 @@ const ChatInput: FC<chatInputProps> = (props) => {
         const newMessageData = {
             id: generateRandomId(20),
             meUser: true,
-            time: moment().format('h:mm A'),
+            time: moment().unix(),
             type: newMessage?.type || MESSAGE_TYPES.TEXT,
             seen: false,
             message: newMessage?.text || null,

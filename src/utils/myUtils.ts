@@ -1,6 +1,7 @@
 import { Platform, Share } from "react-native"
 import DeviceInfo from "react-native-device-info"
 import { SIZE } from "../assets/stylesGuide"
+import moment from "moment"
 
 const isIOS = () => {
     return Platform.OS == 'ios'
@@ -104,6 +105,28 @@ const generateRandomId = (length: number) => {
 }
 
 
+const getBubbleDate = (unixTimestamp: number, type: 'time' | 'date') => {
+    const momentObj = moment.unix(unixTimestamp);
+
+    const today = moment().startOf('day');
+    const yesterday = moment().subtract(1, 'days').startOf('day');
+
+    if (type == 'time') {
+        // Display time in "hh:mm A" format
+        const formattedTime = momentObj.format('hh:mm A');
+        return formattedTime
+    } else {
+        // Display date in "DD/MM/YY" format
+        const formattedDate = momentObj.format('DD/MM/YYYY');
+        if (momentObj.isSame(today, 'day')) {
+            return "Today"
+        }else if (momentObj.isSame(yesterday, 'day')) {
+            return "Yesterday";
+        }
+        return formattedDate
+    }
+}
+
 export {
     isIOS,
     hasNotch,
@@ -113,5 +136,6 @@ export {
     handleShare,
     isDefaultThemeSupported,
     nextIndexExists,
-    generateRandomId
+    generateRandomId,
+    getBubbleDate
 }

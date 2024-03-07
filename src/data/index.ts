@@ -507,7 +507,7 @@ const inbox = [
     {
         id: 1,
         meUser: false,
-        time: '12:15 PM',
+        time: 1704533848,
         type: MESSAGE_TYPES.TEXT,
         message: "Hey! How have you been?",
         seen: true
@@ -515,7 +515,7 @@ const inbox = [
     {
         id: 2,
         meUser: false,
-        time: '12:15 PM',
+        time: 1704533848,
         type: MESSAGE_TYPES.TEXT,
         message: "Wanna catch up for a beer?",
         seen: true
@@ -523,7 +523,7 @@ const inbox = [
     {
         id: 3,
         meUser: true,
-        time: '12:20 PM',
+        time: 1704541048,
         type: MESSAGE_TYPES.TEXT,
         message: "Awesome! Let’s meet up",
         seen: true
@@ -531,7 +531,7 @@ const inbox = [
     {
         id: 4,
         meUser: true,
-        time: '12:20 PM',
+        time: 1704541048,
         type: MESSAGE_TYPES.TEXT,
         message: `Can I also get my cousin along? Will that be okay?`,
         seen: true
@@ -539,7 +539,7 @@ const inbox = [
     {
         id: 5,
         meUser: false,
-        time: '12:22 PM',
+        time: 1704541048,
         type: MESSAGE_TYPES.TEXT,
         message: `Yeah sure! get him too.`,
         seen: true
@@ -547,7 +547,7 @@ const inbox = [
     {
         id: 55,
         meUser: false,
-        time: '12:22 PM',
+        time: 1704541048,
         type: MESSAGE_TYPES.CRYPTO,
         message: `Yeah sure! get him too.`,
         seen: true,
@@ -557,7 +557,7 @@ const inbox = [
     {
         id: 54,
         meUser: true,
-        time: '12:22 PM',
+        time: 1704541048,
         type: MESSAGE_TYPES.CRYPTO,
         message: `Yeah sure! get him too.`,
         seen: true,
@@ -567,7 +567,7 @@ const inbox = [
     {
         id: 6,
         meUser: true,
-        time: '12:25 PM',
+        time: 1707219448,
         type: MESSAGE_TYPES.TEXT,
         message: `Alright! See you soon!`,
         seen: true,
@@ -576,7 +576,7 @@ const inbox = [
     {
         id: 10,
         meUser: false,
-        time: '12:27 PM',
+        time: 1707219568,
         type: MESSAGE_TYPES.VIDEO,
         message: `okay sure!`,
         seen: true,
@@ -585,7 +585,7 @@ const inbox = [
     {
         id: 7,
         meUser: false,
-        time: '12:25 PM',
+        time: 1707219628,
         type: MESSAGE_TYPES.AUDIO,
         message: ``,
         seen: true,
@@ -594,7 +594,7 @@ const inbox = [
     {
         id: 99,
         meUser: true,
-        time: '12:27 PM',
+        time: 1707219688,
         type: MESSAGE_TYPES.IMAGE,
         seen: true,
         media: [
@@ -607,7 +607,7 @@ const inbox = [
     {
         id: 81,
         meUser: false,
-        time: '12:27 PM',
+        time: 1707306088,
         type: MESSAGE_TYPES.TEXT,
         message: `These pics look so so good! Thanks`,
         seen: true,
@@ -616,7 +616,7 @@ const inbox = [
     {
         id: 8,
         meUser: true,
-        time: '12:27 PM',
+        time: 1707306148,
         type: MESSAGE_TYPES.TEXT,
         message: `okay sure!`,
         seen: true,
@@ -626,19 +626,19 @@ const inbox = [
     {
         id: 98,
         meUser: true,
-        time: '12:27 PM',
+        time: 1707306268,
         type: MESSAGE_TYPES.IMAGE,
         seen: true,
-        media: [  require('../assets/images/dummy/msgImage.png'), ]
+        media: [require('../assets/images/dummy/msgImage.png'),]
     },
     {
         id: 9,
         meUser: false,
-        time: '12:27 PM',
+        time: 1709740630,
         type: MESSAGE_TYPES.IMAGE,
         message: "This is caption",
         seen: true,
-        media: [require('../assets/images/dummy/msgImage.png'), ]
+        media: [require('../assets/images/dummy/msgImage.png'),]
     },
 
 ]
@@ -653,7 +653,7 @@ const STARED_MESSAGES: any[] = [
             avatar: FRIENDS_AVATARS.P1,
             number: "0900-786-01"
         },
-        time: '12:15 PM',
+        time: 1704533848,
         type: MESSAGE_TYPES.TEXT,
         message: "Can I also get my cousin along? Will that be okay?",
         staredTime: '12:12 PM'

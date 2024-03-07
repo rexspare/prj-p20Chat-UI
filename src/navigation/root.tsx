@@ -19,7 +19,7 @@ const Root = () => {
             <Stack.Navigator screenOptions={{
                 headerShown: false
             }}>
-                <Stack.Screen name={SCREENS.AUTH} component={AuthStack} />
+                {/* <Stack.Screen name={SCREENS.AUTH} component={AuthStack} /> */}
                 <Stack.Screen name={SCREENS.APP} component={AppStack} />
             </Stack.Navigator>
         </NavigationContainer>

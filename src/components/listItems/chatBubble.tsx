@@ -1,5 +1,6 @@
+import moment from 'moment';
 import React, { FC, useRef } from 'react';
-import { Image, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { isTablet } from 'react-native-device-info';
 import {
     Menu,
@@ -7,26 +8,24 @@ import {
     MenuOptions,
     MenuTrigger
 } from 'react-native-popup-menu';
+import Slider from 'react-native-slider';
 import TrackPlayer, {
     Capability,
     State,
     usePlaybackState,
     useProgress
 } from 'react-native-track-player';
-import Feather from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Video from 'react-native-video';
 import { BodyText, If, TouchableCustom } from '..';
 import { MESSAGE_TYPES } from '../../assets/constants';
-import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, RightCaretIcon, SeenIcon, StarIcon, StarMsgIcon, StartFilledIcon } from '../../assets/icons';
+import { DeleteMsgIcon, ForwardMsgIcon, ReplyMsgIcon, RightCaretIcon, SeenIcon, StarMsgIcon, StartFilledIcon } from '../../assets/icons';
 import { FRIENDS_AVATARS, IMAGES } from '../../assets/images';
 import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../../assets/stylesGuide';
-import { inbox } from '../../data';
 import useAppConfig from '../../hooks/AppConfig';
 import { ITHEME } from '../../models/config';
 import { inboxStateSelectors, useInbox } from '../../states/inbox';
-import { isDeviceTablet, nextIndexExists } from '../../utils/myUtils';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import Slider from 'react-native-slider'
+import { getBubbleDate, isDeviceTablet } from '../../utils/myUtils';
 
 interface IMESSAGE {
     id: number
@@ -46,10 +45,11 @@ interface chatBubbleProps {
     item: IMESSAGE;
     index: number;
     playVideo?: Function;
+    chatList?: any[]
 }
 
 const ChatBubble: FC<chatBubbleProps> = (props) => {
-    const { item, index, playVideo = () => { } } = props
+    const { item, index, playVideo = () => { }, chatList = [] } = props
     const { theme, lang } = useAppConfig()
     const progress = useProgress();
     const playbackState = usePlaybackState();
@@ -200,7 +200,7 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                         style={{ marginRight: 4 }}
                     />
                 </If>
-                <BodyText style={styles.timeTxt}>{item.time}</BodyText>
+                <BodyText style={styles.timeTxt}>{getBubbleDate(item.time, 'time')}</BodyText>
                 <If condition={item.meUser}>
                     <SeenIcon
                         fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
@@ -216,7 +216,7 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
 
     const renderTimeSeenType2 = () => (
         <View style={styles.timeSeen1}>
-            <BodyText style={styles.timeTxt1}>{item.time}</BodyText>
+            <BodyText style={styles.timeTxt1}>{getBubbleDate(item.time, 'time')}</BodyText>
             <If condition={item.meUser}>
                 <SeenIcon
                     fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
@@ -318,7 +318,7 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
                         <BodyText style={styles.cryptoAmount}>{item.amount} <BodyText style={styles.cryptoType}>{item.crypto}</BodyText></BodyText>
 
                         <View style={styles.timeSeen2}>
-                            <BodyText style={styles.timeTxt}>{item.time}</BodyText>
+                            <BodyText style={styles.timeTxt}>{getBubbleDate(item.time, 'time')}</BodyText>
                             <If condition={item.meUser}>
                                 <SeenIcon
                                     fill={item.seen ? COLORS.READ_MSG : theme.ACCENT}
@@ -458,9 +458,32 @@ const ChatBubble: FC<chatBubbleProps> = (props) => {
         }
     }
 
+    const renderDate = () => {
+        return (
+            <View style={{
+                backgroundColor: theme.DATE_BUBBLE,
+                alignSelf: 'center',
+                marginTop: hp(2),
+                marginBottom: hp(0.8),
+                paddingVertical: hp(0.6),
+                paddingHorizontal: hp(1.6),
+                borderRadius: hp(1)
+            }}>
+                <BodyText style={{
+                    fontSize: FONT_SIZE._12,
+                    color: theme.BLACK_TO_WHITE
+                }}>{getBubbleDate(item.time, 'date')}</BodyText>
+            </View>
+        )
+    }
+
 
     return (
         <>
+            <If condition={getBubbleDate(item.time, 'date') != getBubbleDate(chatList[index + 1]?.time, 'date') }>
+                {renderDate()}
+            </If>
+
             <If condition={item?.replyingTo != undefined || item?.replyingTo != null}>
                 <View style={styles.main}>
                     <View>
