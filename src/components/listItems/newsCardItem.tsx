@@ -29,7 +29,7 @@ const NewsCardItem: FC<newsCardItemProps> = (props) => {
             onPress={() => handleSelect()}
         >
             <ImageBackground
-                source={data.cover}
+                source={{ uri: data.image }}
                 style={styles.main}
                 imageStyle={styles.img}
             >

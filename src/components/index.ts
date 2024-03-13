@@ -14,6 +14,7 @@ import MediaPicker from "./mediaPicker";
 import TouchableCustom from "./touchableCustom";
 import WalletDropDown from "./walletDropDown";
 import CustomSwitch from "./CustomeSwitch";
+import Loader from "./loader";
 
 export * from './headers'
 export * from './listItems'
@@ -35,4 +36,5 @@ export {
     TouchableCustom,
     WalletDropDown,
     CustomSwitch,
+    Loader
 }

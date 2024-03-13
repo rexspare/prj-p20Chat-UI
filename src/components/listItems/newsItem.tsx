@@ -8,7 +8,7 @@ import { COLORS, COMMON_STYLES, FONT_SIZE, hp } from '../../assets/stylesGuide'
 import useAppConfig from '../../hooks/AppConfig'
 import { ITHEME } from '../../models/config'
 import { newsStateSelectors, useNews } from '../../states/news'
-import { handleShare } from '../../utils/myUtils'
+import { formatDate, getBubbleDate, handleShare } from '../../utils/myUtils'
 
 interface newsItem {
     item: any;
@@ -34,16 +34,16 @@ const NewsItem: FC<newsItem> = (props) => {
             onPress={() => handleSelect()}
         >
             <Image
-                source={item.cover}
+                source={{ uri: item.image }}
                 style={styles.img}
             />
 
             <View style={styles.context}>
                 <Label style={styles.title}>{item.title}</Label>
-                <BodyText style={styles.txt1}>{item.readTime} {lang['_67']}</BodyText>
+                <BodyText style={styles.txt1}>{item.estiamte_reading_time} {lang['_67']}</BodyText>
 
                 <View style={styles.container}>
-                    <BodyText style={styles.txt2}>{item.time}</BodyText>
+                    <BodyText style={styles.txt2}>{formatDate(item.published_date)}</BodyText>
 
                     <View style={styles.container}>
                         <TouchableCustom

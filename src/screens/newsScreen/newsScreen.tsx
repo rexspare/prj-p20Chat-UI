@@ -1,18 +1,30 @@
-import React, { useState, useRef } from 'react'
-import { AppHeader, BodyText, If, Label, Layout, NewsCardItem, NewsFeedItem, NewsItem, PrimaryInput } from '../../components'
+import React, { useState, useRef, useEffect } from 'react'
+import { AppHeader, BodyText, If, Label, Layout, Loader, NewsCardItem, NewsFeedItem, NewsItem, PrimaryInput } from '../../components'
 import useAppConfig from '../../hooks/AppConfig'
 import { styles as styles_ } from './styles'
 import Carousel, { Pagination } from 'react-native-snap-carousel-v4';
 import { COLORS, hp, wp } from '../../assets/stylesGuide';
 import { View } from 'react-native';
 import { FEEDS, NEWS } from '../../data';
+import { newsStateSelectors, useNews } from '../../states/news';
+import useNewsApi from '../../hooks/News';
+import { FlashList } from '@shopify/flash-list';
 
 const NewsScreen = () => {
     const { lang, theme } = useAppConfig()
+    const news = useNews(newsStateSelectors.news)
+    const { isLoading, getNewsCategory, getNews } = useNewsApi()
+
     const styles = styles_(theme)
     const carouselRef = useRef(null)
     const [searchVal, setsearchVal] = useState("")
     const [activeIndex, setactiveIndex] = useState(0)
+
+    // GET NEWS
+    useEffect(() => {
+        getNews()
+    }, [])
+
 
     return (
         <Layout fixed={true} containerStyle={styles.layout}>
@@ -44,7 +56,7 @@ const NewsScreen = () => {
                     <Carousel
                         ref={carouselRef}
                         layoutCardOffset={hp(3.1)}
-                        data={NEWS}
+                        data={news}
                         layout={'default'}
                         renderItem={({ item }: any) => <NewsCardItem data={item} />}
                         sliderWidth={wp(90)}
@@ -77,20 +89,25 @@ const NewsScreen = () => {
                 </View>
 
                 {/* NEWS LIST */}
-                {
-                    NEWS.map((item, index) => (
+
+                <FlashList
+                    data={news}
+                    renderItem={({ item, index }) => (
                         <NewsItem
                             key={index}
                             item={item}
                         />
-                    ))
-                }
+                    )}
+                    showsVerticalScrollIndicator={false}
+                    estimatedItemSize={hp(6)}
+                />
 
                 {/* SOCIAL LIST */}
 
                 <View style={styles.itemContainer}>
-                    {
-                        FEEDS.map((item, index) => (
+                    <FlashList
+                        data={news}
+                        renderItem={({ item, index }) => (
                             <View key={index}>
                                 <NewsFeedItem
                                     item={item}
@@ -99,12 +116,16 @@ const NewsScreen = () => {
                                     <View style={styles.line}></View>
                                 </If>
                             </View>
-                        ))
-                    }
+                        )}
+                        showsVerticalScrollIndicator={false}
+                        estimatedItemSize={hp(6)}
+                    />
                 </View>
 
             </Layout>
-
+            <Loader
+                isLoading={isLoading}
+            />
         </Layout>
     )
 }

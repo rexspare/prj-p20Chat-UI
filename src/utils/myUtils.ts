@@ -120,10 +120,24 @@ const getBubbleDate = (unixTimestamp: number, type: 'time' | 'date') => {
         const formattedDate = momentObj.format('DD/MM/YYYY');
         if (momentObj.isSame(today, 'day')) {
             return "Today"
-        }else if (momentObj.isSame(yesterday, 'day')) {
+        } else if (momentObj.isSame(yesterday, 'day')) {
             return "Yesterday";
         }
         return formattedDate
+    }
+}
+
+const formatDate = (inputDate: string) => {
+    const today = moment().startOf('day');
+    const yesterday = moment().subtract(1, 'days').startOf('day');
+    const inputMoment = moment(inputDate, 'YYYY-MM-DD');
+  
+    if (inputMoment.isSame(today, 'd')) {
+      return 'Today';
+    } else if (inputMoment.isSame(yesterday, 'd')) {
+      return 'Yesterday';
+    } else {
+      return inputMoment.format('DD/MM/YYYY');
     }
 }
 
@@ -137,5 +151,6 @@ export {
     isDefaultThemeSupported,
     nextIndexExists,
     generateRandomId,
-    getBubbleDate
+    getBubbleDate,
+    formatDate
 }

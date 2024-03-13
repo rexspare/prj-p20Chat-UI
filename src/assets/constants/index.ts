@@ -46,7 +46,8 @@ enum ASYNC_KEYS {
 }
 
 enum ROUTES {
-
+    NEWS_CATEGORIES = "categories",
+    NEWS = "/all-news"
 }
 
 enum THEMES {

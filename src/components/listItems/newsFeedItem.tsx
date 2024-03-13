@@ -5,7 +5,9 @@ import { HeartIcon, ShareIcon, VerifiedIcon } from '../../assets/icons'
 import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp } from '../../assets/stylesGuide'
 import useAppConfig from '../../hooks/AppConfig'
 import { ITHEME } from '../../models/config'
-import { checkTextPressable, handleShare } from '../../utils/myUtils'
+import { checkTextPressable, formatDate, handleShare } from '../../utils/myUtils'
+import { IMAGES } from '../../assets/images'
+import RenderHtml from 'react-native-render-html';
 
 interface newsFeedItemProps {
     item: any;
@@ -17,20 +19,25 @@ const NewsFeedItem: FC<newsFeedItemProps> = (props) => {
     const styles = styles_(theme)
     const [isFavorite, setisFavorite] = useState(false)
 
+    const source = {
+        html: item.content
+    };
+
+
     return (
         <View style={styles.main}>
 
             {/* USER DATA */}
             <View style={styles.container}>
                 <Image
-                    source={item.avatar}
+                    source={IMAGES.AVATAR}
                     style={styles.img}
                 />
 
                 <View style={styles.userContainer}>
                     <View>
-                        <BodyText style={styles.title}>{item.user}</BodyText>
-                        <BodyText style={styles.username}>{item.username}</BodyText>
+                        <BodyText style={styles.title}>{item.author}</BodyText>
+                        <BodyText style={styles.username}>@username</BodyText>
                     </View>
 
                     <View style={styles.verified}>
@@ -40,7 +47,7 @@ const NewsFeedItem: FC<newsFeedItemProps> = (props) => {
                                 height={hp(2)}
                             />
                         </If>
-                        <BodyText style={styles.time}>•{item.time}</BodyText>
+                        <BodyText style={styles.time}>•{formatDate(item.published_date)}</BodyText>
                     </View>
 
                 </View>
@@ -51,7 +58,7 @@ const NewsFeedItem: FC<newsFeedItemProps> = (props) => {
                 <View style={styles.img}></View>
 
                 <View style={styles.context}>
-                    <BodyText style={styles.txt1}>{
+                    {/* <BodyText style={styles.txt1}>{
                         (item.desc?.split(' ')).map((txt: string, index: number) => (
                             <BodyText
                                 key={index}
@@ -60,10 +67,17 @@ const NewsFeedItem: FC<newsFeedItemProps> = (props) => {
                                 {`${txt} `}
                             </BodyText>
                         ))
-                    }</BodyText>
+                    }</BodyText> */}
+
+                    <RenderHtml
+                        source={source}
+                        baseStyle={{
+                            color: COLORS.BLACK
+                        }}
+                    />
 
                     <Image
-                        source={item.image}
+                        source={{ uri: item.image }}
                         style={styles.postImg}
                     />
 

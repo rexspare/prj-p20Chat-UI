@@ -11,12 +11,16 @@ import { Platform } from 'react-native';
  */
 export interface INewsState {
     // State values
+    news: any;
+    setNews: (val: any) => void;
     selectedNews: any;
     setselectedNews: (val: any) => void;
 
 }
 
 const initialState: INewsState = {
+    news: [],
+    setNews: () => { },
     selectedNews: null,
     setselectedNews: () => { },
 };
@@ -26,6 +30,7 @@ const initialState: INewsState = {
  */
 export const useNews = create<INewsState>((set, get) => ({
     ...initialState,
+    setNews: val => set({ news: val }),
     setselectedNews: val => set({ selectedNews: val }),
 }));
 

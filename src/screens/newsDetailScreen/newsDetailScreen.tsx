@@ -5,10 +5,11 @@ import { styles as styles_ } from './styles'
 import { newsStateSelectors, useNews } from '../../states/news'
 import { FEED_AVATARS, NEWS_IMAGES } from '../../assets/images/dummy'
 import { AppHeader, BodyText, Label, Layout, TouchableCustom } from '../../components'
-import { COLORS, hp } from '../../assets/stylesGuide'
+import { COLORS, SIZE, hp } from '../../assets/stylesGuide'
 import { HeartIcon, ShareIcon } from '../../assets/icons'
 import { IMAGES } from '../../assets/images'
-import { handleShare } from '../../utils/myUtils'
+import { formatDate, handleShare } from '../../utils/myUtils'
+import RenderHtml from 'react-native-render-html';
 
 const tags = [
     "Trendy",
@@ -21,11 +22,13 @@ const NewsDetailScreen = () => {
     const [isFavorite, setisFavorite] = useState(false)
     const styles = styles_(theme)
 
-    const desc = `Stay on top of the blockchain and cryptocurrency world with an app from Cointelegraph — a top Web3 media outlet. Download the app,\n\ncalledCointelegraph:\n\nCrypto News, to keep up to speed with the latest trends and breaking news in the crypto world.\n\nStay on top of the blockchain and cryptocurrency world with an app from Cointelegraph — a  top Web3 media outlet. Download the app, called Cointelegraph: Crypto News, to keep up to speed with the latest trends and breaking news in the crypto world.\n\n`
+    const source = {
+        html: selectedNews.content
+    };
 
     return (
         <ImageBackground
-            source={NEWS_IMAGES.COIN_BG}
+            source={{ uri: selectedNews.image }}
             style={styles.main}
         >
             <ImageBackground
@@ -48,18 +51,18 @@ const NewsDetailScreen = () => {
                         }
                     </View>
 
-                    <Label style={styles.txt}>{`Top Cryptocurrency Prices Today: Bitcoin, Binance Coin up; Dogecoinn surges 25`}</Label>
+                    <Label style={styles.txt}>{`${selectedNews.title}`}</Label>
 
                     {/* PUBLISHER */}
                     <View style={styles.publisher}>
                         <View style={styles.pubContainerName}>
                             <Image
-                                source={FEED_AVATARS.AVATAR1}
+                                source={IMAGES.AVATAR}
                                 style={styles.pubImg}
                             />
                             <View >
-                                <Label style={styles.pubName}>EconomicTimes</Label>
-                                <BodyText style={styles.pubTime}>Today, 10:24 AM</BodyText>
+                                <Label style={styles.pubName}>{selectedNews.author}</Label>
+                                <BodyText style={styles.pubTime}>{formatDate(selectedNews.published_date)}</BodyText>
                             </View>
 
                         </View>
@@ -90,7 +93,14 @@ const NewsDetailScreen = () => {
 
 
                     {/* DESCRIPTION */}
-                    <BodyText style={styles.desc}>{desc}{desc}{desc}</BodyText>
+                    {/* <BodyText style={styles.desc}></BodyText> */}
+                    <RenderHtml
+                        contentWidth={SIZE.WIDTH * 0.9}
+                        source={source}
+                        baseStyle={{
+                            color: COLORS.WHITE
+                        }}
+                    />
 
                 </Layout>
             </ImageBackground>
